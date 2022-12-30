@@ -66,7 +66,7 @@ Route::middleware(['auth', 'role:vendor'])->group(function(){
 
     Route::get('/vendor/change/password', [VendorController::class, 'VendorChangePassword'])->name('vendor.change.password');
 
-    Route::post('/admin/update/password', [AdminController::class, 'AdminUpdatePassword'])->name('update.password');
+    Route::post('/vendor/update/password', [VendorController::class, 'VendorUpdatePassword'])->name('vendor.update.password');
 });
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
