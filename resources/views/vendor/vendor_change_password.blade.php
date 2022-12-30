@@ -30,7 +30,7 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <form method="post" action="{{ route('update.password') }}" >
+                            <form method="post" action="{{ route('vendor.update.password') }}" >
                                 @csrf
 
                                 @if(session('status'))
