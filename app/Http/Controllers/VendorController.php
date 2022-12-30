@@ -63,6 +63,10 @@ class VendorController extends Controller
         return redirect()->back()->with($notification);
 
     } // end method
+
+    public function VendorChangePassword(){
+        return view('vendor.vendor_change_password');
+    } // end method
 }
 
 
