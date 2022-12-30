@@ -62,7 +62,7 @@ Route::middleware(['auth', 'role:vendor'])->group(function(){
 
     Route::get('/vendor/profile', [VendorController::class, 'VendorProfile'])->name('vendor.profile');
 
-    Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
+    Route::post('/vendor/profile/store', [VendorController::class, 'VendorProfileStore'])->name('vendor.profile.store');
 });
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
