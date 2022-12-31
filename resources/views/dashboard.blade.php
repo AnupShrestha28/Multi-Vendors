@@ -10,6 +10,10 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
+                        @if(Auth::user()->name || Auth::user()->avatar)
+                    <img src="{{ Auth::user()->avatar }}" alt="" style="height:400px;width:400px">
+        <h1>{{ Auth()::user()->name }}</h1>
+        @endif
                 </div>
             </div>
         </div>

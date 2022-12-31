@@ -1,7 +1,11 @@
-<x-guest-layout>
+@extends('layouts.guest')
+
+@section('content')
+
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
+    <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
@@ -45,13 +49,17 @@
         </div>
 
 
-        <div class="flex items-center justify-center mt-4 gap-2">
-
-                <a href="{{ route('login.google') }}"> <x-primary-button>Continue with Gmail</x-primary-button> </a>
-
-          <a href="{{ route('login.facebook') }}">   <x-primary-button>Continue with facebook</x-primary-button></a>
-        </div>
 
 
     </form>
-</x-guest-layout>
+    <div class="flex items-center justify-center mt-4 gap-2">
+<i class="fa fa-facebook"></i>
+        <a href="{{ route('login.google') }}"> <x-primary-button>Continue with Google </x-primary-button> </a>
+
+        <a href="{{ route('login.facebook') }}">   <x-primary-button>Continue with facebook</x-primary-button></a>
+    </div>
+</div>
+
+
+
+@endsection
