@@ -43,5 +43,15 @@
                 {{ __('Log in') }}
             </x-primary-button>
         </div>
+
+
+        <div class="flex items-center justify-center mt-4 gap-2">
+
+                <a href="{{ route('login.google') }}"> <x-primary-button>Continue with Gmail</x-primary-button> </a>
+
+          <a href="{{ route('login.facebook') }}">   <x-primary-button>Continue with facebook</x-primary-button></a>
+        </div>
+
+
     </form>
 </x-guest-layout>
