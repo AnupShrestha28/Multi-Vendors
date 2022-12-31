@@ -32,7 +32,7 @@ class SocialController extends Controller
     }
     public function handleFacebookCallback()
     {
-        $user = Socialite::driver('google')->user();
+        $user = Socialite::driver('facebook')->user();
         $this->registerUserwithSocial($user);
 
         return redirect()->route('dashboard');
