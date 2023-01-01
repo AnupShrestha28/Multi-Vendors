@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -34,11 +35,14 @@ class AuthenticatedSessionController extends Controller
 
         $url = '';
 
-        if($request->user()->role === 'admin'){
+        if ($request->user()->role === 'admin') {
             $url = '/admin/dashboard';
-        }elseif($request->user()->role === 'vendor'){
+        } elseif ($request->user()->role === 'vendor') {
             $url = '/vendor/dashboard';
-        }elseif($request->user()->role === 'user'){
+        } elseif ($request->user()->role === 'user') {
+
+
+
             $url = '/dashboard';
         }
 
