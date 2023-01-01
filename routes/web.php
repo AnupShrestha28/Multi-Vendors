@@ -63,6 +63,9 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
 });
 
 
+});
+
+
 Route::middleware(['auth', 'role:vendor'])->group(function () {
 
 // Vendor Dashboard
@@ -80,6 +83,8 @@ Route::middleware(['auth', 'role:vendor'])->group(function(){
     Route::get('/vendor/change/password', [VendorController::class, 'VendorChangePassword'])->name('vendor.change.password');
 
     Route::post('/vendor/update/password', [VendorController::class, 'VendorUpdatePassword'])->name('vendor.update.password');
+});
+
 });
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
