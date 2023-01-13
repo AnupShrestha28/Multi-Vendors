@@ -18,7 +18,7 @@ use App\Http\Controllers\SocialController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.index');
 });
 
 Route::get('/dashboard', function () {
@@ -60,7 +60,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
 
 
-});
 
 
 Route::middleware(['auth', 'role:vendor'])->group(function () {
@@ -83,7 +82,6 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
     });
 });
 
-});
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
 
