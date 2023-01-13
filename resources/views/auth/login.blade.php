@@ -64,7 +64,7 @@
                                                 <a class="text-muted" href="{{ route('password.request') }}">Forgot password?</a>
                                             </div>
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-heading btn-block hover-up" name="login">Log in</button>
+                                                <button type="submit" class="btn btn-heading btn-block hover-up" name="login">Login</button>
                                             </div>
                                         </form>
                                     </div>
