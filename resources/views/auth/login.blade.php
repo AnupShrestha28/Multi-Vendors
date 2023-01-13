@@ -49,7 +49,7 @@
                                             @csrf
                                             
                                             <div class="form-group">
-                                                <input type="email" id="email" required="" name="email" placeholder="Enter your email" />
+                                                <input type="email" id="email" required="" name="email" placeholder="Enter your email" value="{{Cookie::get('useremail')}}" />
                                             </div>
                                             <div class="form-group">
                                                 <input required="" id="password" type="password" name="password" placeholder="Enter your passsword" />
@@ -57,14 +57,14 @@
                                             <div class="login_footer form-group mb-50">
                                                 <div class="chek-form">
                                                     <div class="custome-checkbox">
-                                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" value="" />
-                                                        <label class="form-check-label" for="exampleCheckbox1"><span>Remember me</span></label>
+                                                        <input class="form-check-input" type="checkbox" name="remember" id="remember_me" value="" @if(Cookie::has('useremail')) checked @endif />
+                                                        <label class="form-check-label" for="remember_me"><span>Remember me</span></label>
                                                     </div>
                                                 </div>
                                                 <a class="text-muted" href="{{ route('password.request') }}">Forgot password?</a>
                                             </div>
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-heading btn-block hover-up" name="login">Log in</button>
+                                                <button type="submit" class="btn btn-heading btn-block hover-up" name="login">Login</button>
                                             </div>
                                         </form>
                                     </div>
