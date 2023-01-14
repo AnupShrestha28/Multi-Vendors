@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.index');
 });
 
 Route::get('/dashboard', function () {
@@ -64,6 +64,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
 
 
+
+
 Route::middleware(['auth', 'role:vendor'])->group(function () {
 
     // Vendor Dashboard
@@ -83,6 +85,7 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
         Route::post('/vendor/update/password', [VendorController::class, 'VendorUpdatePassword'])->name('vendor.update.password');
     });
 });
+
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
 
