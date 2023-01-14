@@ -1,5 +1,10 @@
+
 <!DOCTYPE html>
 <html class="no-js" lang="en">
+
+
+
+
 
 <head>
     <meta charset="utf-8" />
@@ -81,6 +86,7 @@
         </div>
     </div>
 </div>
+
 <!-- Vendor JS-->
 <script src="{{ asset('frontend/assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
@@ -107,3 +113,4 @@
 </body>
 
 </html>
+

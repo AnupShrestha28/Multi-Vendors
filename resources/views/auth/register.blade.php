@@ -1,5 +1,7 @@
+
 <!DOCTYPE html>
 <html class="no-js" lang="en">
+
 
 <head>
     <meta charset="utf-8" />
@@ -102,6 +104,7 @@
                 <img src="{{ asset('frontend/assets/imgs/theme/loading.gif') }}" alt="" />
             </div>
         </div>
+
     </div>
 </div>
 <!-- Vendor JS-->
@@ -130,3 +133,4 @@
 </body>
 
 </html>
+
