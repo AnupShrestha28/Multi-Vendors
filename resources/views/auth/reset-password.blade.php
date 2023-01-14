@@ -34,9 +34,7 @@
                 <div class="row">
                     <div class="col-xl-8 col-lg-10 col-md-12 m-auto">
                         <div class="row">
-                            <div class="col-lg-6 pr-30 d-none d-lg-block">
-                                <img class="border-radius-15" src="{{ asset('frontend/assets/imgs/page/login-1.png') }}" alt="" />
-                            </div>
+                            
                             <div class="col-lg-6 col-md-8">
                                 <div class="login_wrap widget-taber-content background-white">
                                     <div class="padding_eight_all bg-white">
@@ -47,7 +45,7 @@
                                             <input type="hidden" name="token" value="{{ $request->route('token') }}">
                                             
                                             <div class="form-group">
-                                                <input type="email" id="email" required="" name="email" placeholder="Enter your email" />
+                                                <input type="email" id="email" required="" name="email" placeholder="Enter your email" value="{{old('email', $request->email)}}" />
                                             </div>
                                             <div class="form-group">
                                                 <input required="" id="password" type="password" name="password" placeholder="New Password" />

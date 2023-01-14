@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\SocialController;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,9 +23,17 @@ Route::get('/', function () {
     return view('frontend.index');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function(){
+    Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('dashboard');
+}); // group middleware end
+
+
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+
 
 // Email Verification Routes
 Auth::routes([
