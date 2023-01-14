@@ -57,7 +57,7 @@
                                             <div class="login_footer form-group mb-50">
                                                 <div class="chek-form">
                                                     <div class="custome-checkbox">
-                                                        <input class="form-check-input" type="checkbox" name="remember" id="remember_me" value="" @if(Cookie::has('useremail')) checked @endif />
+                                                        <input class="form-check-input" type="checkbox" name="remember" id="remember_me" @if(Cookie::has('useremail')) checked @endif />
                                                         <label class="form-check-label" for="remember_me"><span>Remember me</span></label>
                                                     </div>
                                                 </div>
