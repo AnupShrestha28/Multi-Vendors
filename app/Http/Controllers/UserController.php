@@ -49,7 +49,12 @@ class UserController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        $notification = array(
+            'message' => 'User Logout Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect('/login')->with($notification);
     } // end method
 
     public function UserUpdatePassword(Request $request){
@@ -60,7 +65,7 @@ class UserController extends Controller
 
         // Match the old password
         if(!Hash::check($request->old_password, auth::user()->password)){
-            return redirect()->back()->with("error", "Old Password doesnot match");
+            return back()->with("error", "Old Password doesnot match");
         }
 
         // Update the new password
@@ -68,6 +73,6 @@ class UserController extends Controller
             'password' => Hash::make($request->new_password)
         ]);
 
-        return redirect()->back()->with("status", "Password Changed Successfully");
+        return back()->with("status", "Password Changed Successfully");
     } // end method
 }
