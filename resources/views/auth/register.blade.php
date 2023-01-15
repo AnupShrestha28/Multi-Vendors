@@ -48,19 +48,19 @@
                                             @csrf
 
                                             <div class="form-group">
-                                                <input type="text" id="name"  name="name" placeholder="Enter name" />
+                                                <input type="text" id="name"  name="name" placeholder="Enter name" class="text-inputbox"/>
                                                 @if ($errors->has('name'))
                                                 <span class="text-danger ">{{ $errors->first('name') }}</span>
                                             @endif
                                             </div>
                                             <div class="form-group">
-                                                <input type="email" id="email"  name="email" placeholder="Enter email" />
+                                                <input type="email" id="email"  name="email" placeholder="Enter email" class="text-inputbox" />
                                                 @if ($errors->has('email'))
                                                 <span class="text-danger ">{{ $errors->first('email') }}</span>
                                             @endif
                                             </div>
                                             <div class="form-group">
-                                                <input  id="password" type="password" name="password" placeholder="Enter password" />
+                                                <input  id="password" type="password" name="password" placeholder="Enter password" class="text-inputbox"/>
                                                 @if ($errors->has('password'))
                                                 <span class="text-danger ">{{ $errors->first('password') }}</span>
                                             @endif
@@ -73,8 +73,11 @@
                                             <div class="login_footer form-group mb-50">
                                                 <div class="chek-form">
                                                     <div class="custome-checkbox">
-                                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox12" value="" />
+                                                        <input class="form-check-input" type="checkbox" name="terms" id="exampleCheckbox12"  />
                                                         <label class="form-check-label" for="exampleCheckbox12"><span>I agree to terms &amp; Policy.</span></label>
+                                                        @if ($errors->has('terms'))
+                                                        <br><span class="text-danger ">{{ $errors->first('terms') }}</span>
+                                                    @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -140,7 +143,6 @@
 <!-- Template  JS -->
 <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
 <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
-
 
 
 

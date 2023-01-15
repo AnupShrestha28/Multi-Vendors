@@ -19,11 +19,14 @@
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/imgs/theme/favicon.svg') }}" />
     <!-- Template CSS -->
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/toastr.min.css') }}">
+
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}" />
+
 </head>
 
 <body>
-    
+
 
     @include('frontend.body.header')
 
@@ -41,40 +44,59 @@
                 <div class="row">
                     <div class="col-xl-6 col-lg-8 col-md-12 m-auto">
                         <div class="row">
-                            
-                            <div class="col-lg-6 col-md-8">
+
+                            <div class="col-lg-12 col-md-12">
                                 <div class="login_wrap widget-taber-content background-white">
-                                    <div class="padding_eight_all bg-white">
-                                        
-                                        <form method="POST" action="{{ route('verification.send') }}">
-                                            @csrf
-                                          
-                                           
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-heading btn-block hover-up" name="login">Resend Verification Email</button>
+                                    <div class=" bg-white">
+                                    <div class="card">
+                                        <div class="card-header text-black">
+                                            <h5>Email Verification</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <h6 class="mb-4">Your verification email has been sent to Your Email..Please check your Email!!</h6>
+                                            @if (session('status') == 'verification-link-sent')
+                                            
+
+                                            <div class="mb-4 font-medium text-sm text-green-600 alert alert-primary ">
+                                                <p>A new verification link has been sent to your Email Address </p>
                                             </div>
-                                        </form>
+                                        @endif
+
+                                            <form method="POST" action="{{ route('verification.send') }}">
+                                                @csrf
+
+
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-heading btn-block hover-up" name="login">Resend Verification Email</button>
+                                                </div>
+
+                                            </form>
+
 
                                         <form method="POST" action="{{ route('logout') }}">
                                             @csrf
 
-                                            
+
             <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 Logout
             </button>
 
                                         </form>
+
+                                        </div>
+                                    </div>
+
                                     </div>
                                 </div>
                             </div>
-                           
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </main>
-    
+
     @include('frontend.body.footer')
 <!-- Preloader Start -->
 <div id="preloader-active">
@@ -110,6 +132,8 @@
 <!-- Template  JS -->
 <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
 <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
+<script src="{{ asset('frontend/assets/js/toastr.min.js')}}"></script>
+
 </body>
 
 </html>

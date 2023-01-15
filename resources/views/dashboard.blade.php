@@ -26,8 +26,10 @@
    @include('frontend.body.header')
 
     <main class="main pages">
+
         @yield('user')
     </main>
+
 
 
     @include('frontend.body.footer')
@@ -90,6 +92,11 @@
 	 }
 	 @endif
 	</script>
+    <script>
+        @if(session()->has('verify'))
+             toastr.success('{{ session()->get("verify")}}','success',{timeOut:5000})
+        @endif
+    </script>
 
 </body>
 

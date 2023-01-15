@@ -45,14 +45,21 @@
                                             <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
                                             <div class="form-group">
-                                                <input type="email" id="email" required="" name="email" placeholder="Enter your email" value="{{old('email', $request->email)}}" />
+                                                <input type="email" id="email"  name="email" placeholder="Enter your email" value="{{old('email', $request->email)}}"  />
+
                                             </div>
                                             <div class="form-group">
-                                                <input required="" id="password" type="password" name="password" placeholder="New Password" />
+                                                <input  id="password" type="password" name="password" placeholder="New Password" />
+                                                @if ($errors->has('password'))
+                                                <span class="text-danger ">{{ $errors->get('password') }}</span>
+                                            @endif
                                             </div>
 
                                             <div class="form-group">
-                                                <input required="" id="password_confirmation" type="password" name="password_confirmation" placeholder="Confirm New Password" />
+                                                <input  id="password_confirmation" type="password" name="password_confirmation" placeholder="Confirm New Password" />
+                                                @if ($errors->has('password_confirmation'))
+                                                <span class="text-danger ">{{ $errors->get('password_confirmation') }}</span>
+                                            @endif
                                             </div>
 
                                             <div class="form-group">
