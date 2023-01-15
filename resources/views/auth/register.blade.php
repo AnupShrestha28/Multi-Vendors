@@ -48,13 +48,13 @@
                                             @csrf
 
                                             <div class="form-group">
-                                                <input type="text" id="name"  name="name" placeholder="Enter name" class="text-inputbox"/>
+                                                <input type="text" id="name"  name="name" placeholder="Enter name" class="text-inputbox" value="{{ old('name') }}" />
                                                 @if ($errors->has('name'))
                                                 <span class="text-danger ">{{ $errors->first('name') }}</span>
                                             @endif
                                             </div>
                                             <div class="form-group">
-                                                <input type="email" id="email"  name="email" placeholder="Enter email" class="text-inputbox" />
+                                                <input type="email" id="email"  name="email" placeholder="Enter email" class="text-inputbox" value="{{ old('email') }}" />
                                                 @if ($errors->has('email'))
                                                 <span class="text-danger ">{{ $errors->first('email') }}</span>
                                             @endif
@@ -109,17 +109,7 @@
 
     @include('frontend.body.footer')
 
-   <!-- Preloader Start -->
-   <div id="preloader-active">
-    <div class="preloader d-flex align-items-center justify-content-center">
-        <div class="preloader-inner position-relative">
-            <div class="text-center">
-                <img src="{{ asset('frontend/assets/imgs/theme/loading.gif') }}" alt="" />
-            </div>
-        </div>
 
-    </div>
-</div>
 <!-- Vendor JS-->
 <script src="{{ asset('frontend/assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/vendor/jquery-3.6.0.min.js') }}"></script>

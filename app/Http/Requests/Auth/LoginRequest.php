@@ -31,10 +31,12 @@ class LoginRequest extends FormRequest
     {
         return [
             'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string'],
+            'password' => ['required', 'string']
 
         ];
     }
+
+
 
     /**
      * Attempt to authenticate the request's credentials.

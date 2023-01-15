@@ -55,7 +55,7 @@
                                         <div class="card-body">
                                             <h6 class="mb-4">Your verification email has been sent to Your Email..Please check your Email!!</h6>
                                             @if (session('status') == 'verification-link-sent')
-                                            
+
 
                                             <div class="mb-4 font-medium text-sm text-green-600 alert alert-primary ">
                                                 <p>A new verification link has been sent to your Email Address </p>

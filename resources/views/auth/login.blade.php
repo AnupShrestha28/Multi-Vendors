@@ -5,6 +5,8 @@
     <meta charset="utf-8" />
     <title>Login - Multi Vendors</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:title" content="" />
@@ -52,12 +54,6 @@
                                             <p class="mb-30">Dont have an account? <a href="page-register.html">Create here</a></p>
                                         </div>
 
-
-
-
-
-
-
                                         @error('emailfailed')
                                         <div class="alert alert-danger alert-dismissible" role="alert"  style="padding: .5rem .5rem ">
                                             <span id="message" >{{ $message }}</span>
@@ -65,7 +61,7 @@
                                              <button type="button" style="font-size: 10px;padding: 1rem 1rem" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                         </div>
                                         @enderror
-                                        <form method="POST" action="{{ route('login') }}" id="login-form">
+                                        <form method="POST" action="{{ route('login') }}" >
                                             @csrf
                                             <div class="form-group">
                                                 <input type="email" id="email"  name="email" placeholder="Enter your email" value="{{Cookie::get('useremail')}}" />
@@ -106,16 +102,6 @@
 
    @include('frontend.body.footer')
 
-    <!-- Preloader Start -->
-   <div id="preloader-active">
-        <div class="preloader d-flex align-items-center justify-content-center">
-            <div class="preloader-inner position-relative">
-                <div class="text-center">
-                    <img src="{{ asset('frontend/assets/imgs/theme/loading.gif') }}" alt="" />
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Vendor JS-->
     <script src="{{ asset('frontend/assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
@@ -143,11 +129,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 
     <script src="{{ asset('frontend/assets/js/sweetalert.min.js') }}"></script>
+
     <script>
     @if(session()->has('status'))
     Swal.fire({
             icon: 'success',
-            title: '{{ session()->get("status") }}',
+            title: '{{ session()->get("status") }}'
 
         })
 
