@@ -17,6 +17,10 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/sweetalert.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}" />
 
+    <!-- Toaster -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+
+
 </head>
 
 <body>
@@ -80,7 +84,7 @@
                                             <div class="login_footer form-group mb-50">
                                                 <div class="chek-form">
                                                     <div class="custome-checkbox">
-                                                        <input class="form-check-input" type="checkbox" name="remember" id="remember_me"  @if(Cookie::has('useremail')) checked @endif />
+                                                        <input class="form-check-input" type="checkbox" name="remember" id="remember_me" @if(Cookie::has('useremail')) checked @endif />
                                                         <label class="form-check-label" for="remember_me"><span>Remember me</span></label>
                                                     </div>
                                                 </div>
@@ -149,6 +153,30 @@
 
         @endif
     </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+	<script>
+	 @if(Session::has('message'))
+	 var type = "{{ Session::get('alert-type','info') }}"
+	 switch(type){
+		case 'info':
+		toastr.info(" {{ Session::get('message') }} ");
+		break;
+
+		case 'success':
+		toastr.success(" {{ Session::get('message') }} ");
+		break;
+
+		case 'warning':
+		toastr.warning(" {{ Session::get('message') }} ");
+		break;
+
+		case 'error':
+		toastr.error(" {{ Session::get('message') }} ");
+		break;
+	 }
+	 @endif
+	</script>
 
 </body>
 

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
@@ -17,6 +18,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/toastr.min.css') }}">
 </head>
+
 
 <body>
 
@@ -79,6 +81,7 @@
                 <img src="{{ asset('frontend/assets/imgs/theme/loading.gif') }}" alt="" />
             </div>
         </div>
+
     </div>
 </div>
 <!-- Vendor JS-->

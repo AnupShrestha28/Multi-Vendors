@@ -1,5 +1,7 @@
+
 <!DOCTYPE html>
 <html class="no-js" lang="en">
+
 
 <head>
     <meta charset="utf-8" />
@@ -65,7 +67,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <input  id="password_confirmation" type="password" name="password_confirmation" placeholder="Confirm password" />
-                                              
+
                                             </div>
 
                                             <div class="login_footer form-group mb-50">
@@ -112,6 +114,7 @@
                 <img src="{{ asset('frontend/assets/imgs/theme/loading.gif') }}" alt="" />
             </div>
         </div>
+
     </div>
 </div>
 <!-- Vendor JS-->
@@ -140,7 +143,7 @@
 
 
 
-       
+
 </body>
 
 </html>
