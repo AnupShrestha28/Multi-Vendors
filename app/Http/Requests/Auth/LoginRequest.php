@@ -31,9 +31,12 @@ class LoginRequest extends FormRequest
     {
         return [
             'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string'],
+            'password' => ['required', 'string']
+
         ];
     }
+
+
 
     /**
      * Attempt to authenticate the request's credentials.
@@ -57,7 +60,7 @@ class LoginRequest extends FormRequest
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
+                'emailfailed' => trans('auth.failed'),
             ]);
         }
 

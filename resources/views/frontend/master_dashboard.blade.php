@@ -16,14 +16,20 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/animate.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}" />
+
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/sweetalert.min.css') }}">
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+
 </head>
 
 <body>
     <!-- Modal -->
- 
+
     <!-- Quick view -->
     @include('frontend.body.quickview')
-    
+
     <!-- Header  -->
     @include('frontend.body.header')
     <!--End header-->
@@ -34,7 +40,7 @@
     </main>
 
     @include('frontend.body.footer')
-    
+
     <!-- Preloader Start -->
     <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
@@ -68,6 +74,8 @@
     <!-- Template  JS -->
     <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
     <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
+
+    <script src="{{ asset('frontend/assets/js/sweetalert.min.js') }}"></script>
 </body>
 
 </html>

@@ -17,7 +17,7 @@
 </head>
 
 <body>
-   
+
    @include('frontend.body.header')
 
     <main class="main pages">
@@ -34,27 +34,34 @@
                 <div class="row">
                     <div class="col-xl-8 col-lg-10 col-md-12 m-auto">
                         <div class="row">
-                            
+
                             <div class="col-lg-6 col-md-8">
                                 <div class="login_wrap widget-taber-content background-white">
                                     <div class="padding_eight_all bg-white">
-                                        
+
                                         <form method="POST" action="{{ route('password.store') }}">
                                             @csrf
 
                                             <input type="hidden" name="token" value="{{ $request->route('token') }}">
-                                            
+
                                             <div class="form-group">
-                                                <input type="email" id="email" required="" name="email" placeholder="Enter your email" value="{{old('email', $request->email)}}" />
+                                                <input type="email" id="email"  name="email" placeholder="Enter your email" value="{{old('email', $request->email)}}"  />
+
                                             </div>
                                             <div class="form-group">
-                                                <input required="" id="password" type="password" name="password" placeholder="New Password" />
+                                                <input  id="password" type="password" name="password" placeholder="New Password" />
+                                                @if ($errors->has('password'))
+                                                <span class="text-danger ">{{ $errors->get('password') }}</span>
+                                            @endif
                                             </div>
 
                                             <div class="form-group">
-                                                <input required="" id="password_confirmation" type="password" name="password_confirmation" placeholder="Confirm New Password" />
+                                                <input  id="password_confirmation" type="password" name="password_confirmation" placeholder="Confirm New Password" />
+                                                @if ($errors->has('password_confirmation'))
+                                                <span class="text-danger ">{{ $errors->get('password_confirmation') }}</span>
+                                            @endif
                                             </div>
-                                           
+
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-heading btn-block hover-up" name="login">Reset Password</button>
                                             </div>
@@ -71,16 +78,7 @@
 
    @include('frontend.body.footer')
 
-    <!-- Preloader Start -->
-    <div id="preloader-active">
-        <div class="preloader d-flex align-items-center justify-content-center">
-            <div class="preloader-inner position-relative">
-                <div class="text-center">
-                    <img src="{{ asset('frontend/assets/imgs/theme/loading.gif') }}" alt="" />
-                </div>
-            </div>
-        </div>
-    </div>
+
     <!-- Vendor JS-->
     <script src="{{ asset('frontend/assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/vendor/jquery-3.6.0.min.js') }}"></script>

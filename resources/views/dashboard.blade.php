@@ -22,16 +22,18 @@
 </head>
 
 <body>
- 
+
    @include('frontend.body.header')
 
     <main class="main pages">
+
         @yield('user')
     </main>
-    
+
+
 
     @include('frontend.body.footer')
-    
+
     <!-- Preloader Start -->
     <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
@@ -75,22 +77,27 @@
 		case 'info':
 		toastr.info(" {{ Session::get('message') }} ");
 		break;
-	
+
 		case 'success':
 		toastr.success(" {{ Session::get('message') }} ");
 		break;
-	
+
 		case 'warning':
 		toastr.warning(" {{ Session::get('message') }} ");
 		break;
-	
+
 		case 'error':
 		toastr.error(" {{ Session::get('message') }} ");
-		break; 
+		break;
 	 }
-	 @endif 
+	 @endif
 	</script>
-    
+    <script>
+        @if(session()->has('verify'))
+             toastr.success('{{ session()->get("verify")}}','success',{timeOut:5000})
+        @endif
+    </script>
+
 </body>
 
 </html>

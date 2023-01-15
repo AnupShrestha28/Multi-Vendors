@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    
+
     @include('frontend.body.header')
 
     <main class="main pages">
@@ -44,27 +44,40 @@
                                             <h1 class="mb-5">Create an Account</h1>
                                             <p class="mb-30">Already have an account? <a href="{{ route('login') }}">Login</a></p>
                                         </div>
-                                        <form method="POST" action="{{ route('register') }}">
+                                        <form method="POST" action="{{ route('register') }}" id="registerform">
                                             @csrf
-                                            
+
                                             <div class="form-group">
-                                                <input type="text" id="name" required="" name="name" placeholder="Enter name" />
+                                                <input type="text" id="name"  name="name" placeholder="Enter name" class="text-inputbox" value="{{ old('name') }}" />
+                                                @if ($errors->has('name'))
+                                                <span class="text-danger ">{{ $errors->first('name') }}</span>
+                                            @endif
                                             </div>
                                             <div class="form-group">
-                                                <input type="email" id="email" required="" name="email" placeholder="Enter email" />
+                                                <input type="email" id="email"  name="email" placeholder="Enter email" class="text-inputbox" value="{{ old('email') }}" />
+                                                @if ($errors->has('email'))
+                                                <span class="text-danger ">{{ $errors->first('email') }}</span>
+                                            @endif
                                             </div>
                                             <div class="form-group">
-                                                <input required="" id="password" type="password" name="password" placeholder="Enter password" />
+                                                <input  id="password" type="password" name="password" placeholder="Enter password" class="text-inputbox"/>
+                                                @if ($errors->has('password'))
+                                                <span class="text-danger ">{{ $errors->first('password') }}</span>
+                                            @endif
                                             </div>
                                             <div class="form-group">
-                                                <input required="" id="password_confirmation" type="password" name="password_confirmation" placeholder="Confirm password" />
+                                                <input  id="password_confirmation" type="password" name="password_confirmation" placeholder="Confirm password" />
+
                                             </div>
 
                                             <div class="login_footer form-group mb-50">
                                                 <div class="chek-form">
                                                     <div class="custome-checkbox">
-                                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox12" value="" />
+                                                        <input class="form-check-input" type="checkbox" name="terms" id="exampleCheckbox12"  />
                                                         <label class="form-check-label" for="exampleCheckbox12"><span>I agree to terms &amp; Policy.</span></label>
+                                                        @if ($errors->has('terms'))
+                                                        <br><span class="text-danger ">{{ $errors->first('terms') }}</span>
+                                                    @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -93,20 +106,10 @@
             </div>
         </div>
     </main>
-    
+
     @include('frontend.body.footer')
 
-   <!-- Preloader Start -->
-   <div id="preloader-active">
-    <div class="preloader d-flex align-items-center justify-content-center">
-        <div class="preloader-inner position-relative">
-            <div class="text-center">
-                <img src="{{ asset('frontend/assets/imgs/theme/loading.gif') }}" alt="" />
-            </div>
-        </div>
 
-    </div>
-</div>
 <!-- Vendor JS-->
 <script src="{{ asset('frontend/assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
@@ -130,7 +133,9 @@
 <!-- Template  JS -->
 <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
 <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
+
+
+
 </body>
 
 </html>
-
