@@ -14,11 +14,13 @@
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/imgs/theme/favicon.svg') }}" />
     <!-- Template CSS -->
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/sweetalert.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}" />
+
 </head>
 
 <body>
-   
+
    @include('frontend.body.header')
 
     <main class="main pages">
@@ -43,21 +45,42 @@
                                     <div class="padding_eight_all bg-white">
                                         <div class="heading_s1">
                                             <h1 class="mb-5">Login</h1>
-                                            <p class="mb-30">Don't have an account? <a href="page-register.html">Create here</a></p>
+                                            <p class="mb-30">Dont have an account? <a href="page-register.html">Create here</a></p>
                                         </div>
-                                        <form method="POST" action="{{ route('login') }}">
+
+
+
+
+
+
+
+                                        @error('emailfailed')
+                                        <div class="alert alert-danger alert-dismissible" role="alert"  style="padding: .5rem .5rem ">
+                                            <span id="message" >{{ $message }}</span>
+
+                                             <button type="button" style="font-size: 10px;padding: 1rem 1rem" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                        @enderror
+                                        <form method="POST" action="{{ route('login') }}" id="login-form">
                                             @csrf
-                                            
                                             <div class="form-group">
-                                                <input type="email" id="email" required="" name="email" placeholder="Enter your email" value="{{Cookie::get('useremail')}}" />
-                                            </div>
+                                                <input type="email" id="email"  name="email" placeholder="Enter your email" value="{{Cookie::get('useremail')}}" />
+                                                @if ($errors->has('email'))
+                                                <span class="text-danger ">{{ $errors->first('email') }}</span>
+                                            @endif
+                                                         </div>
                                             <div class="form-group">
-                                                <input required="" id="password" type="password" name="password" placeholder="Enter your passsword" />
+                                                <input  id="password" type="password" name="password" placeholder="Enter your passsword" />
+                                                @if ($errors->has('password'))
+                                                <span class="text-danger">{{ $errors->first('password') }}</span>
+                                            @endif
+
                                             </div>
+
                                             <div class="login_footer form-group mb-50">
                                                 <div class="chek-form">
                                                     <div class="custome-checkbox">
-                                                        <input class="form-check-input" type="checkbox" name="remember" id="remember_me" value="" @if(Cookie::has('useremail')) checked @endif />
+                                                        <input class="form-check-input" type="checkbox" name="remember" id="remember_me"  @if(Cookie::has('useremail')) checked @endif />
                                                         <label class="form-check-label" for="remember_me"><span>Remember me</span></label>
                                                     </div>
                                                 </div>
@@ -80,7 +103,7 @@
    @include('frontend.body.footer')
 
     <!-- Preloader Start -->
-    <div id="preloader-active">
+   <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
                 <div class="text-center">
@@ -112,6 +135,23 @@
     <!-- Template  JS -->
     <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
     <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+
+    <script src="{{ asset('frontend/assets/js/sweetalert.min.js') }}"></script>
+    <script>
+    @if(session()->has('status'))
+    Swal.fire({
+            icon: 'success',
+            title: '{{ session()->get("status") }}',
+
+        })
+
+        @endif
+    </script>
+
 </body>
+
+
 
 </html>

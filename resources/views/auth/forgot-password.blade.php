@@ -15,10 +15,11 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/imgs/theme/favicon.svg') }}" />
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}" />
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/toastr.min.css') }}">
 </head>
 
 <body>
-    
+
 
     @include('frontend.body.header')
 
@@ -40,17 +41,20 @@
                                 <img class="border-radius-15" src="{{ asset('frontend/assets/imgs/page/reset_password.svg') }}" alt="" />
                                 <h2 class="mb-15 mt-15">Email Password Reset Link</h2>
                                 <p class="mb-30">Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.</p>
+
                             </div>
+
+
                             <div class="col-lg-6 col-md-8">
                                 <div class="login_wrap widget-taber-content background-white">
                                     <div class="padding_eight_all bg-white">
-                                        
+
     <form method="POST" action="{{ route('password.email') }}">
         @csrf
                                             <div class="form-group">
                                                 <input type="email" id="email" required="" name="email" placeholder="Email" />
                                             </div>
-                                           
+
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-heading btn-block hover-up" name="login">Email Password Reset Link</button>
                                             </div>
@@ -58,14 +62,14 @@
                                     </div>
                                 </div>
                             </div>
-                           
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </main>
-    
+
     @include('frontend.body.footer')
 <!-- Preloader Start -->
 <div id="preloader-active">
@@ -100,6 +104,13 @@
 <!-- Template  JS -->
 <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
 <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
+<script src="{{ asset('frontend/assets/js/toastr.min.js')}}"></script>
+
+<script>
+    @if(session()->has('status'))
+            toastr.success('{{ session()->get("status") }}','Success',{timeOut:5000});
+@endif
+</script>
 </body>
 
 </html>
