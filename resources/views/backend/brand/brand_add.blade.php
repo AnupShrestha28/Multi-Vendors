@@ -30,7 +30,7 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <form method="post" action="{{ route('store.brand') }}" enctype="multipart/form-data">
+                            <form id="myForm" method="post" action="{{ route('store.brand') }}" enctype="multipart/form-data">
                                 @csrf
 
                            
@@ -38,7 +38,7 @@
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Brand Name</h6>
                                 </div>
-                                <div class="col-sm-9 text-secondary">
+                                <div class="form-group col-sm-9 text-secondary">
                                     <input type="text" name="brand_name" class="form-control" />
                                 </div>
                             </div>
@@ -80,6 +80,34 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#myForm').validate({
+            rules:{
+                brand_name:{
+                    required : true,
+                },
+            },
+            messages:{
+                brand_name:{
+                    required: 'Please enter brand name',
+                },
+            },
+            errorElement : 'span',
+            errorPlacement: function(error, element){
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight : function(element, errorClass, validClass){
+                $(element).addClass('is-invalid');
+            },
+            unhighlight : function(element, errorClass, validClass){
+                $(element).removeClass('is-invalid');
+            },
+        });
+    });
+</script>
 
 <script type="text/javascript">
     $(document).ready(function(){
