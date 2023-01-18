@@ -51,14 +51,14 @@
                                             <div class="form-group">
                                                 <input  id="password" type="password" name="password" placeholder="New Password" />
                                                 @if ($errors->has('password'))
-                                                <span class="text-danger ">{{ $errors->get('password') }}</span>
+                                                <span class="text-danger ">{{ $errors->first('password') }}</span>
                                             @endif
                                             </div>
 
                                             <div class="form-group">
                                                 <input  id="password_confirmation" type="password" name="password_confirmation" placeholder="Confirm New Password" />
                                                 @if ($errors->has('password_confirmation'))
-                                                <span class="text-danger ">{{ $errors->get('password_confirmation') }}</span>
+                                                <span class="text-danger ">{{ $errors->first('password_confirmation') }}</span>
                                             @endif
                                             </div>
 
