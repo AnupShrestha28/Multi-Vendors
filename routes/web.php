@@ -120,6 +120,8 @@ Route::middleware(['auth','role:admin'])->group(function(){
 
         Route::post('store/brand', 'StoreBrand')->name('store.brand');
 
+        Route::get('edit/brand/{id}', 'EditBrand')->name('edit.brand');
+
     });
 }); // end middleware
 

@@ -40,4 +40,9 @@ class BrandController extends Controller
         );
         return redirect()->route('all.brand')->with($notification);
     } // end method
+
+    public function EditBrand($id){
+        $brand = Brand::findOrFail($id);
+        return view('backend.brand.brand_edit',compact('brand'));
+    } // end method
 }
