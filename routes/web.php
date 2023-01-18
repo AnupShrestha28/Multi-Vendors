@@ -129,9 +129,11 @@ Route::get('login/google/callback', [SocialController::class, 'handleGoogleCallb
 Route::get('login/facebook', [SocialController::class, 'redirectToFacebook'])->name('login.facebook');
 Route::get('login/facebook/callback', [SocialController::class, 'handleFacebookCallback']);
 
-
-Route::controller(OtpController::class)->group(function () {
-    Route::get('/otp/sendotp', 'sendotp')->name('otp.sendotp');
-    Route::post('/otp/generate', 'generate')->name('otp.generate');
-    Route::get('/otp/verification/{user_id}', 'verification')->name('otp.verification');
+Route::middleware(['auth', 'role:user'])->group(function () {
+    Route::controller(OtpController::class)->group(function () {
+        Route::get('/otp/sendotp', 'sendotp')->name('otp.sendotp');
+        Route::post('/otp/generate', 'generate')->name('otp.generate');
+        Route::get('/otp/verification/{user_id}', 'verification')->name('otp.verification');
+        Route::post('/otp/otpverify', 'otpverify')->name('otp.otpverify');
+    })->middleware('signed');
 });

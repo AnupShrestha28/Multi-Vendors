@@ -6,18 +6,21 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\MOdels\User;
 use App\MOdels\UserOtp;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class OtpController extends Controller
 {
     public function sendotp()
     {
-        return view('otpverification');
+        $mobilenumber = Auth::user()->phone;
+        return view('otpverification', ['mobile' => $mobilenumber]);
     }
 
     public function generate(Request $request)
     {
         $request->validate([
-            'phone' => 'required|exists:users,phone'
+            'phone' => 'required'
         ]);
 
         $userOtp = $this->generateOtp($request->phone);
@@ -29,6 +32,7 @@ class OtpController extends Controller
     {
         $user = User::where('phone', $phone)->first();
         $userOtp = UserOtp::where('user_id', $user->id)->latest()->first();
+        $users = User::where('user_id', $user->id);
         $now = now();
         if ($userOtp && $now->isBefore($userOtp->expire_at)) {
             return $userOtp;
@@ -39,5 +43,40 @@ class OtpController extends Controller
             'otp' => rand(123456, 999999),
             'expire_at' => $now->addMinutes(10)
         ]);
+    }
+    public function verification($user_id)
+    {
+        $mobilenumber = Auth::user()->phone;
+
+        return view('otpcode', ['mobile' => $mobilenumber]);
+    }
+
+    public function otpverify(Request $request)
+    {
+        $request->validate([
+            'otp' => 'required',
+            'user_id' => 'required|exists:users,id',
+        ]);
+
+        $userOtp = UserOtp::where('user_id', $request->user_id)->where('otp', $request->otp)->first();
+        $now = now();
+        if (!$userOtp) {
+            return redirect()->back()->with('error', 'Your OTP is not correct');
+        } else if ($userOtp && $now->isAfter($userOtp->expire_at)) {
+            return back()->with('error', 'Your OTP has been expired');
+        }
+        $user = User::whereId($request->user_id)->first();
+        if ($user) {
+            $userOtp->update([
+                'expire_at' => now()
+            ]);
+            $user->update([
+                'phone_verified' => now()
+            ]);
+
+
+            return redirect()->route('dashboard')->with('message', 'Your phone number has been verified');
+        }
+        return redirect()->route('otp.otpverify')->with('error', 'Your otp is not correct');
     }
 }

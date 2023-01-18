@@ -4,9 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
-use Exception;
 use Twilio\Rest\Client;
+use Exception;
+
+
 
 class UserOtp extends Model
 {
@@ -22,10 +23,10 @@ class UserOtp extends Model
         $message = "Your OTP is: " . $this->otp;
 
         try {
-            $account_id = getenv("TWILIO_SID");
+            $account_sid = getenv("TWILIO_SID");
             $auth_token = getenv("TWILIO_TOKEN");
             $twilio_number = getenv("TWILIO_FROM");
-            $client = new Client($account_id, $auth_token);
+            $client = new Client($account_sid, $auth_token);
 
             $client->messages->create($receivernumber, [
                 'from' => $twilio_number,
@@ -33,7 +34,7 @@ class UserOtp extends Model
 
             ]);
             info('SMS Sent Successfully');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             info('Error:' . $e->getMessage());
         }
     }

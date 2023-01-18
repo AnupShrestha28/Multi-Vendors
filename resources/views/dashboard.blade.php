@@ -100,6 +100,11 @@
         @endif
     </script>
 
+    <script>
+        @if(session()->has('error'))
+        toastr.error('{{ session()->get("error") }}','Error',{timeOut:5000});
+        @enderror
+     </script>
 </body>
 
 </html>
