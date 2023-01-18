@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('password')->nullable();
             $table->string('photo')->nullable();
             $table->string('phone')->nullable();
+            $table->timestamp('phone_verified')->nullable();
             $table->text('address')->nullable();
             $table->string('social_id')->nullable();
             $table->string('social_avatar')->nullable();

@@ -40,6 +40,7 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'min:8', 'confirmed', Rules\Password::defaults()],
+            'phone' => ['required', 'digits:10', 'numeric'],
             'terms' => ['required']
         ], [
             'terms.required' => 'Please agree terms and conditions'
@@ -50,6 +51,7 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'phone' => $request->phone,
             'password' => Hash::make($request->password),
         ]);
 

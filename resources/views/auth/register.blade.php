@@ -60,6 +60,12 @@
                                             @endif
                                             </div>
                                             <div class="form-group">
+                                                <input type="phone" id="phone"  name="phone" placeholder="Enter your Phone Number" class="text-inputbox" value="{{ old('phone') }}" />
+                                                @if ($errors->has('phone'))
+                                                <span class="text-danger ">{{ $errors->first('phone') }}</span>
+                                            @endif
+                                            </div>
+                                            <div class="form-group">
                                                 <input  id="password" type="password" name="password" placeholder="Enter password" class="text-inputbox"/>
                                                 @if ($errors->has('password'))
                                                 <span class="text-danger ">{{ $errors->first('password') }}</span>

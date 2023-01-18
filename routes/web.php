@@ -7,6 +7,7 @@ use App\Http\Controllers\VendorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\SocialController;
+use App\Http\Controllers\Auth\OtpController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -24,7 +25,7 @@ Route::get('/', function () {
     return view('frontend.index');
 });
 
-Route::middleware(['auth', 'verified'])->group(function(){
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('dashboard');
 
     Route::post('/user/profile/store', [UserController::class, 'UserProfileStore'])->name('user.profile.store');
@@ -32,8 +33,6 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
 
     Route::post('/user/update/password', [UserController::class, 'UserUpdatePassword'])->name('user.update.password');
-
-
 }); // group middleware end
 
 
@@ -109,15 +108,14 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
 
 Route::get('/vendor/login', [VendorController::class, 'VendorLogin']);
 
-Route::middleware(['auth','role:admin'])->group(function(){
-        // Brand All Routes
-    Route::controller(BrandController::class)->group(function(){
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    // Brand All Routes
+    Route::controller(BrandController::class)->group(function () {
         Route::get('all/brand', 'AllBrand')->name('all.brand');
 
         Route::get('add/brand', 'AddBrand')->name('add.brand');
 
         Route::post('store/brand', 'StoreBrand')->name('store.brand');
-
     });
 }); // end middleware
 
@@ -130,3 +128,10 @@ Route::get('login/google/callback', [SocialController::class, 'handleGoogleCallb
 //Login with facebook
 Route::get('login/facebook', [SocialController::class, 'redirectToFacebook'])->name('login.facebook');
 Route::get('login/facebook/callback', [SocialController::class, 'handleFacebookCallback']);
+
+
+Route::controller(OtpController::class)->group(function () {
+    Route::get('/otp/sendotp', 'sendotp')->name('otp.sendotp');
+    Route::post('/otp/generate', 'generate')->name('otp.generate');
+    Route::get('/otp/verification/{user_id}', 'verification')->name('otp.verification');
+});
