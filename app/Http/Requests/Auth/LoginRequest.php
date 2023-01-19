@@ -2,11 +2,15 @@
 
 namespace App\Http\Requests\Auth;
 
+use App\Models\User;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
@@ -17,6 +21,7 @@ class LoginRequest extends FormRequest
      *
      * @return bool
      */
+
     public function authorize()
     {
         return true;
@@ -27,12 +32,38 @@ class LoginRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(Request $request)
+    {
+        // return [
+        //     'logins' => ['required', 'string', 'email:ordigits:10'],
+        //     'password' => ['required', 'string']
+
+        // ];
+        if (is_numeric($request->logins)) {
+
+            return [
+                'logins' => ['required', 'numeric', 'digits:10'],
+                'password' => ['required', 'string'],
+            ];
+        } elseif (!is_numeric($request->logins)) {
+            return [
+                'logins' => ['required', 'email', 'string'],
+                'password' => ['required', 'string']
+            ];
+        } else {
+            return [
+                'logins' => ['required'],
+                'password' => ['required', 'string']
+
+            ];
+        }
+    }
+    public function messages()
     {
         return [
-            'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string']
-
+            'logins.digits' => 'Phone number must be 10 digits',
+            'logins.email' => 'Email address must be valid',
+            'logins.required' => 'Email or Phone field is required'
         ];
     }
 
@@ -51,20 +82,61 @@ class LoginRequest extends FormRequest
 
         $remember_me = $this->boolean('remember') ? true : false;
         if ($remember_me) {
-            Cookie::queue('useremail', $this->email, 2400);
+            Cookie::queue('useremail', $this->logins, 2400);
         } else {
             Cookie::queue('useremail', '', -1);
         }
 
-        if (!Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
-            RateLimiter::hit($this->throttleKey());
-
-            throw ValidationException::withMessages([
-                'emailfailed' => trans('auth.failed'),
-            ]);
+        $user1 = User::where('phone', '+977' . $this->logins)->whereNull('phone_verified')->first();
+        if ($user1) {
+            // dd('failed');
+            Session::flash('alert_type', 'warning');
+            Session::flash('message', 'Phone is not verified to login with phone');
+            $user = '';
+        }
+        $user4 = User::where('phone', '+977' . $this->logins)->whereNotNull('phone_verified')->first();
+        $user2 = User::where('email', $this->logins)->first();
+        $user6 = User::where('email', $this->logins)->orwhere('phone', $this->logins)->first();
+        if ($user4) {
+            $user = User::where('phone', '+977' . $this->logins)->first();
+        } else if ($user2) {
+            $user = User::where('email', $this->logins)->first();
+        } else if (!$user6) {
+            $user = User::where('email', $this->logins)->orwhere('phone', $this->logins)->first();
         }
 
+
+        if (!$user  || !Hash::check($this->password, $user->password)) {
+            RateLimiter::hit($this->throttleKey());
+            throw ValidationException::withMessages([
+                'loginfailed' => __('auth.failed'),
+            ]);
+        }
+        // if (!Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+        //     RateLimiter::hit($this->throttleKey());
+
+        //     throw ValidationException::withMessages([
+        //         'emailfailed' => trans('auth.failed'),
+        //     ]);
+        // }
+        Auth::login($user, $this->boolean('remember'));
         RateLimiter::clear($this->throttleKey());
+
+        // $login_type = filter_var($this->input('logins'), FILTER_VALIDATE_EMAIL)
+        //     ? 'email'
+        //     : 'phone';
+
+        // $this->merge([
+        //     $login_type => $this->input('logins')
+        // ]);
+
+        // if (!Auth::attempt($this->only($login_type, 'password'), $this->boolean('remember'))) {
+        //     RateLimiter::hit($this->throttleKey());
+
+        //     throw ValidationException::withMessages([
+        //         'loginfailed' => __('auth.failed'),
+        //     ]);
+        // }
     }
 
     /**

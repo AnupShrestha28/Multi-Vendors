@@ -9,25 +9,27 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function UserDashboard(){
+    public function UserDashboard()
+    {
         $id = Auth::user()->id;
         $userData = User::find($id);
         return view('index', compact('userData'));
     } // end method
 
-    public function UserProfileStore(Request $request){
+    public function UserProfileStore(Request $request)
+    {
         $id = Auth::user()->id;
         $data = User::find($id);
         $data->name = $request->name;
         $data->username = $request->username;
         $data->email = $request->email;
-        $data->phone = $request->phone;
+        $data->phone =  $request->phone;
         $data->address = $request->address;
 
-        if($request->file('photo')){
+        if ($request->file('photo')) {
             $file = $request->file('photo');
-            @unlink(public_path('upload/user_images/'.$data->photo));
-            $filename = date('YmdHi').$file->getClientOriginalName();
+            @unlink(public_path('upload/user_images/' . $data->photo));
+            $filename = date('YmdHi') . $file->getClientOriginalName();
             $file->move(public_path('upload/user_images'), $filename);
             $data['photo'] = $filename;
         }
@@ -42,7 +44,8 @@ class UserController extends Controller
         return redirect()->back()->with($notification);
     } // end method
 
-    public function UserLogout(Request $request){
+    public function UserLogout(Request $request)
+    {
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
@@ -57,14 +60,15 @@ class UserController extends Controller
         return redirect('/login')->with($notification);
     } // end method
 
-    public function UserUpdatePassword(Request $request){
+    public function UserUpdatePassword(Request $request)
+    {
         $request->validate([
             'old_password' => 'required',
             'new_password' => 'required|confirmed',
         ]);
 
         // Match the old password
-        if(!Hash::check($request->old_password, auth::user()->password)){
+        if (!Hash::check($request->old_password, auth::user()->password)) {
             return back()->with("error", "Old Password doesnot match");
         }
 

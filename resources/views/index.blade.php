@@ -177,7 +177,7 @@
                                         <h5>Account Details</h5>
                                     </div>
                                     <div class="card-body">
-                                       
+
                                         <form method="post" action="{{ route('user.profile.store') }}" enctype="multipart/form-data">
                                             @csrf
 
@@ -197,6 +197,15 @@
                                                 <div class="form-group col-md-12">
                                                     <label>Phone <span class="required">*</span></label>
                                                     <input required="" class="form-control" name="phone" type="text" value="{{ $userData->phone }}" />
+
+                                                                @if($userData->phone_verified)
+                                                                <p class="text-success">Your Phone Number is Verified<svg class ="ms-1" style="height:15px; width: 15px;" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 116.87"><defs><style>.cls-1{fill:#10a64a;fill-rule:evenodd;}.cls-2{fill:#fff;}</style></defs><title>verified-symbol</title><polygon class="cls-1" points="61.37 8.24 80.43 0 90.88 17.79 111.15 22.32 109.15 42.85 122.88 58.43 109.2 73.87 111.15 94.55 91 99 80.43 116.87 61.51 108.62 42.45 116.87 32 99.08 11.73 94.55 13.73 74.01 0 58.43 13.68 42.99 11.73 22.32 31.88 17.87 42.45 0 61.37 8.24 61.37 8.24"/><path class="cls-2" d="M37.92,65c-6.07-6.53,3.25-16.26,10-10.1,2.38,2.17,5.84,5.34,8.24,7.49L74.66,39.66C81.1,33,91.27,42.78,84.91,49.48L61.67,77.2a7.13,7.13,0,0,1-9.9.44C47.83,73.89,42.05,68.5,37.92,65Z"/></svg></p>
+                                                                @else
+                                                                <div class="d-flex mt-2 align-middle" style="gap: 10px" >
+                                                                <p class="text-danger">Your Phone Number is Not Verified</p>
+                                                               <a href="{{ route('otp.sendotp') }}" class="btn btn-success p-1 ">Click here to verify</a>
+                                                            </div>
+                                                                @endif
                                                 </div>
                                                 <div class="form-group col-md-12">
                                                     <label>Address <span class="required">*</span></label>
@@ -211,7 +220,7 @@
                                                     <label> <span class="required">*</span></label>
                                                     <img id="showImage" src="{{ (!empty($userData->photo)) ? url('upload/user_images/'.$userData->photo) : url('upload/no_image.jpg') }}" alt="User" class="rounded-circle p-1 bg-primary" width="110">
                                                 </div>
-                                               
+
                                                 <div class="col-md-12">
                                                     <button type="submit" class="btn btn-fill-out submit font-weight-bold" name="submit" value="Submit">Save Change</button>
                                                 </div>
@@ -230,7 +239,7 @@
                                         <h5>Change Password</h5>
                                     </div>
                                     <div class="card-body">
-                                       
+
                                         <form method="post" action="{{ route('user.update.password') }}" >
                                             @csrf
 
@@ -239,17 +248,17 @@
                                             <div class="alert alert-success" role="alert">
                                                 {{session('status')}}
                                             </div>
-        
+
                                         @elseif(session('error'))
                                             <div class="alert alert-danger" role="alert">
                                                 {{session('error')}}
                                             </div>
-        
+
                                         @endif
 
                                             <div class="row">
-                                               
-                                                
+
+
                                                 <div class="form-group col-md-12">
                                                     <label>Old Password <span class="required">*</span></label>
                                                     <input class="form-control @error('old_password') is-invalid @enderror" name="old_password" type="password" id="current_password"placeholder="Old Password" />
@@ -275,9 +284,9 @@
                                                     <input class="form-control" name="new_password_confirmation" type="password" id="new_password_confirmation" placeholder="Confirm New Password" />
 
                                                 </div>
-                                                
-                                               
-                                               
+
+
+
                                                 <div class="col-md-12">
                                                     <button type="submit" class="btn btn-fill-out submit font-weight-bold" name="submit" value="Submit">Save Change</button>
                                                 </div>
