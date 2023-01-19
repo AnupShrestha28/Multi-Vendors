@@ -101,6 +101,7 @@
 
 <script>
     @if(session()->has('status'))
+    toastr.success('{{ session()->get("status") ','success',{timeOut:5000});
 @endif
 </script>
 </body>

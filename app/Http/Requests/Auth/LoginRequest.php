@@ -98,7 +98,7 @@ class LoginRequest extends FormRequest
         $user2 = User::where('email', $this->logins)->first();
         $user6 = User::where('email', $this->logins)->orwhere('phone', $this->logins)->first();
         if ($user4) {
-            $user = User::where('phone', $this->logins)->first();
+            $user = User::where('phone', '+977' . $this->logins)->first();
         } else if ($user2) {
             $user = User::where('email', $this->logins)->first();
         } else if (!$user6) {
