@@ -53,18 +53,19 @@
                                             <h1 class="mb-5">Login</h1>
                                             <p class="mb-30">Dont have an account? <a href="page-register.html">Create here</a></p>
                                         </div>
-
-                                        @error('emailfailed')
+                                            @if(!session()->has('message'))
+                                        @error('loginfailed')
                                         <div class="alert alert-danger alert-dismissible" role="alert"  style="padding: .5rem .5rem ">
                                             <span id="message" >{{ $message }}</span>
 
                                              <button type="button" style="font-size: 10px;padding: 1rem 1rem" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                         </div>
                                         @enderror
+                                        @endif
                                         <form method="POST" action="{{ route('login') }}" >
                                             @csrf
                                             <div class="form-group">
-                                                <input type="text" id="email"  name="email" placeholder="Enter your email " value="{{Cookie::get('useremail')}}" />
+                                                <input type="text" id="logins"  name="logins" placeholder="Enter your email or phone number" value="{{Cookie::get('useremail')}}" />
                                                 @if ($errors->has('logins'))
                                                 <span class="text-danger ">{{ $errors->first('logins') }}</span>
                                             @endif

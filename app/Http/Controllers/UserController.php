@@ -23,7 +23,7 @@ class UserController extends Controller
         $data->name = $request->name;
         $data->username = $request->username;
         $data->email = $request->email;
-        $data->phone = '+977' . $request->phone;
+        $data->phone =  $request->phone;
         $data->address = $request->address;
 
         if ($request->file('photo')) {
