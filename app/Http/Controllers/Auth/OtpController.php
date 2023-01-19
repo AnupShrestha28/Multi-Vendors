@@ -22,9 +22,8 @@ class OtpController extends Controller
         $request->validate([
             'phone' => 'required'
         ]);
-
         $userOtp = $this->generateOtp($request->phone);
-        $userOtp->sendSMS($request->phone); //send OTP
+        $userOtp->sendSMS($request->phone);
         return redirect()->route('otp.verification', ['user_id', $userOtp->user_id])->with('success', 'OTP has been sent on your mobile number');
     }
 
@@ -37,7 +36,6 @@ class OtpController extends Controller
         if ($userOtp && $now->isBefore($userOtp->expire_at)) {
             return $userOtp;
         }
-
         return UserOtp::create([
             'user_id' => $user->id,
             'otp' => rand(123456, 999999),
@@ -63,7 +61,7 @@ class OtpController extends Controller
         if (!$userOtp) {
             return redirect()->back()->with('error', 'Your OTP is not correct');
         } else if ($userOtp && $now->isAfter($userOtp->expire_at)) {
-            return back()->with('error', 'Your OTP has been expired');
+            return back()->with('error', 'This OTP has been expired');
         }
         $user = User::whereId($request->user_id)->first();
         if ($user) {
@@ -78,5 +76,13 @@ class OtpController extends Controller
             return redirect()->route('dashboard')->with('message', 'Your phone number has been verified');
         }
         return redirect()->route('otp.otpverify')->with('error', 'Your otp is not correct');
+    }
+    public function resendotp(Request $request)
+    {
+        UserOtp::where('user_id', auth()->user()->id)->latest()->first()->update([
+            'expire_at' => now()
+        ]);
+        $this->generate($request);
+        return back()->with('success', 'OTP has been resent to your mobile number');
     }
 }

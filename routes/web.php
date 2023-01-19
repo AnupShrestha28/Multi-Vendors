@@ -135,5 +135,6 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::post('/otp/generate', 'generate')->name('otp.generate');
         Route::get('/otp/verification/{user_id}', 'verification')->name('otp.verification');
         Route::post('/otp/otpverify', 'otpverify')->name('otp.otpverify');
-    })->middleware('signed');
+        Route::post('/otp/resend', 'resendotp')->name('otp.resend');
+    });
 });

@@ -64,9 +64,9 @@
                                         <form method="POST" action="{{ route('login') }}" >
                                             @csrf
                                             <div class="form-group">
-                                                <input type="email" id="email"  name="email" placeholder="Enter your email" value="{{Cookie::get('useremail')}}" />
-                                                @if ($errors->has('email'))
-                                                <span class="text-danger ">{{ $errors->first('email') }}</span>
+                                                <input type="text" id="email"  name="email" placeholder="Enter your email " value="{{Cookie::get('useremail')}}" />
+                                                @if ($errors->has('logins'))
+                                                <span class="text-danger ">{{ $errors->first('logins') }}</span>
                                             @endif
                                                          </div>
                                             <div class="form-group">
