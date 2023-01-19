@@ -40,10 +40,10 @@ class LoginRequest extends FormRequest
 
         // ];
         if (is_numeric($request->logins)) {
+
             return [
                 'logins' => ['required', 'numeric', 'digits:10'],
-                'password' => ['required', 'string']
-
+                'password' => ['required', 'string'],
             ];
         } elseif (!is_numeric($request->logins)) {
             return [
@@ -57,6 +57,14 @@ class LoginRequest extends FormRequest
 
             ];
         }
+    }
+    public function messages()
+    {
+        return [
+            'logins.digits' => 'Phone number must be 10 digits',
+            'logins.email' => 'Email address must be valid',
+            'logins.required' => 'Email or Phone field is required'
+        ];
     }
 
 
