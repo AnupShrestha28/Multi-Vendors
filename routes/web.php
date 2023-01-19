@@ -108,14 +108,31 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
 
 Route::get('/vendor/login', [VendorController::class, 'VendorLogin']);
 
+
 Route::middleware(['auth', 'role:admin'])->group(function () {
     // Brand All Routes
     Route::controller(BrandController::class)->group(function () {
+
+
+
+Route::middleware(['auth','role:admin'])->group(function(){
+        // Brand All Routes
+    Route::controller(BrandController::class)->group(function(){
+
         Route::get('all/brand', 'AllBrand')->name('all.brand');
 
         Route::get('add/brand', 'AddBrand')->name('add.brand');
 
         Route::post('store/brand', 'StoreBrand')->name('store.brand');
+
+
+        Route::get('edit/brand/{id}', 'EditBrand')->name('edit.brand');
+
+        Route::post('update/brand', 'UpdateBrand')->name('update.brand');
+
+        Route::get('delete/brand/{id}', 'DeleteBrand')->name('delete.brand');
+
+
     });
 }); // end middleware
 
