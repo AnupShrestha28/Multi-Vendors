@@ -148,7 +148,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
 
         Route::post('update/category', 'UpdateCategory')->name('update.category');
 
-        Route::get('delete/brand/{id}', 'DeleteBrand')->name('delete.brand');
+        Route::get('delete/category/{id}', 'DeleteCategory')->name('delete.category');
 
     });
 }); // end middleware
