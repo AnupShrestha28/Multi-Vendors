@@ -137,9 +137,9 @@ Route::middleware(['auth','role:admin'])->group(function(){
 
         Route::post('store/category', 'StoreCategory')->name('store.category');
 
-        Route::get('edit/brand/{id}', 'EditBrand')->name('edit.brand');
+        Route::get('edit/category/{id}', 'EditCategory')->name('edit.category');
 
-        Route::post('update/brand', 'UpdateBrand')->name('update.brand');
+        Route::post('update/category', 'UpdateCategory')->name('update.category');
 
         Route::get('delete/brand/{id}', 'DeleteBrand')->name('delete.brand');
 
