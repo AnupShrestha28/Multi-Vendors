@@ -36,10 +36,10 @@
 								<div class="border p-4 rounded">
 									<div class="text-center">
 										<h3 class="">Admin Sign in</h3>
-										
+
 									</div>
-									
-									
+
+
 									<div class="form-body">
 
                                         <form class="row g-3" method="POST" action="{{ route('login') }}">

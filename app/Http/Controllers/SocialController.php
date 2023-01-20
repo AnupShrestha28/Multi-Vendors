@@ -49,6 +49,7 @@ class SocialController extends Controller
             $user->social_avatar = $data->avatar;
             $user->save();
         }
+        $user->markEmailAsVerified();
 
         Auth::login($user);
     }

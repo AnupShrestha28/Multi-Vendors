@@ -91,6 +91,22 @@
                                                 <button type="submit" class="btn btn-heading btn-block hover-up" name="login">Login</button>
                                             </div>
                                         </form>
+                                        <div class="mt-2 mb-2">
+                                            <hr><p class="text-center mt-0 mb-0">OR</p><hr>
+                                        </div>
+                                        <div class="col-lg-12  d-none d-lg-block">
+                                            <div class="card-login d-flex gap-2 p-0 ms-0" style="border:none">
+                                                <a style="font-size: 14px; white-space:nowrap" href="{{ route('login.facebook') }}" class="social-login facebook-login">
+                                                    <img src="{{ asset('frontend/assets/imgs/theme/icons/logo-facebook.svg') }}" alt="" />
+                                                    <span>Continue with Facebook</span>
+                                                </a>
+                                                <a style="font-size: 14px; white-space:nowrap "href="{{ route('login.google') }}" class="social-login google-login">
+                                                    <img src="{{ asset('frontend/assets/imgs/theme/icons/logo-google.svg') }}" alt="" />
+                                                    <span>Continue with Google</span>
+                                                </a>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
