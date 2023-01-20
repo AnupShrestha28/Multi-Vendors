@@ -109,10 +109,6 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
 Route::get('/vendor/login', [VendorController::class, 'VendorLogin']);
 
 
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    // Brand All Routes
-    Route::controller(BrandController::class)->group(function () {
-
 
 
 Route::middleware(['auth','role:admin'])->group(function(){
