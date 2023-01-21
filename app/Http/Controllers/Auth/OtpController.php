@@ -79,6 +79,7 @@ class OtpController extends Controller
     }
     public function resendotp(Request $request)
     {
+        //otp controller
         $userotps = UserOtp::where('user_id', auth()->user()->id)->latest()->first();
         if ($userotps) {
             $userotps->update([
