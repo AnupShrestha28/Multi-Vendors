@@ -79,9 +79,13 @@ class OtpController extends Controller
     }
     public function resendotp(Request $request)
     {
-        UserOtp::where('user_id', auth()->user()->id)->latest()->first()->update([
-            'expire_at' => now()
-        ]);
+        $userotps = UserOtp::where('user_id', auth()->user()->id)->latest()->first();
+        if ($userotps) {
+            $userotps->update([
+                'expire_at' => now()
+            ]);
+        }
+
         $this->generate($request);
         return back()->with('success', 'OTP has been resent to your mobile number');
     }

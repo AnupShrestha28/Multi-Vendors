@@ -87,18 +87,18 @@ class LoginRequest extends FormRequest
             Cookie::queue('useremail', '', -1);
         }
 
-        $user1 = User::where('phone', '+977' . $this->logins)->whereNull('phone_verified')->first();
+        $user1 = User::where('phone', $this->logins)->whereNull('phone_verified')->first();
         if ($user1) {
             // dd('failed');
             Session::flash('alert_type', 'warning');
             Session::flash('message', 'Phone is not verified to login with phone');
             $user = '';
         }
-        $user4 = User::where('phone', '+977' . $this->logins)->whereNotNull('phone_verified')->first();
+        $user4 = User::where('phone', $this->logins)->whereNotNull('phone_verified')->first();
         $user2 = User::where('email', $this->logins)->first();
         $user6 = User::where('email', $this->logins)->orwhere('phone', $this->logins)->first();
         if ($user4) {
-            $user = User::where('phone', '+977' . $this->logins)->first();
+            $user = User::where('phone', $this->logins)->first();
         } else if ($user2) {
             $user = User::where('email', $this->logins)->first();
         } else if (!$user6) {
