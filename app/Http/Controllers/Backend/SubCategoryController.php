@@ -34,6 +34,6 @@ class SubCategoryController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->route('all.subcategory')->with($notification);
-    } // end method
+    } 
 
 } 
