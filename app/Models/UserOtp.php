@@ -28,7 +28,7 @@ class UserOtp extends Model
             $twilio_number = getenv("TWILIO_FROM");
             $client = new Client($account_sid, $auth_token);
 
-            $client->messages->create($receivernumber, [
+            $client->messages->create('+977' . $receivernumber, [
                 'from' => $twilio_number,
                 'body' => $message
 

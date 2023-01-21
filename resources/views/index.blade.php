@@ -34,10 +34,11 @@
                                 <li class="nav-item">
                                     <a class="nav-link" id="account-detail-tab" data-bs-toggle="tab" href="#account-detail" role="tab" aria-controls="account-detail" aria-selected="true"><i class="fi-rs-user mr-10"></i>Account details</a>
                                 </li>
-
+                                        @if(!$userData->social_id)
                                 <li class="nav-item">
                                     <a class="nav-link" id="change-password-tab" data-bs-toggle="tab" href="#change-password" role="tab" aria-controls="change-password" aria-selected="true"><i class="fi-rs-user mr-10"></i>Change Password</a>
                                 </li>
+                                @endif
 
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('user.logout' )}}"><i class="fi-rs-sign-out mr-10"></i>Logout</a>
@@ -232,7 +233,7 @@
                                 </div>
                             </div>
 
-
+                                    @if(!$userData->social_id)
                             <!--  change password -->
 
                             <div class="tab-pane fade" id="change-password" role="tabpanel" aria-labelledby="change-password-tab">
@@ -297,6 +298,7 @@
                                     </div>
                                 </div>
                             </div>
+                        @endif
 
 
 
