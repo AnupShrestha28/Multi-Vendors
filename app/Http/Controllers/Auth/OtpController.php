@@ -80,6 +80,9 @@ class OtpController extends Controller
     public function resendotp(Request $request)
     {
 
+        //otp controller
+
+
         $user = User::whereId($request->user_id)->first();
         if($user){
 
@@ -87,6 +90,7 @@ class OtpController extends Controller
             'expire_at' => now()
         ]);
     }
+
 
         $userotps = UserOtp::where('user_id', auth()->user()->id)->latest()->first();
         if ($userotps) {
