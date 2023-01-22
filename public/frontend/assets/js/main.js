@@ -101,8 +101,7 @@
             slidesToScroll: 1,
             loop: true,
             adaptiveHeight: true,
-            responsive: [
-                {
+            responsive: [{
                     breakpoint: 1025,
                     settings: {
                         slidesToShow: 4,
@@ -146,8 +145,7 @@
             slidesToScroll: 1,
             loop: true,
             adaptiveHeight: true,
-            responsive: [
-                {
+            responsive: [{
                     breakpoint: 1025,
                     settings: {
                         slidesToShow: 4,
@@ -191,8 +189,7 @@
             slidesToScroll: 1,
             loop: true,
             adaptiveHeight: true,
-            responsive: [
-                {
+            responsive: [{
                     breakpoint: 1025,
                     settings: {
                         slidesToShow: 3,
@@ -228,8 +225,7 @@
             slidesToScroll: 1,
             loop: true,
             adaptiveHeight: true,
-            responsive: [
-                {
+            responsive: [{
                     breakpoint: 1025,
                     settings: {
                         slidesToShow: 3,
@@ -277,8 +273,7 @@
         arrows: true,
         prevArrow: '<span class="pro-icon-1-prev"><i class="fi-rs-angle-small-left"></i></span>',
         nextArrow: '<span class="pro-icon-1-next"><i class="fi-rs-angle-small-right"></i></span>',
-        responsive: [
-            {
+        responsive: [{
                 breakpoint: 1199,
                 settings: {
                     slidesToShow: 3
@@ -315,8 +310,7 @@
         arrows: true,
         prevArrow: '<span class="pro-icon-1-prev"><i class="fi-rs-angle-small-left"></i></span>',
         nextArrow: '<span class="pro-icon-1-next"><i class="fi-rs-angle-small-right"></i></span>',
-        responsive: [
-            {
+        responsive: [{
                 breakpoint: 1199,
                 settings: {
                     slidesToShow: 3
@@ -351,8 +345,7 @@
         loop: true,
         dots: true,
         arrows: false,
-        responsive: [
-            {
+        responsive: [{
                 breakpoint: 1199,
                 settings: {
                     slidesToShow: 3
@@ -387,8 +380,7 @@
         loop: true,
         dots: false,
         arrows: false,
-        responsive: [
-            {
+        responsive: [{
                 breakpoint: 1199,
                 settings: {
                     slidesToShow: 4
@@ -477,7 +469,7 @@
     }
 
     /*-----------------------
-        Shop filter active 
+        Shop filter active
     ------------------------- */
     $(".shop-filter-toogle").on("click", function (e) {
         e.preventDefault();
@@ -511,8 +503,7 @@
         focusOnSelect: true,
         fade: false,
         arrows: false,
-        responsive: [
-            {
+        responsive: [{
                 breakpoint: 991,
                 settings: {
                     slidesToShow: 3
@@ -575,6 +566,7 @@
         Checkout paymentMethod function
     ---------------------------------------*/
     paymentMethodChanged();
+
     function paymentMethodChanged() {
         var $order_review = $(".payment-method");
 
@@ -666,9 +658,9 @@
         var $this = $(this);
         if (
             $this
-                .parent()
-                .attr("class")
-                .match(/\b(menu-item-has-children|has-children|has-sub-menu)\b/) &&
+            .parent()
+            .attr("class")
+            .match(/\b(menu-item-has-children|has-children|has-sub-menu)\b/) &&
             ($this.attr("href") === "#" || $this.hasClass("menu-expand"))
         ) {
             e.preventDefault();
@@ -734,3 +726,9 @@
     });
 })(jQuery);
 
+//loading animation jquery
+$('.loader-form').on('submit', (e) => {
+
+    $('.btn-text').css('color', 'transparent');
+    $('.loading-ring').css('visibility', 'visible');
+});
