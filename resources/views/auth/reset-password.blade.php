@@ -39,7 +39,7 @@
                                 <div class="login_wrap widget-taber-content background-white">
                                     <div class="padding_eight_all bg-white">
 
-                                        <form method="POST" action="{{ route('password.store') }}">
+                                        <form method="POST" action="{{ route('password.store') }}" class="loader-form">
                                             @csrf
 
                                             <input type="hidden" name="token" value="{{ $request->route('token') }}">
@@ -63,7 +63,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-heading btn-block hover-up" name="login">Reset Password</button>
+                                                <button type="submit" class="btn btn-heading btn-block hover-up btn-loader" name="login"><span class="btn-text">Reset Password</span><span class="loading-ring"></span></button>
                                             </div>
                                         </form>
                                     </div>

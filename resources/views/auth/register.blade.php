@@ -44,7 +44,7 @@
                                             <h1 class="mb-5">Create an Account</h1>
                                             <p class="mb-30">Already have an account? <a href="{{ route('login') }}">Login</a></p>
                                         </div>
-                                        <form method="POST" action="{{ route('register') }}" id="registerform">
+                                        <form method="POST" action="{{ route('register') }}" id="registerform" class="loader-form">
                                             @csrf
 
                                             <div class="form-group">
@@ -88,7 +88,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group mb-30">
-                                                <button type="submit" class="btn btn-fill-out btn-block hover-up font-weight-bold" name="login">Submit &amp; Register</button>
+                                                <button type="submit" class="btn btn-fill-out btn-block hover-up btn-loader font-weight-bold" name="login"><span class="btn-text">Submit &amp; Register</span> <span class="loading-ring"></span></button>
                                             </div>
                                         </form>
                                     </div>
