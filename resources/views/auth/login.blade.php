@@ -62,7 +62,7 @@
                                         </div>
                                         @enderror
                                         @endif
-                                        <form method="POST" action="{{ route('login') }}" >
+                                        <form method="POST" action="{{ route('login') }}" class="loader-form" >
                                             @csrf
                                             <div class="form-group">
                                                 <input type="text" id="logins"  name="logins" placeholder="Enter your email or phone number" value="{{Cookie::get('useremail')}}" />
@@ -88,7 +88,7 @@
                                                 <a class="text-muted" href="{{ route('password.request') }}">Forgot password?</a>
                                             </div>
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-heading btn-block hover-up" name="login">Login</button>
+                                                <button type="submit" class="btn btn-heading btn-block hover-up btn-loader " name="login"><span class="btn-text">Login</span><span class=" loading-ring"></span></button>
                                             </div>
                                         </form>
                                         <div class="mt-2 mb-2">
