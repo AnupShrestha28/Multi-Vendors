@@ -51,14 +51,14 @@
                                 <div class="login_wrap widget-taber-content background-white">
                                     <div class="padding_eight_all bg-white">
 
-    <form method="POST" action="{{ route('password.email') }}">
+    <form method="POST" action="{{ route('password.email') }}" class="loader-form">
         @csrf
                                             <div class="form-group">
                                                 <input type="email" id="email" required="" name="email" placeholder="Email" />
                                             </div>
 
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-heading btn-block hover-up" name="login">Email Password Reset Link</button>
+                                                <button type="submit" class="btn btn-heading btn-block hover-up btn-loader" name="login"><span class="btn-text">Email Password Reset Link</span><span class=" loading-ring"></span></button>
                                             </div>
                                         </form>
                                     </div>

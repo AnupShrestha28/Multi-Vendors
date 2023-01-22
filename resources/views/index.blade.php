@@ -121,7 +121,7 @@
                                         <p>To track your order please enter your OrderID in the box below and press "Track" button. This was given to you on your receipt and in the confirmation email you should have received.</p>
                                         <div class="row">
                                             <div class="col-lg-8">
-                                                <form class="contact-form-style mt-30 mb-50" action="#" method="post">
+                                                <form class="contact-form-style mt-30 mb-50" action="#" method="post" class="loader-form">
                                                     <div class="input-style mb-20">
                                                         <label>Order ID</label>
                                                         <input name="order-id" placeholder="Found in your order confirmation email" type="text" />
@@ -130,7 +130,7 @@
                                                         <label>Billing email</label>
                                                         <input name="billing-email" placeholder="Email you used during checkout" type="email" />
                                                     </div>
-                                                    <button class="submit submit-auto-width" type="submit">Track</button>
+                                                    <button class="submit submit-auto-width btn-loader" type="submit"><span class="btn-text">Track</span><span class="loading-ring"></span></button>
                                                 </form>
                                             </div>
                                         </div>
@@ -179,7 +179,7 @@
                                     </div>
                                     <div class="card-body">
 
-                                        <form method="post" action="{{ route('user.profile.store') }}" enctype="multipart/form-data">
+                                        <form method="post" action="{{ route('user.profile.store') }}" enctype="multipart/form-data" class="loader-form">
                                             @csrf
 
                                             <div class="row">
@@ -206,7 +206,8 @@
                                                                 @else
                                                                 <div class="d-flex mt-2 align-middle" style="gap: 10px" >
                                                                 <p class="text-danger">Your Phone Number is Not Verified</p>
-                                                               <a href="{{ route('otp.sendotp') }}" class="btn btn-success p-1 ">Click here to verify</a>
+
+                                                               <a href="{{ route('otp.sendotp') }}" class="btn btn-success p-1">Click here to verify</a>
                                                             </div>
                                                                 @endif
                                                 </div>
@@ -225,7 +226,7 @@
                                                 </div>
 
                                                 <div class="col-md-12">
-                                                    <button type="submit" class="btn btn-fill-out submit font-weight-bold" name="submit" value="Submit">Save Change</button>
+                                                    <button type="submit" class="btn btn-fill-out submit font-weight-bold btn-loader" name="submit" value="Submit"><span class="btn-text">Save Changes</span><span class=" loading-ring"></span></button>
                                                 </div>
                                             </div>
                                         </form>
@@ -243,7 +244,7 @@
                                     </div>
                                     <div class="card-body">
 
-                                        <form method="post" action="{{ route('user.update.password') }}" >
+                                        <form method="post" action="{{ route('user.update.password') }}"  class="loader-form">
                                             @csrf
 
                                             @if(session('status'))
@@ -291,7 +292,7 @@
 
 
                                                 <div class="col-md-12">
-                                                    <button type="submit" class="btn btn-fill-out submit font-weight-bold" name="submit" value="Submit">Save Change</button>
+                                                    <button type="submit" class="btn btn-fill-out submit font-weight-bold btn-loader" name="submit" value="Submit"><span class="btn-text"><span class="btn-text">Save Changes</span><span class="loading-ring"></span></span><span class="spinner loading-ring"></span></button>
                                                 </div>
                                             </div>
                                         </form>
