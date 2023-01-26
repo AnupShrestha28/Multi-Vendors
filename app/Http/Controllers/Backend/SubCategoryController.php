@@ -34,6 +34,30 @@ class SubCategoryController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->route('all.subcategory')->with($notification);
-    } 
+    } // end method
+
+    public function EditSubCategory($id){
+        $categories = Category::orderBy('category_name', 'ASC')->get();
+
+        $subcategory = SubCategory::findOrFail($id);
+
+        return view('backend.subcategory.subcategory_edit',compact('categories','subcategory'));
+    } // end method
+
+    public function UpdateSubCategory(Request $request){
+        $subcat_id = $request->id;
+
+        SubCategory::findOrFail($subcat_id)->update([
+            'category_id' => $request->category_id,
+            'subcategory_name' => $request->subcategory_name,
+            'subcategory_slug' => strtolower(str_replace(' ', '-', $request->subcategory_name)),
+
+        ]);
+        $notification = array(
+            'message' => 'SubCategory Updated Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('all.subcategory')->with($notification);
+    } // end method
 
 } 
