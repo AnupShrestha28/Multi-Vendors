@@ -44,7 +44,7 @@
                                             <h1 class="mb-5">Become Vendor</h1>
                                             <p class="mb-30">Already have Vendor an account? <a href="{{  route('vendor.login') }}">Vendor Login</a></p>
                                         </div>
-                                        <form method="POST" action="{{ route('register') }}" id="registerform" class="loader-form">
+                                        <form method="POST" action="{{ route('vendor.register') }}" id="registerform" class="loader-form">
                                             @csrf
 
                                             <div class="form-group">
