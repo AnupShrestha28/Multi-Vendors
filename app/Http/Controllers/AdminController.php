@@ -117,4 +117,9 @@ class AdminController extends Controller
         return redirect()->route('active.vendor')->with($notification);
     } // end method
 
+    public function ActiveVendorDetails($id){
+        $activeVendorDetails = User::findOrFail($id); 
+        return view('backend.vendor.active_vendor_details',compact('activeVendorDetails'));
+    } // end method
+
 }
