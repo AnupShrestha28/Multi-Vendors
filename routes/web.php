@@ -174,6 +174,8 @@ Route::middleware(['auth','role:admin'])->group(function(){
 
         Route::get('active/vendor', 'ActiveVendor')->name('active.vendor');
 
+        Route::get('inactive/vendor/details{id}', 'InactiveVendorDetails')->name('inactive.vendor.details');
+
     });
 
 }); // end middleware
