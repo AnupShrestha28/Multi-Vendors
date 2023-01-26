@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\Auth\OtpController;
 use Illuminate\Support\Facades\Auth;
@@ -182,6 +183,13 @@ Route::middleware(['auth','role:admin'])->group(function(){
 
         Route::post('inactive/vendor/approve', 'InActiveVendorApprove')->name('inactive.vendor.approve');
     });
+
+        // Product All Route
+        Route::controller(ProductController::class)->group(function(){
+            Route::get('all/product', 'AllProduct')->name('all.product');
+    
+            Route::get('add/subcategory', 'AddSubCategory')->name('add.subcategory');
+        });
 
 }); // end middleware
 
