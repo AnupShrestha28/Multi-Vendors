@@ -30,7 +30,7 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <form method="post" action="{{ route('active.vendor.approve') }}" >
+                            <form method="post" action="{{ route('inactive.vendor.approve') }}" >
                                 @csrf
 
                                 <input type="hidden" name="id" value="{{ $activeVendorDetails->id }}">
