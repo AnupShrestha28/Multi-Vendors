@@ -166,6 +166,8 @@ Route::middleware(['auth','role:admin'])->group(function(){
 
         Route::get('delete/subcategory/{id}', 'DeleteSubCategory')->name('delete.subcategory');
 
+        Route::get('subcategory/ajax/{category_id}', 'GetSubCategory');
+
     });
 
 
