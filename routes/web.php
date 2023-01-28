@@ -201,6 +201,8 @@ Route::middleware(['auth','role:admin'])->group(function(){
             Route::post('update/product/thambnail', 'UpdateProductThambnail')->name('update.product.thambnail');
 
             Route::post('update/product/multiimage', 'UpdateProductMultiimage')->name('update.product.multiimage');
+
+            Route::get('product/multiimg/delete/{id}', 'MultiImageDelete')->name('product.multiimg.delete');
         });
 
 }); // end middleware
