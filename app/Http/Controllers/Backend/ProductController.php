@@ -134,6 +134,33 @@ class ProductController extends Controller
         );
         return redirect()->route('all.product')->with($notification);
     } // end method
+
+    public function UpdateProductThambnail(Request $request){
+        $pro_id = $request->id;
+        $oldImage = $request->old_img;
+
+        $image = $request->file('product_thambnail');
+
+        $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+        Image::make($image)->resize(800, 800)->save('upload/products/thambnail/'.$name_gen);
+        $save_url = 'upload/products/thambnail/'.$name_gen;
+
+        if(file_exists($oldImage)){
+            unlink($oldImage);
+        }
+
+        Product::findOrFail($pro_id)->update([
+            'product_thambnail' => $save_url,
+            'updated_at' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => 'Product Thumbnail Image Updated Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+
+    } // end method
 }
 
 
