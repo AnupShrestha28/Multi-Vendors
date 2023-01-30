@@ -125,6 +125,12 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
 
         Route::get('vendor/product/multiimg/delete/{id}', 'VendorMultiimgDelete')->name('vendor.product.multiimg.delete');
 
+        Route::get('vendor/product/inactive/{id}', 'vendorProductInactive')->name('vendor.product.inactive');
+
+        Route::get('vendor/product/active/{id}', 'vendorProductActive')->name('vendor.product.active');
+
+        Route::get('vendor/delete/product/{id}', 'vendorProductDelete')->name('vendor.delete.product');
+
         Route::get('/vendor/subcategory/ajax/{category_id}', 'VendorGetSubCategory');
         });
     }); // end group middleware
