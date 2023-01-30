@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\Auth\OtpController;
@@ -104,6 +105,13 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
         Route::get('/vendor/change/password', [VendorController::class, 'VendorChangePassword'])->name('vendor.change.password');
 
         Route::post('/vendor/update/password', [VendorController::class, 'VendorUpdatePassword'])->name('vendor.update.password');
+
+         // Vendor add Product All Routes
+    Route::controller(VendorProductController::class)->group(function(){
+
+        Route::get('vendor/all/product', 'VendorAllProduct')->name('vendor.all.product');
+
+        });
     });
 });
 
