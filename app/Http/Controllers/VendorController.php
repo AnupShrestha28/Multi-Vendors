@@ -138,3 +138,4 @@ class VendorController extends Controller
         return redirect(RouteServiceProvider::HOME);
     } // end method
 }
+

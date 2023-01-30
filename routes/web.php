@@ -111,8 +111,13 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
 
         Route::get('vendor/all/product', 'VendorAllProduct')->name('vendor.all.product');
 
+        Route::get('vendor/add/product', 'VendorAddProduct')->name('vendor.add.product');
+
+        Route::post('vendor/store/product', 'VendorStoreProduct')->name('vendor.store.product');
+
+        Route::get('/vendor/subcategory/ajax/{category_id}', 'VendorGetSubCategory');
         });
-    });
+    }); // end group middleware
 });
 
 
@@ -175,7 +180,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
 
         Route::get('delete/subcategory/{id}', 'DeleteSubCategory')->name('delete.subcategory');
 
-        Route::get('subcategory/ajax/{category_id}', 'GetSubCategory');
+        Route::get('/subcategory/ajax/{category_id}', 'GetSubCategory');
 
     });
 
