@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\VendorProductController;
+use App\Http\Controllers\Backend\SliderController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\Auth\OtpController;
@@ -241,7 +242,17 @@ Route::middleware(['auth','role:admin'])->group(function(){
             Route::get('delete/product/{id}', 'ProductDelete')->name('delete.product');
         });
 
-}); // end middleware
+          // Slider All Route
+    Route::controller(SliderController::class)->group(function(){
+        Route::get('all/slider', 'AllSlider')->name('all.slider');
+
+        Route::get('add/slider', 'AddSlider')->name('add.slider');
+
+        Route::post('store/slider', 'StoreSlider')->name('store.slider');
+
+    });
+
+}); // Admin end middleware
 
 
 //Login with Google
