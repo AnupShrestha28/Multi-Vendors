@@ -56,7 +56,7 @@
                                         <br>
 
 
-                                        <img id="showImage" src="{{ (!empty($userData->photo)) ? url('upload/user_images/'.$userData->photo) : url('upload/no_image.jpg') }}" alt="User" class="rounded-circle p-1 bg-primary" width="110">
+                                        <img id="showImage" src=@if(!empty($userData->photo)) {{ asset('upload/user_images/'.$userData->photo) }} @elseif(!empty($userData->social_avatar)) "{{ $userData->social_avatar }}"  @else "{{ url('upload/no_image.jpg') }}" @endif alt="User" class="rounded-circle p-1 bg-primary" width="110">
 
 
                                     </div>
