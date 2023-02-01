@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\BannerController;
+use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\Auth\OtpController;
@@ -278,6 +279,10 @@ Route::middleware(['auth','role:admin'])->group(function(){
         });
 
 }); // Admin end middleware
+
+// Frontend Product details all route
+Route::get('/product/details/{id}/{slug}', [IndexController::class,'ProductDetails']);
+
 
 
 //Login with Google
