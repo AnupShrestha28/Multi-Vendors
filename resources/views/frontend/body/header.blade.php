@@ -290,7 +290,7 @@
                                 
     @php
 
-    $categories = App\Models\Category::orderBy('category_name','ASC')->limit(6)->get();
+    $categories = App\Models\Category::orderBy('category_name','ASC')->limit(7)->get();
 
     @endphp
 
