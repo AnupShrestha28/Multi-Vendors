@@ -29,9 +29,11 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+// Route::get('/', function () {
+//     return view('frontend.index');
+// });
+
+Route::get('/', [IndexController::class, 'Index']);
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('dashboard');
