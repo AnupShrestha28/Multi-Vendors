@@ -306,12 +306,31 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                @if($product->vendor_id == NULL)
                                 <ul class="contact-infor mb-50">
-                                    <li><img src="assets/imgs/theme/icons/icon-location.svg" alt="" /><strong>Address: </strong> <span>{{ $product['vendor']['address'] }}</span></li>
-                                    <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt="" /><strong>Contact Seller:</strong><span>{{ $product['vendor']['phone'] }}</span></li>
+                                    <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-location.svg') }}" alt="" /><strong>Address: </strong> <span>Owner</span></li>
+                                    <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-contact.svg') }}" alt="" /><strong>Contact Seller:</strong><span>Owner</span></li>
                                 </ul>
                              
+
+                                @else
+                                <ul class="contact-infor mb-50">
+                                    <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-location.svg') }}" alt="" /><strong>Address: </strong> <span>{{ $product['vendor']['address'] }}</span></li>
+                                    <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-contact.svg') }}" alt="" /><strong>Contact Seller:</strong><span>{{ $product['vendor']['phone'] }}</span></li>
+                                </ul>
+
+                                @endif
+
+                                @if($product->vendor_id == NULL)
+                                <p>Owner Information</p>
+
+                                @else
                                 <p>{{ $product['vendor']['vendor_short_info'] }}</p>
+
+                                @endif
+                             
+                               
                             </div>
                             <div class="tab-pane fade" id="Reviews">
                                 <!--Comments-->
