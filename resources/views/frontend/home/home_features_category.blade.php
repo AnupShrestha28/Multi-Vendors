@@ -30,7 +30,7 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->limit(20)->ge
 
                     @endphp
 
-                    <span>{{ count($products) }}</span>
+                    <span>{{ count($products) }} Items</span>
                 </div>
                @endforeach
             </div>
