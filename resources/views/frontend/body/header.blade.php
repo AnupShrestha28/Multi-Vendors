@@ -283,7 +283,7 @@
                             <ul>
                                 
                                 <li>
-                                    <a class="active" href="index.html">Home  </a>
+                                    <a class="active" href="{{ url('/') }}">Home  </a>
                                     
                                 </li>
 
@@ -418,7 +418,7 @@
                 <nav>
                     <ul class="mobile-menu font-heading">
                         <li class="menu-item-has-children">
-                            <a href="index.html">Home</a>
+                            <a href="{{ url('/') }}">Home</a>
                              
                         </li>
                         <li class="menu-item-has-children">
