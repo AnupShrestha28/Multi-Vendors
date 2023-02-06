@@ -20,9 +20,9 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->limit(20)->ge
 
                 <div class="card-2 bg-9 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
                     <figure class="img-hover-scale overflow-hidden">
-                        <a href="shop-grid-right.html"><img src="{{ asset($category->category_image) }}" alt="" /></a>
+                        <a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}"><img src="{{ asset($category->category_image) }}" alt="" /></a>
                     </figure>
-                    <h6><a href="shop-grid-right.html">{{ $category->category_name }}</a></h6>
+                    <h6><a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}">{{ $category->category_name }}</a></h6>
 
                     @php
 

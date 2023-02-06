@@ -71,7 +71,9 @@ class IndexController extends Controller
 
         $breadcat = Category::where('id',$id)->first();
 
-        return view('frontend.product.category_view',compact('products','categories','breadcat'));
+        $newProduct = Product::orderBy('id','DESC')->limit(3)->get();
+
+        return view('frontend.product.category_view',compact('products','categories','breadcat','newProduct'));
     } // end method
   
 }
