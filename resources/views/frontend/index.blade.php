@@ -470,7 +470,6 @@
                                 <span class="font-small ml-5 text-muted"> (4.0)</span>
                             </div>
                             @if($item->discount_price == NULL)
-
                                     <div class="product-price">
                                         <span>Rs.{{ $item->selling_price }}</span>
                                     </div>
