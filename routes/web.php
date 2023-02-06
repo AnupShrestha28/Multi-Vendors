@@ -289,6 +289,8 @@ Route::get('/vendor/details/{id}', [IndexController::class,'VendorDetails'])->na
 
 Route::get('/vendor/all', [IndexController::class,'VendorAll'])->name('vendor.all');
 
+Route::get('/product/category/{id}/{slug}', [IndexController::class,'CatWiseProduct']);
+
 
 //Login with Google
 Route::get('login/google', [SocialController::class, 'redirectToGoogle'])->name('login.google');

@@ -64,5 +64,14 @@ class IndexController extends Controller
         return view('frontend.vendor.vendor_all',compact('vendors'));
     } // end method
 
+    public function CatWiseProduct(Request $request, $id, $slug){
+        $products = Product::where('status',1)->where('category_id',$id)->orderBy('id','DESC')->get();
+        
+        $categories = Category::orderBy('category_name','ASC')->get();
+
+        $breadcat = Category::where('id',$id)->first();
+
+        return view('frontend.product.category_view',compact('products','categories','breadcat'));
+    } // end method
   
 }
