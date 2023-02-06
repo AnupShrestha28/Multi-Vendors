@@ -285,6 +285,8 @@ Route::middleware(['auth','role:admin'])->group(function(){
 // Frontend Product details all route
 Route::get('/product/details/{id}/{slug}', [IndexController::class,'ProductDetails']);
 
+Route::get('/vendor/details/{id}', [IndexController::class,'VendorDetails'])->name('vendor.details');
+
 
 
 //Login with Google
