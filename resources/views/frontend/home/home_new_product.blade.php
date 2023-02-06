@@ -31,7 +31,6 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
 
                     @foreach($products as $product)
 
-
                     <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
                         <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
                             <div class="product-img-action-wrap">
