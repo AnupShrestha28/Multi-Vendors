@@ -291,6 +291,8 @@ Route::get('/vendor/all', [IndexController::class,'VendorAll'])->name('vendor.al
 
 Route::get('/product/category/{id}/{slug}', [IndexController::class,'CatWiseProduct']);
 
+Route::get('/product/subcategory/{id}/{slug}', [IndexController::class,'SubCatWiseProduct']);
+
 
 //Login with Google
 Route::get('login/google', [SocialController::class, 'redirectToGoogle'])->name('login.google');
