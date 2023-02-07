@@ -294,6 +294,10 @@ Route::get('/product/category/{id}/{slug}', [IndexController::class,'CatWiseProd
 Route::get('/product/subcategory/{id}/{slug}', [IndexController::class,'SubCatWiseProduct']);
 
 
+// Product view modal with ajax 
+Route::get('/product/view/modal/{id}', [IndexController::class,'ProductViewAjax']);
+
+
 //Login with Google
 Route::get('login/google', [SocialController::class, 'redirectToGoogle'])->name('login.google');
 
