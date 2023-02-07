@@ -302,6 +302,15 @@ Route::get('/product/view/modal/{id}', [IndexController::class,'ProductViewAjax'
 // Add to cart store data
 Route::post('/cart/data/store/{id}', [CartController::class,'AddToCart']);
 
+// Get data from mini cart
+Route::get('/product/mini/cart', [CartController::class,'AddMiniCart']);
+
+
+Route::get('/minicart/product/remove/{rowId}', [CartController::class,'RemoveMiniCart']);
+
+// Add to cart store data for product details page
+Route::post('/dcart/data/store/{id}', [CartController::class,'AddToCartDetails']);
+
 
 //Login with Google
 Route::get('login/google', [SocialController::class, 'redirectToGoogle'])->name('login.google');
