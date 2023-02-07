@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\User\WishlistController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\Auth\OtpController;
@@ -310,6 +311,9 @@ Route::get('/minicart/product/remove/{rowId}', [CartController::class,'RemoveMin
 
 // Add to cart store data for product details page
 Route::post('/dcart/data/store/{id}', [CartController::class,'AddToCartDetails']);
+
+// Add to wishlist 
+Route::post('/add-to-wishlist/{product_id}', [WishlistController::class,'AddToWishList']);
 
 
 //Login with Google

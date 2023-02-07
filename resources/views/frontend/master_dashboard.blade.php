@@ -345,6 +345,46 @@
 
     </script>
 
+    <!-- start wishlist add -->
+
+    <script type="text/javascript">
+    function addToWishlist(product_id){
+        $.ajax({
+            type: "POST",
+            dataType: 'json',
+            url: "/add-to-wishlist/"+product_id, 
+
+            success: function(data){
+                 //  Start message 
+                 const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmation: false,
+                        timer: 5000
+                    })
+                    if($.isEmptyObject(data.error)){
+                        Toast.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: data.success,
+                    })
+                    }else{
+                        Toast.fire({
+                        type: 'error',
+                        icon: 'error',
+                        title: data.error,
+                    }) 
+                    }
+                    // end message
+            }
+        })
+    }
+
+    </script>
+
+    <!-- end wishlist end -->
+
+
 </body>
 
 </html>
