@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\Auth\OtpController;
@@ -296,6 +297,10 @@ Route::get('/product/subcategory/{id}/{slug}', [IndexController::class,'SubCatWi
 
 // Product view modal with ajax 
 Route::get('/product/view/modal/{id}', [IndexController::class,'ProductViewAjax']);
+
+
+// Add to cart store data
+Route::post('/cart/data/store/{id}', [CartController::class,'AddToCart']);
 
 
 //Login with Google
