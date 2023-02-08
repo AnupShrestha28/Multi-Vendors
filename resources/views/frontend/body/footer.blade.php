@@ -99,7 +99,7 @@
                 <div class="col">
                     <div class="widget-about font-md mb-md-3 mb-lg-3 mb-xl-0 wow animate__animated animate__fadeInUp" data-wow-delay="0">
                         <div class="logo mb-30">
-                            <a href="index.html" class="mb-15"><img src="{{ asset('frontend/assets/imgs/theme/logo.svg') }}" alt="logo" /></a>
+                            <a href="index.html" class="mb-15"><img src="{{ asset('frontend/assets/imgs/theme/brandlogo.png') }}" style="height:4rem;width:auto" alt="logo" /></a>
                             <p class="font-lg text-heading">Awesome grocery store website template</p>
                         </div>
                         <ul class="contact-infor">
@@ -158,7 +158,7 @@
                         <li><a href="#">Cheese</a></li>
                     </ul>
                 </div>
-              
+
             </div>
     </section>
     <div class="container pb-30 wow animate__animated animate__fadeInUp" data-wow-delay="0">
@@ -170,7 +170,7 @@
                 <p class="font-sm mb-0">&copy; 2022, <strong class="text-brand">Nest</strong> - HTML Ecommerce Template <br />All rights reserved</p>
             </div>
             <div class="col-xl-4 col-lg-6 text-center d-none d-xl-block">
-                 
+
                 <div class="hotline d-lg-inline-flex">
                     <img src="{{ asset('frontend/assets/imgs/theme/icons/phone-call.svg') }}" alt="hotline" />
                     <p>1900 - 8888<span>24/7 Support Center</span></p>

@@ -8,9 +8,7 @@
                 <div class="col-xl-3 col-lg-4">
                     <div class="header-info">
                         <ul>
-                            
-                            <li><a href="page-account.html">My Cart</a></li>
-                            <li><a href="shop-wishlist.html">Checkout</a></li>
+
                             <li><a href="shop-order.html">Order Tracking</a></li>
                         </ul>
                     </div>
@@ -19,9 +17,7 @@
                     <div class="text-center">
                         <div id="news-flash" class="d-inline-block">
                             <ul>
-                                <li>100% Secure delivery without contacting the courier</li>
-                                <li>Supper Value Deals - Save more with coupons</li>
-                                <li>Trendy 25silver jewelry, save up 35% off today</li>
+
                             </ul>
                         </div>
                     </div>
@@ -29,7 +25,7 @@
                 <div class="col-xl-3 col-lg-4">
                     <div class="header-info header-info-right">
                         <ul>
-                           
+{{--
                             <li>
                                 <a class="language-dropdown-active" href="#">English <i class="fi-rs-angle-small-down"></i></a>
                                 <ul class="language-dropdown">
@@ -43,10 +39,10 @@
                                         <a href="#"><img src="{{ asset('frontend/assets/imgs/theme/flag-ru.png') }}" alt="" />Pусский</a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li>  --}}
 
                              <li>Need help? Call Us: <strong class="text-brand"> + 1800 900</strong></li>
-                           
+
                         </ul>
                     </div>
                 </div>
@@ -57,7 +53,7 @@
         <div class="container">
             <div class="header-wrap">
                 <div class="logo logo-width-1">
-                    <a href="index.html"><img src="{{ asset('frontend/assets/imgs/theme/logo.svg') }}" alt="logo" /></a>
+                    <a href="index.html"><img src="{{ asset('frontend/assets/imgs/theme/brandlogo.png') }}" style="height:4rem;width:auto" alt="logo" /></a>
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
@@ -78,6 +74,7 @@
                             <input type="text" placeholder="Search for items..." />
                         </form>
                     </div>
+
                     <div class="header-action-right">
                         <div class="header-action-2">
                             <div class="search-location">
@@ -100,7 +97,6 @@
                                     </select>
                                 </form>
                             </div>
-                           
                             <div class="header-action-icon-2">
                                 <a href="shop-wishlist.html">
                                     <img class="svgInject" alt="Nest" src="{{ asset('frontend/assets/imgs/theme/icons/icon-heart.svg') }}" />
@@ -108,10 +104,15 @@
                                 </a>
                                 <a href="shop-wishlist.html"><span class="lable">Wishlist</span></a>
                             </div>
+
+
+
+
+
                             <div class="header-action-icon-2">
                                 <a class="mini-cart-icon" href="shop-cart.html">
                                     <img alt="Nest" src="{{ asset('frontend/assets/imgs/theme/icons/icon-cart.svg') }}" />
-                                    <span class="pro-count blue" id="cartQty"></span>
+                                    <span class="pro-count blue" id="cartQty">0</span>
                                 </a>
                                 <a href="shop-cart.html"><span class="lable">Cart</span></a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2">
@@ -126,7 +127,7 @@
 
                                     <!-- end mini cart start with ajax -->
 
-                                    
+
                                     <div class="shopping-cart-footer">
                                         <div class="shopping-cart-total">
                                             <h4>Total <span id="cartSubTotal">Rs.</span></h4>
@@ -139,15 +140,16 @@
                                 </div>
                             </div>
 
+
                             <div class="header-action-icon-2">
-                                <a href="page-account.html">
+                                <a href="{{ route('login') }}">
                                     <img class="svgInject" alt="Nest" src="{{ asset('frontend/assets/imgs/theme/icons/icon-user.svg') }}" />
                                 </a>
 
 
                                 @auth
 
-                                
+
                                 <a href="#"><span class="lable ml-0">Account</span></a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
                                     <ul>
@@ -238,7 +240,7 @@
                                         <a href="shop-grid-right.html"> <img src="{{ asset( $item->category_image) }}" alt="" />{{$item->category_name}}</a>
                                     </li>
                                    @endforeach
-                                   
+
                                 </ul>
                             </div>
                             <div class="more_slide_open" style="display: none">
@@ -267,13 +269,13 @@
                     <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
                         <nav>
                             <ul>
-                                
+
                                 <li>
                                     <a class="active" href="{{ url('/') }}">Home  </a>
-                                    
+
                                 </li>
 
-                                
+
     @php
 
     $categories = App\Models\Category::orderBy('category_name','ASC')->limit(7)->get();
@@ -283,7 +285,7 @@
                                 @foreach($categories as $category)
                                 <li>
                                     <a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}">{{$category->category_name}} <i class="fi-rs-angle-down"></i></a>
-                                                                    
+
     @php
 
     $subcategories = App\Models\SubCategory::where('category_id', $category->id)->orderBy('subcategory_name','ASC')->get();
@@ -405,7 +407,7 @@
                     <ul class="mobile-menu font-heading">
                         <li class="menu-item-has-children">
                             <a href="{{ url('/') }}">Home</a>
-                             
+
                         </li>
                         <li class="menu-item-has-children">
                             <a href="shop-grid-right.html">shop</a>
@@ -442,7 +444,7 @@
                                 </li>
                             </ul>
                         </li>
-                        
+
                         <li class="menu-item-has-children">
                             <a href="#">Mega menu</a>
                             <ul class="dropdown">
@@ -544,3 +546,4 @@
         </div>
     </div>
 </div>
+

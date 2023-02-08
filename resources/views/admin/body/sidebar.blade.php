@@ -29,11 +29,11 @@
                 </li>
                 <li> <a href="{{ route('add.brand')}}"><i class="bx bx-right-arrow-alt"></i>Add Brand</a>
                 </li>
-                
+
             </ul>
         </li>
 
-        
+
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="bx bx-category"></i>
@@ -45,7 +45,7 @@
                 </li>
                 <li> <a href="{{ route('add.category')}}"><i class="bx bx-right-arrow-alt"></i>Add Category</a>
                 </li>
-                
+
             </ul>
         </li>
 
@@ -60,7 +60,7 @@
                 </li>
                 <li> <a href="{{ route('add.subcategory')}}"><i class="bx bx-right-arrow-alt"></i>Add SubCategory</a>
                 </li>
-                
+
             </ul>
         </li>
 
@@ -75,7 +75,7 @@
                 </li>
                 <li> <a href="{{ route('add.product')}}"><i class="bx bx-right-arrow-alt"></i>Add Product</a>
                 </li>
-                
+
             </ul>
         </li>
 
@@ -91,9 +91,12 @@
                 </li>
                 <li> <a href="{{ route('add.slider')}}"><i class="bx bx-right-arrow-alt"></i>Add Slider</a>
                 </li>
-                
+
             </ul>
         </li>
+
+
+
 
 
         <li>
@@ -107,12 +110,13 @@
                 </li>
                 <li> <a href="{{ route('add.banner')}}"><i class="bx bx-right-arrow-alt"></i>Add Banner</a>
                 </li>
-                
+
             </ul>
         </li>
 
+
         <li class="menu-label">UI Elements</li>
-        
+
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class='bx bx-cart'></i>
@@ -125,7 +129,7 @@
 
                 <li> <a href="{{ route('active.vendor') }}"><i class="bx bx-right-arrow-alt"></i>Active Vendor</a>
                 </li>
-                
+
             </ul>
         </li>
         <li>
@@ -201,12 +205,12 @@
                 </li>
             </ul>
         </li>
-       
-      
-        
-        
-        
-     
+
+
+
+
+
+
         <li class="menu-label">Charts & Maps</li>
         <li>
             <a class="has-arrow" href="javascript:;">
@@ -223,8 +227,8 @@
                 </li>
             </ul>
         </li>
-        
-      
+
+
         <li>
             <a href="" target="_blank">
                 <div class="parent-icon"><i class="bx bx-support"></i>

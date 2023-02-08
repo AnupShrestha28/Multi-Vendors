@@ -51,7 +51,7 @@
                                     <div class="padding_eight_all bg-white">
                                         <div class="heading_s1">
                                             <h1 class="mb-5">Login</h1>
-                                            <p class="mb-30">Dont have an account? <a href="page-register.html">Create here</a></p>
+                                            <p class="mb-30">Dont have an account? <a href="{{ route('register') }}">Create here</a></p>
                                         </div>
                                             @if(!session()->has('message'))
                                         @error('loginfailed')
@@ -94,7 +94,7 @@
                                         <div class="mt-2 mb-2">
                                             <hr><p class="text-center mt-0 mb-0">OR</p><hr>
                                         </div>
-                                        <div class="col-lg-12  d-none d-lg-block">
+                                        <div class="col-lg-12 col-sm-12 col-md-12  d-lg-block">
                                             <div class="card-login d-flex gap-2 p-0 ms-0" style="border:none">
                                                 <a style="font-size: 14px; white-space:nowrap" href="{{ route('login.facebook') }}" class="social-login facebook-login">
                                                     <img src="{{ asset('frontend/assets/imgs/theme/icons/logo-facebook.svg') }}" alt="" />
