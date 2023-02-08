@@ -355,6 +355,7 @@
             url: "/add-to-wishlist/"+product_id, 
 
             success: function(data){
+                wishlist();
                  //  Start message 
                  const Toast = Swal.mixin({
                         toast: true,
@@ -383,6 +384,102 @@
     </script>
 
     <!-- end wishlist end -->
+
+
+       <!-- start load wishlist data-->
+
+       <script type="text/javascript">
+        function wishlist(){
+            $.ajax({
+                type: "GET",
+                dataType: 'json',
+                url: "/get-wishlist-product/", 
+    
+                success: function(response){
+
+                    $('#wishQty').text(response.wishQty);   
+
+                    var rows = "" 
+                    $.each(response.wishlist, function(key, value){
+                        rows += `
+                        <tr class="pt-30">
+                            <td class="custome-checkbox pl-30">
+                            </td>
+                            <td class="image product-thumbnail pt-40"><img src="/${value.product.product_thambnail}" alt="#" /></td>
+                            <td class="product-des product-name">
+                                <h6><a class="product-name mb-10" href="shop-product-right.html">${value.product.product_name}</a></h6>
+                                <div class="product-rate-cover">
+                                    <div class="product-rate d-inline-block">
+                                        <div class="product-rating" style="width: 90%"></div>
+                                    </div>
+                                    <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                </div>
+                            </td>
+                            <td class="price" data-title="Price">
+
+                                ${value.product.discount_price == null ? `<h3 class="text-brand">Rs.${value.product.selling_price}</h3>` : `<h3 class="text-brand">Rs.${value.product.discount_price}</h3>` }
+
+                            </td>
+                            <td class="text-center detail-info" data-title="Stock">
+
+                                ${value.product.product_qty > 0 ? `<span class="stock-status in-stock mb-0"> In Stock </span>` : `<span class="stock-status out-stock mb-0"> Out of stock </span>`  }
+                            </td>
+                          
+                            <td class="action text-center" data-title="Remove">
+                                <a type="submit" class="text-body" id="${value.id}" onclick="wishlistRemove(this.id)" ><i class="fi-rs-trash"></i></a>
+                            </td>
+                        </tr>
+                        
+                        `
+                    });
+
+                    $('#wishlist').html(rows);
+
+                }
+            })
+        }
+        wishlist();
+    // end load wishlist data 
+
+    // wishlist remove start
+
+    function wishlistRemove(id){
+        $.ajax({
+            type: "GET",
+            dataType: 'json',
+            url: "/wishlist-remove/"+id, 
+
+            success:function(data){
+                wishlist();
+                 //  Start message 
+                 const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmation: false,
+                        timer: 5000
+                    })
+                    if($.isEmptyObject(data.error)){
+                        Toast.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: data.success,
+                    })
+                    }else{
+                        Toast.fire({
+                        type: 'error',
+                        icon: 'error',
+                        title: data.error,
+                    }) 
+                    }
+                    // end message
+            }
+        })
+    }
+
+    // wishlist remove end
+
+        </script>
+    
 
 
 </body>

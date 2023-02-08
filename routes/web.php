@@ -95,7 +95,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 
 
-Route::middleware(['auth', 'role:vendor'])->group(function () {
+// Route::middleware(['auth', 'role:vendor'])->group(function () {
 
     // Vendor Dashboard
 
@@ -141,7 +141,8 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
         Route::get('/vendor/subcategory/ajax/{category_id}', 'VendorGetSubCategory');
         });
     }); // end group middleware
-});
+
+//  }); 
 
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->middleware(RedirectIfAuthenticated::class);
@@ -250,17 +251,17 @@ Route::middleware(['auth','role:admin'])->group(function(){
 
           // Slider All Route
     Route::controller(SliderController::class)->group(function(){
-        Route::get('all/slider', 'AllSlider')->name('all.slider');
+        Route::get('/all/slider', 'AllSlider')->name('all.slider');
 
-        Route::get('add/slider', 'AddSlider')->name('add.slider');
+        Route::get('/add/slider', 'AddSlider')->name('add.slider');
 
-        Route::post('store/slider', 'StoreSlider')->name('store.slider');
+        Route::post('/store/slider', 'StoreSlider')->name('store.slider');
 
-        Route::get('edit/slider/{id}', 'EditSlider')->name('edit.slider');
+        Route::get('/edit/slider/{id}', 'EditSlider')->name('edit.slider');
 
-        Route::post('update/slider', 'UpdateSlider')->name('update.slider');
+        Route::post('/update/slider', 'UpdateSlider')->name('update.slider');
 
-        Route::get('delete/slider/{id}', 'DeleteSlider')->name('delete.slider');
+        Route::get('/delete/slider/{id}', 'DeleteSlider')->name('delete.slider');
 
     });
 
@@ -268,17 +269,17 @@ Route::middleware(['auth','role:admin'])->group(function(){
     
           // Banner All Route
           Route::controller(BannerController::class)->group(function(){
-            Route::get('all/banner', 'AllBanner')->name('all.banner');
+            Route::get('/all/banner', 'AllBanner')->name('all.banner');
     
-            Route::get('add/banner', 'AddBanner')->name('add.banner');
+            Route::get('/add/banner', 'AddBanner')->name('add.banner');
     
-            Route::post('store/banner', 'StoreBanner')->name('store.banner');
+            Route::post('/store/banner', 'StoreBanner')->name('store.banner');
     
-            Route::get('edit/banner/{id}', 'EditBanner')->name('edit.banner');
+            Route::get('/edit/banner/{id}', 'EditBanner')->name('edit.banner');
     
-            Route::post('update/banner', 'UpdateBanner')->name('update.banner');
+            Route::post('/update/banner', 'UpdateBanner')->name('update.banner');
     
-            Route::get('delete/banner/{id}', 'DeleteBanner')->name('delete.banner');
+            Route::get('/delete/banner/{id}', 'DeleteBanner')->name('delete.banner');
     
         });
 
@@ -314,6 +315,21 @@ Route::post('/dcart/data/store/{id}', [CartController::class,'AddToCartDetails']
 
 // Add to wishlist 
 Route::post('/add-to-wishlist/{product_id}', [WishlistController::class,'AddToWishList']);
+
+
+// User All route
+Route::middleware(['auth', 'role:user'])->group(function () {
+      // wishlist All Route
+      Route::controller(WishlistController::class)->group(function(){
+        Route::get('/wishlist', 'AllWishlist')->name('wishlist');
+
+        Route::get('/get-wishlist-product', 'GetWishlistProduct');
+
+        Route::get('/wishlist-remove/{id}', 'WishlistRemove');
+
+    });
+
+}); // end group middleware
 
 
 //Login with Google
