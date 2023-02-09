@@ -9,12 +9,14 @@ use Image;
 
 class CategoryController extends Controller
 {
-    public function AllCategory(){
+    public function AllCategory()
+    {
         $categories = Category::latest()->get();
-        return view('backend.category.category_all',compact('categories'));
+        return view('backend.category.category_all', compact('categories'));
     } // end method
 
-    public function AddCategory(){
+    public function AddCategory()
+    {
         return view('backend.category.category_add');
     } // end method
 
@@ -39,30 +41,32 @@ class CategoryController extends Controller
         return redirect()->route('all.category')->with($notification);
     } // end method
 
-    public function EditCategory($id){
+    public function EditCategory($id)
+    {
         $category = Category::findOrFail($id);
-        return view('backend.category.category_edit',compact('category'));
+        return view('backend.category.category_edit', compact('category'));
     } // end method
 
-    public function UpdateCategory(Request $request){
+    public function UpdateCategory(Request $request)
+    {
         $cat_id = $request->id;
         $old_img = $request->old_image;
 
-        if($request->file('category_image')){
+        if ($request->file('category_image')) {
             $image = $request->file('category_image');
 
             $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
             Image::make($image)->resize(120, 120)->save('upload/category/' . $name_gen);
             $save_url = 'upload/category/' . $name_gen;
 
-            if(file_exists($old_img)){
+            if (file_exists($old_img)) {
                 unlink($old_img);
             }
-    
+
             Category::findOrFail($cat_id)->update([
                 'category_name' => $request->category_name,
                 'category_slug' => strtolower(str_replace(' ', '-', $request->category_name)),
-    
+
                 'Category_image' => $save_url,
             ]);
             $notification = array(
@@ -70,21 +74,21 @@ class CategoryController extends Controller
                 'alert-type' => 'success'
             );
             return redirect()->route('all.category')->with($notification);
-
-        } else{
+        } else {
             Category::findOrFail($cat_id)->update([
                 'category_name' => $request->category_name,
                 'category_slug' => strtolower(str_replace(' ', '-', $request->category_name)),
             ]);
             $notification = array(
                 'message' => 'Category Updated without image Successfully',
-                'alert-type' => 'success' 
+                'alert-type' => 'success'
             );
             return redirect()->route('all.category')->with($notification);
         } // end else
     } // end method
 
-    public function DeleteCategory($id){
+    public function DeleteCategory($id)
+    {
         $category = Category::findOrFail($id);
         $img = $category->category_image;
 

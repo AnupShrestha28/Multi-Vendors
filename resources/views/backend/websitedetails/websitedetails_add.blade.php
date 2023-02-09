@@ -29,87 +29,99 @@
                 <div class="col-lg-10">
                     <div class="card">
                         <div class="card-body">
-
                             <form id="myForm" method="post" action="{{ route('add.cdetails') }}" enctype="multipart/form-data">
                                 @csrf
-
-
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Company Name</h6>
-                                </div>
-                                <div class="form-group col-sm-9 text-secondary">
-                                    <input type="text" name="website_name" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Helpline Number</h6>
-                                </div>
-                                <div class="form-group col-sm-9 text-secondary">
-                                    <input type="text" name="website_helplineno" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Helpline Slogan</h6>
-                                </div>
-                                <div class="form-group col-sm-9 text-secondary">
-                                    <input type="text" name="website_slogan" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Company Number</h6>
-                                </div>
-                                <div class="form-group col-sm-9 text-secondary">
-                                    <input type="text" name="website_cnumber" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Company Address</h6>
-                                </div>
-                                <div class="form-group col-sm-9 text-secondary">
-                                    <input type="text" name="website_caddress" class="form-control" />
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Company Brand Image</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <input type="file" name="websitebrand_image" class="form-control" id="image" />
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0"></h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <img id="showImage" src="{{url('upload/no_image.jpg') }}" alt="Admin" style="width: 100px; height:100px;">
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-3"></div>
-                                <div class="col-sm-9 text-secondary">
-                                    <input type="submit" class="btn btn-primary px-4" value="Save Changes" />
-                                </div>
-                            </div>
-                        </div>
-
-                    </form>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
+<div class="row mb-3">
+    <div class="col-sm-3">
+        <h6 class="mb-0">Company Name</h6>
+    </div>
+    <div class="form-group col-sm-9 text-secondary">
+        <input type="text" name="website_name" class="form-control" />
     </div>
 </div>
+<div class="row mb-3">
+    <div class="col-sm-3">
+        <h6 class="mb-0">Helpline Number</h6>
+    </div>
+    <div class="form-group col-sm-9 text-secondary">
+        <input type="text" name="website_helplineno"  class="form-control" />
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-sm-3">
+        <h6 class="mb-0">Helpline Slogan</h6>
+    </div>
+    <div class="form-group col-sm-9 text-secondary">
+        <input type="text" name="website_helplineslogan"  class="form-control" />
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-sm-3">
+        <h6 class="mb-0">Company Number</h6>
+    </div>
+    <div class="form-group col-sm-9 text-secondary">
+        <input type="text" name="website_cnumber"  class="form-control" />
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-sm-3">  
+        <h6 class="mb-0">Company Email</h6>
+    </div>
+    <div class="form-group col-sm-9 text-secondary">
+        <input type="text" name="website_cemail"  class="form-control" />
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-sm-3">
+        <h6 class="mb-0">Company Address</h6>
+    </div>
+    <div class="form-group col-sm-9 text-secondary">
+        <input type="text" name="website_caddress"  class="form-control" />
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-sm-3">
+        <h6 class="mb-0">Company Brand Image</h6>
+    </div>
+    <div class="col-sm-9 text-secondary">
+        <input type="file" name="websitebrand_image" class="form-control" id="image" />
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-sm-3">
+        <h6 class="mb-0"></h6>
+    </div>
+    <div class="col-sm-9 text-secondary">
+        <img id="showImage" src="{{ asset('upload/no_image.jpg') }}" alt="Admin" style="width: 100px; height:100px;">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-9 text-secondary">
+        <input type="submit" class="btn btn-primary px-4" value="Save Changes" />
+    </div>
+</div>
+</form>
+
+
+
+
+
+
+
+            </div>
+
+        </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+
 
 <script type="text/javascript">
     $(document).ready(function(){

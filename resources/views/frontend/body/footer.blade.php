@@ -1,4 +1,7 @@
 <footer class="main">
+    @php
+    $company = App\Models\Company::first();
+    @endphp
     <section class="newsletter mb-15 wow animate__animated animate__fadeIn">
         <div class="container">
             <div class="row">
@@ -99,7 +102,8 @@
                 <div class="col">
                     <div class="widget-about font-md mb-md-3 mb-lg-3 mb-xl-0 wow animate__animated animate__fadeInUp" data-wow-delay="0">
                         <div class="logo mb-30">
-                            <a href="index.html" class="mb-15"><img src="{{ asset('frontend/assets/imgs/theme/brandlogo.png') }}" style="height:4rem;width:auto" alt="logo" /></a>
+                           
+                            <a href="index.html" class="mb-15"><img src=@if(empty($company->cimage))"{{ asset('frontend/assets/imgs/theme/brandlogo.png') }}"@else {{asset($company->cimage)}} @endif style="height:4rem;width:auto" alt="logo" /></a>
                             <p class="font-lg text-heading">Awesome grocery store website template</p>
                         </div>
                         <ul class="contact-infor">
@@ -170,10 +174,10 @@
                 <p class="font-sm mb-0">&copy; 2022, <strong class="text-brand">Nest</strong> - HTML Ecommerce Template <br />All rights reserved</p>
             </div>
             <div class="col-xl-4 col-lg-6 text-center d-none d-xl-block">
-
+            
                 <div class="hotline d-lg-inline-flex">
                     <img src="{{ asset('frontend/assets/imgs/theme/icons/phone-call.svg') }}" alt="hotline" />
-                    <p>1900 - 8888<span>24/7 Support Center</span></p>
+                    <p>@if(!empty($company->chelplineno)){{ $company->chelplineno }}@else 1900-800 @endif<span>@if(!empty($company->chelplineslogan)){{ $company->chelplineslogan }}@else 24/7 Support Center @endif</span></p>
                 </div>
             </div>
             <div class="col-xl-4 col-lg-6 col-md-6 text-end d-none d-md-block">

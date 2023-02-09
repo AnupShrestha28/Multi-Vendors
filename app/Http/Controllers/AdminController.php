@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Image;
 
 class AdminController extends Controller
 {
@@ -152,7 +154,34 @@ class AdminController extends Controller
 
     public function websitedetails()
     {
+        $company = Company::all();
+        return view('backend.websitedetails.websitedetails_add', ['company' => $company]);
+    }
 
-        return view('backend.websitedetails.websitedetails_add');
+    public function addcdetails(Request $request)
+    {
+        $image = $request->file('websitebrand_image');
+        $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+        Image::make($image)->save('upload/companylogo/' . $name_gen);
+        $save_url = 'upload/companylogo/' . $name_gen;
+        $company = Company::first();
+        if (is_null($company)) {
+            Company::create([
+                'cname' => $request->website_name,
+                'chelplineno' => $request->website_helplineno,
+                'chelplineslogan' => $request->website_helplineslogan,
+                'cnumber' => $request->website_cnumber,
+                'caddress' => $request->website_caddress,
+                'cemail' => $request->website_cemail,
+                'cimage' => $save_url,
+            ]);
+            $notification = array(
+                'message' => 'Company Details Saved Successfully',
+                'alert-type' => 'success'
+            );
+        } else {
+        }
+
+        return redirect()->route('add.webdetails')->with($notification);
     }
 }

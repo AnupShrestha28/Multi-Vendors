@@ -51,9 +51,15 @@
     </div>
     <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
         <div class="container">
+@php
+            $company = App\Models\Company::first();
+            @endphp
+
+            
             <div class="header-wrap">
                 <div class="logo logo-width-1">
-                    <a href="index.html"><img src="{{ asset('frontend/assets/imgs/theme/brandlogo.png') }}" style="height:4rem;width:auto" alt="logo" /></a>
+
+                    <a href=""><img src=@if(empty($company->cimage))"{{ asset('frontend/assets/imgs/theme/brandlogo.png') }}"@else {{asset($company->cimage)}} @endif style="height:4rem;width:auto" alt="logo" /></a>
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
@@ -195,6 +201,7 @@
                     </div>
                 </div>
             </div>
+   
         </div>
     </div>
 
@@ -306,10 +313,12 @@
                     </div>
                 </div>
 
-
+                @php
+                $company = App\Models\Company::first();
+                @endphp
                 <div class="hotline d-none d-lg-flex">
                     <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-headphone.svg') }}" alt="hotline" />
-                    <p>1900 - 888<span>24/7 Support Center</span></p>
+                    <p>@if(!empty($company->chelplineno)){{ $company->chelplineno }}@else 1900-800 @endif<span>@if(!empty($company->chelplineslogan)){{ $company->chelplineslogan }}@else 24/7 Support Center @endif</span></p>
                 </div>
                 <div class="header-action-icon-2 d-block d-lg-none">
                     <div class="burger-icon burger-icon-white">
