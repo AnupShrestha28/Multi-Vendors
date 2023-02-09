@@ -94,7 +94,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 pr-30 d-lg-block">
+                            <div class="col-lg-6 pr-30 d-none d-lg-block">
                                 <div class="card-login mt-115">
                                     <a href="{{ route('login.facebook') }}" class="social-login facebook-login">
                                         <img src="{{ asset('frontend/assets/imgs/theme/icons/logo-facebook.svg') }}" alt="" />

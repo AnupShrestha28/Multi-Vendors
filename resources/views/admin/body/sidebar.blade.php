@@ -114,6 +114,15 @@
             </ul>
         </li>
 
+        <li>
+            <a href="{{ route('add.webdetails') }}">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">Manage Website Details</div>
+            </a>
+
+        </li>
+
 
         <li class="menu-label">UI Elements</li>
 

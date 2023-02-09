@@ -327,3 +327,13 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::post('/otp/resend', 'resendotp')->name('otp.resend');
     });
 });
+
+
+
+
+
+// VendorActive and Inactive All Route
+Route::controller(AdminController::class)->group(function () {
+    Route::get('/add/website-details', 'websitedetails')->name('add.webdetails');
+    Route::post('/add/company-details', 'addcdetails')->name('add.cdetails');
+});
