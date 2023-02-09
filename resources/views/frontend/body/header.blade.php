@@ -100,6 +100,15 @@
                                     </select>
                                 </form>
                             </div>
+
+
+                            <div class="header-action-icon-2">
+                                <a href="{{ route('compare') }}">
+                                    <img class="svgInject" src="{{ asset('frontend/assets/imgs/theme/icons/icon-compare.svg')}}" alt="Nest">
+                                </a>
+                                <a href="{{ route('compare') }}"><span class="lable ml-0">Compare</span></a>
+                            </div>
+
                            
                             <div class="header-action-icon-2">
                                 <a href="shop-wishlist.html">
