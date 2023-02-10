@@ -1,4 +1,8 @@
 <header class="header-area header-style-1 header-height-2">
+    @php
+            $company = App\Models\Company::first();
+            @endphp
+
     <div class="mobile-promotion">
         <span>Grand opening, <strong>up to 15%</strong> off all items. Only <strong>3 days</strong> left</span>
     </div>
@@ -41,7 +45,7 @@
                                 </ul>
                             </li>  --}}
 
-                             <li>Need help? Call Us: <strong class="text-brand"> + 1800 900</strong></li>
+                             <li>Need help? Call Us: <strong class="text-brand"> @if(!empty($company->cnumber)){{ $company->cnumber }}@else +1800-900 @endif</strong></li>
 
                         </ul>
                     </div>
@@ -51,9 +55,6 @@
     </div>
     <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
         <div class="container">
-@php
-            $company = App\Models\Company::first();
-            @endphp
 
 
             <div class="header-wrap">
@@ -320,7 +321,7 @@
                 $company = App\Models\Company::first();
                 @endphp
                 <div class="hotline d-none d-lg-flex">
-                    <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-headphone.svg') }}" alt="hotline" />
+                    <img src="{{ asset('frontend/assets/imgs/theme/icons/phone-call.svg') }}" alt="hotline" />
                     <p>@if(!empty($company->chelplineno)){{ $company->chelplineno }}@else 1900-800 @endif<span>@if(!empty($company->chelplineslogan)){{ $company->chelplineslogan }}@else 24/7 Support Center @endif</span></p>
                 </div>
                 <div class="header-action-icon-2 d-block d-lg-none">
