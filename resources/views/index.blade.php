@@ -145,13 +145,15 @@
                                             <div class="card-header">
                                                 <h3 class="mb-0">Billing Address</h3>
                                             </div>
-                                            <div class="card-body">
+                                            <div class="card-body capitalize">
                                                 <address>
-                                                    3522 Interstate<br />
-                                                    75 Business Spur,<br />
-                                                    Sault Ste. <br />Marie, MI 49783
+                                                    @if(!empty($userData->address)){{ $userData->address }} @else Street 1235 @endif ,
+                                                    @if(!empty($userData->zone)){{ $userData->zone }} @else 75 Business Spur, @endif <br />
+                                                    @if(!empty($userData->district)){{ $userData->district }} @else Sault Ste. @endif <br />
+                                                    Phone No: {{ $userData->phone }}
+                                                <br/>
                                                 </address>
-                                                <p>New York</p>
+                                                <p>Nepal</p>
                                                 <a href="#" class="btn-small">Edit</a>
                                             </div>
                                         </div>
@@ -218,14 +220,14 @@
                                                 <input type="hidden" name="" value="Nepal" id="country" >
                                                 <div class="col-md-3">
                                                     <label>Zone <span class="required">*</span></label>
-                                                    <select required name="zones" id="zones" class="form-control">
+                                                    <select required name="zones" id="zones" style="height:64px"class="form-control">
                                                         <option value="" disabled selected>Choose Zone</option>
                                                 </select>                                         
                                                </div>
                                             <div class="col-md-3">
                                                 <label>District <span class="required">*</span></label>
 
-                                            <select required name="districts" id="districts" class="form-control">
+                                            <select style="height:64px" required name="districts" id="districts" class="form-control">
                                                     <option value="" disabled selected>Choose District</option>
                                             </select>
                                         </div>
@@ -345,15 +347,15 @@
           zonesel.options[zonesel.options.length] = new Option(x, x);
         }
 
-        zonesel.onchange = function() {    //empty Chapters- and Topics- dropdowns
-       
-            //subjectSel.length = 1;   
-            districtsel.length = 1;
-            //display correct values
-            for (var y in stateObject[this.value]) {
-              districtsel.appendChild(new Option(stateObject[this.value][y],y));
-            }
-          }
+           zonesel.onchange = function() {
+    districtsel.length = 1;
+
+    if(this.selectedIndex<1)return;
+    var z = stateObject[this.value];
+    for (var i = 0; i < z.length; i++) {
+      districtsel.options[districtsel.options.length] = new Option(z[i], z[i]);
+    }
+  }
         
       }
 
