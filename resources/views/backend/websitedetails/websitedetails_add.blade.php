@@ -1,0 +1,166 @@
+@extends('admin.admin_dashboard')
+@section('admin')
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<div class="page-content">
+    <!--breadcrumb-->
+    <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+        <div class="breadcrumb-title pe-3">Add Website Details</div>
+        <div class="ps-3">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0 p-0">
+                    <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Add Wesite Details</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="ms-auto">
+
+            </div>
+        </div>
+    </div>
+    <!--end breadcrumb-->
+    <div class="container">
+        <div class="main-body">
+            <div class="row">
+
+                <div class="col-lg-10">
+                    <div class="card">
+                        <div class="card-body">
+                            <form id="myForm" method="post" action="{{ route('add.cdetails') }}" enctype="multipart/form-data">
+                                @csrf
+<div class="row mb-3">
+    <div class="col-sm-3">
+        <h6 class="mb-0">Company Name</h6>
+    </div>
+    <div class="form-group col-sm-9 text-secondary">
+        <input type="text" name="website_name" value=@if(!empty($company->cname))"{{ $company->cname }}" @else "" @endif class="form-control" />
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-sm-3">
+        <h6 class="mb-0">Helpline Number</h6>
+    </div>
+    <div class="form-group col-sm-9 text-secondary">
+        <input type="text" name="website_helplineno" value=@if(!empty($company->chelplineno))"{{ $company->chelplineno }}" @else "" @endif  class="form-control" />
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-sm-3">
+        <h6 class="mb-0">Helpline Slogan</h6>
+    </div>
+    <div class="form-group col-sm-9 text-secondary">
+        <input type="text" name="website_helplineslogan" value=@if(!empty($company->chelplineslogan))"{{ $company->chelplineslogan }}" @else "" @endif  class="form-control" />
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-sm-3">
+        <h6 class="mb-0">Company Number</h6>
+    </div>
+    <div class="form-group col-sm-9 text-secondary">
+        <input type="text" name="website_cnumber" value=@if(!empty($company->cnumber))"{{ $company->cnumber }}" @else "" @endif class="form-control" />
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-sm-3">
+        <h6 class="mb-0">Company Email</h6>
+    </div>
+    <div class="form-group col-sm-9 text-secondary">
+        <input type="text" name="website_cemail" value=@if(!empty($company->cemail))"{{ $company->cemail }}" @else "" @endif  class="form-control" />
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-sm-3">
+        <h6 class="mb-0">Company Address</h6>
+    </div>
+    <div class="form-group col-sm-9 text-secondary">
+        <input type="text" name="website_caddress" value=@if(!empty($company->caddress))"{{ $company->caddress }}" @else "" @endif class="form-control" />
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-sm-3">
+        <h6 class="mb-0">Company Brand LOGO</h6>
+    </div>
+    <div class="col-sm-9 text-secondary">
+        <input type="file" name="websitebrand_image" class="form-control" id="image" />
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-sm-3">
+        <h6 class="mb-0"></h6>
+    </div>
+    <div class="col-sm-9 text-secondary">
+        <img id="showImage" src=@if(!empty($company->cimage)) {{ asset($company->cimage) }} @else {{ asset('upload/no_image.jpg') }} @endif alt="LOGO" style="width: 100px; height:100px;">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-9 text-secondary">
+        <input type="submit" class="btn btn-primary px-4" value="Save Changes" />
+    </div>
+</div>
+</form>
+
+
+
+
+
+
+
+            </div>
+
+        </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#myForm').validate({
+            rules:{
+                category_name:{
+                    required : true,
+                },
+            },
+            messages:{
+                category_name:{
+                    required: 'Please enter category name',
+                },
+            },
+            errorElement : 'span',
+            errorPlacement: function(error, element){
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight : function(element, errorClass, validClass){
+                $(element).addClass('is-invalid');
+            },
+            unhighlight : function(element, errorClass, validClass){
+                $(element).removeClass('is-invalid');
+            },
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#image').change(function(e){
+            var reader = new FileReader();
+            reader.onload = function(e){
+                $('#showImage').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(e.target.files['0']);
+        })
+    });
+</script>
+
+@endsection

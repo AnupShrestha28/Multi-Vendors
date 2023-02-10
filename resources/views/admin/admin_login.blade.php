@@ -52,7 +52,7 @@
 											<div class="col-12">
 												<label for="inputChoosePassword" class="form-label">Enter Password</label>
 												<div class="input-group" id="show_hide_password">
-													<input type="password" name="password" class="form-control border-end-0" id="password"  placeholder="Enter Password"> <a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
+													<input type="password" name="password" class="form-control" id="password"  placeholder="Enter Password">
 												</div>
 											</div>
 											<div class="col-md-6">

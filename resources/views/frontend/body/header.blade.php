@@ -8,9 +8,7 @@
                 <div class="col-xl-3 col-lg-4">
                     <div class="header-info">
                         <ul>
-                            
-                            <li><a href="page-account.html">My Cart</a></li>
-                            <li><a href="shop-wishlist.html">Checkout</a></li>
+
                             <li><a href="shop-order.html">Order Tracking</a></li>
                         </ul>
                     </div>
@@ -19,9 +17,7 @@
                     <div class="text-center">
                         <div id="news-flash" class="d-inline-block">
                             <ul>
-                                <li>100% Secure delivery without contacting the courier</li>
-                                <li>Supper Value Deals - Save more with coupons</li>
-                                <li>Trendy 25silver jewelry, save up 35% off today</li>
+
                             </ul>
                         </div>
                     </div>
@@ -29,7 +25,7 @@
                 <div class="col-xl-3 col-lg-4">
                     <div class="header-info header-info-right">
                         <ul>
-                           
+{{--
                             <li>
                                 <a class="language-dropdown-active" href="#">English <i class="fi-rs-angle-small-down"></i></a>
                                 <ul class="language-dropdown">
@@ -43,10 +39,10 @@
                                         <a href="#"><img src="{{ asset('frontend/assets/imgs/theme/flag-ru.png') }}" alt="" />Pусский</a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li>  --}}
 
                              <li>Need help? Call Us: <strong class="text-brand"> + 1800 900</strong></li>
-                           
+
                         </ul>
                     </div>
                 </div>
@@ -55,9 +51,15 @@
     </div>
     <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
         <div class="container">
+@php
+            $company = App\Models\Company::first();
+            @endphp
+
+
             <div class="header-wrap">
                 <div class="logo logo-width-1">
-                    <a href="index.html"><img src="{{ asset('frontend/assets/imgs/theme/logo.svg') }}" alt="logo" /></a>
+
+                    <a href=""><img src=@if(empty($company->cimage))"{{ asset('frontend/assets/imgs/theme/brandlogo.png') }}"@else {{asset($company->cimage)}} @endif style="height:4rem;width:auto;object-fit:contain" alt="logo" /></a>
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
@@ -78,6 +80,7 @@
                             <input type="text" placeholder="Search for items..." />
                         </form>
                     </div>
+
                     <div class="header-action-right">
                         <div class="header-action-2">
                             <div class="search-location">
@@ -102,6 +105,7 @@
                             </div>
 
 
+
                             <div class="header-action-icon-2">
                                 <a href="{{ route('compare') }}">
                                     <img class="svgInject" src="{{ asset('frontend/assets/imgs/theme/icons/icon-compare.svg')}}" alt="Nest">
@@ -110,6 +114,7 @@
                             </div>
 
                            
+
                             <div class="header-action-icon-2">
                                 <a href="shop-wishlist.html">
                                     <img class="svgInject" alt="Nest" src="{{ asset('frontend/assets/imgs/theme/icons/icon-heart.svg') }}" />
@@ -117,10 +122,15 @@
                                 </a>
                                 <a href="{{ route('wishlist') }}"><span class="lable">Wishlist</span></a>
                             </div>
+
+
+
+
+
                             <div class="header-action-icon-2">
                                 <a class="mini-cart-icon" href="shop-cart.html">
                                     <img alt="Nest" src="{{ asset('frontend/assets/imgs/theme/icons/icon-cart.svg') }}" />
-                                    <span class="pro-count blue" id="cartQty"></span>
+                                    <span class="pro-count blue" id="cartQty">0</span>
                                 </a>
                                 <a href="shop-cart.html"><span class="lable">Cart</span></a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2">
@@ -135,7 +145,7 @@
 
                                     <!-- end mini cart start with ajax -->
 
-                                    
+
                                     <div class="shopping-cart-footer">
                                         <div class="shopping-cart-total">
                                             <h4>Total <span id="cartSubTotal">Rs.</span></h4>
@@ -148,15 +158,19 @@
                                 </div>
                             </div>
 
-                            <div class="header-action-icon-2">
-                                <a href="page-account.html">
-                                    <img class="svgInject" alt="Nest" src="{{ asset('frontend/assets/imgs/theme/icons/icon-user.svg') }}" />
-                                </a>
+
+                            <div class="header-action-icon-2" >
+                                <a href="{{ route('login') }}">
+                                      {{--  <img class="svgInject"  alt="Nest"  src="{{ asset('frontend/assets/imgs/theme/icons/user_circle_icon_172814.svg') }}" />  --}}
+                                      <svg id="Flat" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+                                        <path d="M230,128A102,102,0,1,0,59.22656,203.25977a5.962,5.962,0,0,0,1.177,1.05468,101.78869,101.78869,0,0,0,135.19629-.00341,5.95057,5.95057,0,0,0,1.16822-1.04639A101.75316,101.75316,0,0,0,230,128ZM38,128a90,90,0,1,1,155.51367,61.64014,77.58239,77.58239,0,0,0-40.00293-31.38477,46,46,0,1,0-51.02148,0,77.57954,77.57954,0,0,0-40.00318,31.38477A89.67113,89.67113,0,0,1,38,128Zm56-8a34,34,0,1,1,34,34A34.03864,34.03864,0,0,1,94,120ZM71.44336,197.95312a66.02837,66.02837,0,0,1,113.113.00049,89.80329,89.80329,0,0,1-113.113-.00049Z"/>
+                                      </svg>
+                                                                </a>
 
 
                                 @auth
 
-                                
+
                                 <a href="#"><span class="lable ml-0">Account</span></a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
                                     <ul>
@@ -202,6 +216,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -247,7 +262,7 @@
                                         <a href="shop-grid-right.html"> <img src="{{ asset( $item->category_image) }}" alt="" />{{$item->category_name}}</a>
                                     </li>
                                    @endforeach
-                                   
+
                                 </ul>
                             </div>
                             <div class="more_slide_open" style="display: none">
@@ -276,13 +291,13 @@
                     <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
                         <nav>
                             <ul>
-                                
+
                                 <li>
                                     <a class="active" href="{{ url('/') }}">Home  </a>
-                                    
+
                                 </li>
 
-                                
+
     @php
 
     $categories = App\Models\Category::orderBy('category_name','ASC')->limit(7)->get();
@@ -292,7 +307,7 @@
                                 @foreach($categories as $category)
                                 <li>
                                     <a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}">{{$category->category_name}} <i class="fi-rs-angle-down"></i></a>
-                                                                    
+
     @php
 
     $subcategories = App\Models\SubCategory::where('category_id', $category->id)->orderBy('subcategory_name','ASC')->get();
@@ -313,10 +328,12 @@
                     </div>
                 </div>
 
-
+                @php
+                $company = App\Models\Company::first();
+                @endphp
                 <div class="hotline d-none d-lg-flex">
                     <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-headphone.svg') }}" alt="hotline" />
-                    <p>1900 - 888<span>24/7 Support Center</span></p>
+                    <p>@if(!empty($company->chelplineno)){{ $company->chelplineno }}@else 1900-800 @endif<span>@if(!empty($company->chelplineslogan)){{ $company->chelplineslogan }}@else 24/7 Support Center @endif</span></p>
                 </div>
                 <div class="header-action-icon-2 d-block d-lg-none">
                     <div class="burger-icon burger-icon-white">
@@ -414,7 +431,7 @@
                     <ul class="mobile-menu font-heading">
                         <li class="menu-item-has-children">
                             <a href="{{ url('/') }}">Home</a>
-                             
+
                         </li>
                         <li class="menu-item-has-children">
                             <a href="shop-grid-right.html">shop</a>
@@ -451,7 +468,7 @@
                                 </li>
                             </ul>
                         </li>
-                        
+
                         <li class="menu-item-has-children">
                             <a href="#">Mega menu</a>
                             <ul class="dropdown">
@@ -553,3 +570,4 @@
         </div>
     </div>
 </div>
+
