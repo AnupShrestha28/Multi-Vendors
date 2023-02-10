@@ -110,7 +110,6 @@
                             <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-location.svg') }}" alt="" /><strong>Address: </strong> <span>@if(!empty($company->caddress)){{ $company->caddress }}@else Kathmandu,Nepal @endif</span></li>
                             <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-contact.svg') }}" alt="" /><strong>Call Us:</strong><span>@if(!empty($company->cnumber)){{ $company->cnumber }}@else (+91) - 540-025-124553 @endif</span></li>
                             <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-email-2.svg') }}" alt="" /><strong>Email:</strong><span>@if(!empty($company->cemail)){{ $company->cemail }}@else nest@nest.com @endif</span></li>
-                            <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-clock.svg') }}" alt="" /><strong>Hours:</strong><span>10:00 - 18:00, Mon - Sat</span></li>
                         </ul>
                     </div>
                 </div>
