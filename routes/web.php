@@ -332,8 +332,8 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
 
 
-// VendorActive and Inactive All Route
+// Admin Manage Website Routes
 Route::controller(AdminController::class)->group(function () {
-    Route::get('/add/website-details', 'websitedetails')->name('add.webdetails');
+    Route::get('/manage/website-details', 'websitedetails')->name('add.webdetails');
     Route::post('/add/company-details', 'addcdetails')->name('add.cdetails');
 });

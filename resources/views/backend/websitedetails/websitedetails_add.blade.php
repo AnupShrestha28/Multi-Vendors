@@ -36,7 +36,7 @@
         <h6 class="mb-0">Company Name</h6>
     </div>
     <div class="form-group col-sm-9 text-secondary">
-        <input type="text" name="website_name" class="form-control" />
+        <input type="text" name="website_name" value=@if(!empty($company->cname))"{{ $company->cname }}" @else "" @endif class="form-control" />
     </div>
 </div>
 <div class="row mb-3">
@@ -44,7 +44,7 @@
         <h6 class="mb-0">Helpline Number</h6>
     </div>
     <div class="form-group col-sm-9 text-secondary">
-        <input type="text" name="website_helplineno"  class="form-control" />
+        <input type="text" name="website_helplineno" value=@if(!empty($company->chelplineno))"{{ $company->chelplineno }}" @else "" @endif  class="form-control" />
     </div>
 </div>
 <div class="row mb-3">
@@ -52,7 +52,7 @@
         <h6 class="mb-0">Helpline Slogan</h6>
     </div>
     <div class="form-group col-sm-9 text-secondary">
-        <input type="text" name="website_helplineslogan"  class="form-control" />
+        <input type="text" name="website_helplineslogan" value=@if(!empty($company->chelplineslogan))"{{ $company->chelplineslogan }}" @else "" @endif  class="form-control" />
     </div>
 </div>
 <div class="row mb-3">
@@ -60,15 +60,15 @@
         <h6 class="mb-0">Company Number</h6>
     </div>
     <div class="form-group col-sm-9 text-secondary">
-        <input type="text" name="website_cnumber"  class="form-control" />
+        <input type="text" name="website_cnumber" value=@if(!empty($company->cnumber))"{{ $company->cnumber }}" @else "" @endif class="form-control" />
     </div>
 </div>
 <div class="row mb-3">
-    <div class="col-sm-3">  
+    <div class="col-sm-3">
         <h6 class="mb-0">Company Email</h6>
     </div>
     <div class="form-group col-sm-9 text-secondary">
-        <input type="text" name="website_cemail"  class="form-control" />
+        <input type="text" name="website_cemail" value=@if(!empty($company->cemail))"{{ $company->cemail }}" @else "" @endif  class="form-control" />
     </div>
 </div>
 <div class="row mb-3">
@@ -76,13 +76,13 @@
         <h6 class="mb-0">Company Address</h6>
     </div>
     <div class="form-group col-sm-9 text-secondary">
-        <input type="text" name="website_caddress"  class="form-control" />
+        <input type="text" name="website_caddress" value=@if(!empty($company->caddress))"{{ $company->caddress }}" @else "" @endif class="form-control" />
     </div>
 </div>
 
 <div class="row mb-3">
     <div class="col-sm-3">
-        <h6 class="mb-0">Company Brand Image</h6>
+        <h6 class="mb-0">Company Brand LOGO</h6>
     </div>
     <div class="col-sm-9 text-secondary">
         <input type="file" name="websitebrand_image" class="form-control" id="image" />
@@ -94,7 +94,7 @@
         <h6 class="mb-0"></h6>
     </div>
     <div class="col-sm-9 text-secondary">
-        <img id="showImage" src="{{ asset('upload/no_image.jpg') }}" alt="Admin" style="width: 100px; height:100px;">
+        <img id="showImage" src=@if(!empty($company->cimage)) {{ asset($company->cimage) }} @else {{ asset('upload/no_image.jpg') }} @endif alt="LOGO" style="width: 100px; height:100px;">
     </div>
 </div>
 

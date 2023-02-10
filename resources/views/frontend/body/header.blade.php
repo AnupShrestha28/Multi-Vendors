@@ -55,11 +55,11 @@
             $company = App\Models\Company::first();
             @endphp
 
-            
+
             <div class="header-wrap">
                 <div class="logo logo-width-1">
 
-                    <a href=""><img src=@if(empty($company->cimage))"{{ asset('frontend/assets/imgs/theme/brandlogo.png') }}"@else {{asset($company->cimage)}} @endif style="height:4rem;width:auto" alt="logo" /></a>
+                    <a href=""><img src=@if(empty($company->cimage))"{{ asset('frontend/assets/imgs/theme/brandlogo.png') }}"@else {{asset($company->cimage)}} @endif style="height:4rem;width:auto;object-fit:contain" alt="logo" /></a>
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
@@ -147,10 +147,13 @@
                             </div>
 
 
-                            <div class="header-action-icon-2">
+                            <div class="header-action-icon-2" >
                                 <a href="{{ route('login') }}">
-                                    <img class="svgInject" alt="Nest" src="{{ asset('frontend/assets/imgs/theme/icons/icon-user.svg') }}" />
-                                </a>
+                                      {{--  <img class="svgInject"  alt="Nest"  src="{{ asset('frontend/assets/imgs/theme/icons/user_circle_icon_172814.svg') }}" />  --}}
+                                      <svg id="Flat" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+                                        <path d="M230,128A102,102,0,1,0,59.22656,203.25977a5.962,5.962,0,0,0,1.177,1.05468,101.78869,101.78869,0,0,0,135.19629-.00341,5.95057,5.95057,0,0,0,1.16822-1.04639A101.75316,101.75316,0,0,0,230,128ZM38,128a90,90,0,1,1,155.51367,61.64014,77.58239,77.58239,0,0,0-40.00293-31.38477,46,46,0,1,0-51.02148,0,77.57954,77.57954,0,0,0-40.00318,31.38477A89.67113,89.67113,0,0,1,38,128Zm56-8a34,34,0,1,1,34,34A34.03864,34.03864,0,0,1,94,120ZM71.44336,197.95312a66.02837,66.02837,0,0,1,113.113.00049,89.80329,89.80329,0,0,1-113.113-.00049Z"/>
+                                      </svg>
+                                                                </a>
 
 
                                 @auth
@@ -201,7 +204,7 @@
                     </div>
                 </div>
             </div>
-   
+
         </div>
     </div>
 
