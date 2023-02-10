@@ -360,7 +360,16 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
     });
 
-}); // end group middleware
+
+     // Cart All Route
+     Route::controller(CartController::class)->group(function(){
+        Route::get('/mycart', 'MyCart')->name('mycart');
+
+        Route::get('/get-cart-product', 'GetCartProduct');
+
+    });
+
+}); // end group user middleware
 
 
 //Login with Google
