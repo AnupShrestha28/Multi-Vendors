@@ -355,6 +355,7 @@
             url: "/add-to-wishlist/"+product_id, 
 
             success: function(data){
+                wishlist();
                  //  Start message 
                  const Toast = Swal.mixin({
                         toast: true,
@@ -383,6 +384,249 @@
     </script>
 
     <!-- end wishlist end -->
+
+
+       <!-- start load wishlist data-->
+
+       <script type="text/javascript">
+        function wishlist(){
+            $.ajax({
+                type: "GET",
+                dataType: 'json',
+                url: "/get-wishlist-product/", 
+    
+                success: function(response){
+
+                    $('#wishQty').text(response.wishQty);   
+
+                    var rows = "" 
+                    $.each(response.wishlist, function(key, value){
+                        rows += `
+                        <tr class="pt-30">
+                            <td class="custome-checkbox pl-30">
+                            </td>
+                            <td class="image product-thumbnail pt-40"><img src="/${value.product.product_thambnail}" alt="#" /></td>
+                            <td class="product-des product-name">
+                                <h6><a class="product-name mb-10" href="shop-product-right.html">${value.product.product_name}</a></h6>
+                                <div class="product-rate-cover">
+                                    <div class="product-rate d-inline-block">
+                                        <div class="product-rating" style="width: 90%"></div>
+                                    </div>
+                                    <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                </div>
+                            </td>
+                            <td class="price" data-title="Price">
+
+                                ${value.product.discount_price == null ? `<h3 class="text-brand">Rs.${value.product.selling_price}</h3>` : `<h3 class="text-brand">Rs.${value.product.discount_price}</h3>` }
+
+                            </td>
+                            <td class="text-center detail-info" data-title="Stock">
+
+                                ${value.product.product_qty > 0 ? `<span class="stock-status in-stock mb-0"> In Stock </span>` : `<span class="stock-status out-stock mb-0"> Out of stock </span>`  }
+                            </td>
+                          
+                            <td class="action text-center" data-title="Remove">
+                                <a type="submit" class="text-body" id="${value.id}" onclick="wishlistRemove(this.id)" ><i class="fi-rs-trash"></i></a>
+                            </td>
+                        </tr>
+                        
+                        `
+                    });
+
+                    $('#wishlist').html(rows);
+
+                }
+            })
+        }
+        wishlist();
+    // end load wishlist data 
+
+    // wishlist remove start
+
+    function wishlistRemove(id){
+        $.ajax({
+            type: "GET",
+            dataType: 'json',
+            url: "/wishlist-remove/"+id, 
+
+            success:function(data){
+                wishlist();
+                 //  Start message 
+                 const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmation: false,
+                        timer: 5000
+                    })
+                    if($.isEmptyObject(data.error)){
+                        Toast.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: data.success,
+                    })
+                    }else{
+                        Toast.fire({
+                        type: 'error',
+                        icon: 'error',
+                        title: data.error,
+                    }) 
+                    }
+                    // end message
+            }
+        })
+    }
+
+    // wishlist remove end
+
+        </script>
+
+
+ <!-- start compare add -->
+
+ <script type="text/javascript">
+    function addToCompare(product_id){
+        $.ajax({
+            type: "POST",
+            dataType: 'json',
+            url: "/add-to-compare/"+product_id, 
+
+            success: function(data){
+                 //  Start message 
+                 const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmation: false,
+                        timer: 5000
+                    })
+                    if($.isEmptyObject(data.error)){
+                        Toast.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: data.success,
+                    })
+                    }else{
+                        Toast.fire({
+                        type: 'error',
+                        icon: 'error',
+                        title: data.error,
+                    }) 
+                    }
+                    // end message
+            }
+        })
+    }
+
+    </script>
+
+    <!-- end compare end -->
+
+     <!-- start load compare data-->
+
+     <script type="text/javascript">
+        function compare(){
+            $.ajax({
+                type: "GET",
+                dataType: 'json',
+                url: "/get-compare-product/", 
+    
+                success: function(response){
+
+                    var rows = "" 
+                    $.each(response, function(key, value){
+                        rows += `
+                        
+                        <tr class="pr_image">
+                            <td class="text-muted font-sm fw-600 font-heading mw-200">Image</td>
+                            <td class="row_img"><img src="/${value.product.product_thambnail}" style="width:300px; height:300px;" alt="compare-img" /></td>
+                        </tr>
+                        <tr class="pr_title">
+                            <td class="text-muted font-sm fw-600 font-heading">Name</td>
+                            <td class="product_name">
+                                <h6><a href="shop-product-full.html" class="text-heading">${value.product.product_name}</a></h6>
+                            </td>
+                        </tr>
+                        <tr class="pr_price">
+                            <td class="text-muted font-sm fw-600 font-heading">Price</td>
+                            <td class="product_price">
+
+                                ${value.product.discount_price == null ? ` <h4 class="price text-brand">Rs.${value.product.selling_price}</h4>` : `<h4 class="price text-brand">Rs.${value.product.discount_price}</h4>` }
+
+                            </td>
+                        </tr>
+                        <tr class="description">
+                            <td class="text-muted font-sm fw-600 font-heading">Description</td>
+                            <td class="row_text font-xs">
+                                <p class="font-sm text-muted">${value.product.short_descp}</p>
+                            </td>
+                        </tr>
+                        <tr class="pr_stock">
+                            <td class="text-muted font-sm fw-600 font-heading">Stock status</td>
+                            <td class="row_stock">
+                                
+                                ${value.product.product_qty > 0 ? `<span class="stock-status in-stock mb-0"> In Stock </span>` : `<span class="stock-status out-stock mb-0"> Out of stock </span>`  }
+                                
+                                </td>
+
+                        </tr>
+                        <tr class="pr_remove text-muted">
+                            <td class="text-muted font-md fw-600"></td>
+                            <td class="row_remove">
+                                <a type="submit" class="text-muted" id="${value.id}" onclick="compareRemove(this.id)"><i class="fi-rs-trash mr-5"></i><span>Remove</span> </a>
+                            </td>
+                        </tr>
+                        
+                        `
+                    });
+
+                    $('#compare').html(rows);
+
+                }
+            })
+        }
+        compare();
+    // end load compare data 
+
+    // compare remove start
+
+   
+    function compareRemove(id){
+        $.ajax({
+            type: "GET",
+            dataType: 'json',
+            url: "/compare-remove/"+id, 
+
+            success:function(data){
+                compare();
+                 //  Start message 
+                 const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmation: false,
+                        timer: 5000
+                    })
+                    if($.isEmptyObject(data.error)){
+                        Toast.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: data.success,
+                    })
+                    }else{
+                        Toast.fire({
+                        type: 'error',
+                        icon: 'error',
+                        title: data.error,
+                    }) 
+                    }
+                    // end message
+            }
+        })
+    }
+
+    // compare remove end
+
+        </script>
+
+    
 
 
 </body>

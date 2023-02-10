@@ -28,4 +28,23 @@ class WishlistController extends Controller
             return response()->json(['error' => 'At first login your account']);
         }
     } // end method
+
+    public function AllWishlist(){
+        return view('frontend.wishlist.view_wishlist');
+    } // end method
+
+    public function GetWishlistProduct(){
+        $wishlist = Wishlist::with('product')->where('user_id',Auth::id())->latest()->get();
+
+        $wishQty = wishlist::count();
+
+        return response()->json(['wishlist'=> $wishlist, 'wishQty' => $wishQty]);
+
+    } // end method
+
+    public function WishlistRemove($id){
+        Wishlist::where('user_id',Auth::id())->where('id',$id)->delete();
+
+        return response()->json(['success' => 'Product removed from wishlist']);
+    } // end method
 }
