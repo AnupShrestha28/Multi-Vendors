@@ -315,6 +315,7 @@
                 url: '/minicart/product/remove/'+rowId,
                 dataType: 'json',
                 success: function(data){
+                    cart();
                     miniCart();
                      //  Start message 
                      const Toast = Swal.mixin({
@@ -664,18 +665,18 @@
                             <td class="text-center detail-info" data-title="Stock">
                                 <div class="detail-extralink mr-15">
                                     <div class="detail-qty border radius">
-                                        <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
+                                        <a type="submit" class="qty-down" id="${value.rowId}" onclick="cartDecrement(this.id)"><i class="fi-rs-angle-small-down"></i></a>
 
                                         <input type="text" name="quantity" class="qty-val" value="${value.qty}" min="1">
 
-                                        <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
+                                        <a type="submit" class="qty-up" id="${value.rowId}" onclick="cartIncrement(this.id)"><i class="fi-rs-angle-small-up"></i></a>
                                     </div>
                                 </div>
                             </td>
                             <td class="price" data-title="Price">
                                 <h4 class="text-brand">Rs.${value.subtotal}</h4>
                             </td>
-                            <td class="action text-center" data-title="Remove"><a href="#" class="text-body"><i class="fi-rs-trash"></i></a></td>
+                            <td class="action text-center" data-title="Remove"><a type="submit" class="text-body" id="${value.rowId}" onclick="cartRemove(this.id)"><i class="fi-rs-trash"></i></a></td>
                         </tr>
                                 `
                     });
@@ -687,6 +688,74 @@
 
         cart();
 
+        // remove add to cart
+        function cartRemove(id){
+        $.ajax({
+            type: "GET",
+            dataType: 'json',
+            url: "/cart-remove/"+id, 
+
+            success:function(data){
+                cart();
+                miniCart();
+                 //  Start message 
+                 const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmation: false,
+                        timer: 5000
+                    })
+                    if($.isEmptyObject(data.error)){
+                        Toast.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: data.success,
+                    })
+                    }else{
+                        Toast.fire({
+                        type: 'error',
+                        icon: 'error',
+                        title: data.error,
+                    }) 
+                    }
+                    // end message
+            }
+        })
+    }
+    // Cart remove end
+
+    // Cart increment start
+    function cartIncrement(rowId){
+        $.ajax({
+            type: "GET",
+            url: "/cart-increment/"+rowId,
+            dataType: 'json',
+            success: function(data){
+                cart();
+                miniCart();
+            }
+        });
+    }
+
+
+    // Cart increment end
+
+
+    // Cart decrement start
+    function cartDecrement(rowId){
+        $.ajax({
+            type: "GET",
+            url: "/cart-decrement/"+rowId,
+            dataType: 'json',
+            success: function(data){
+                cart();
+                miniCart();
+            }
+        });
+    }
+
+
+    // Cart decrement end
 
         </script>
 
