@@ -145,13 +145,15 @@
                                             <div class="card-header">
                                                 <h3 class="mb-0">Billing Address</h3>
                                             </div>
-                                            <div class="card-body">
+                                            <div class="card-body capitalize">
                                                 <address>
-                                                    3522 Interstate<br />
-                                                    75 Business Spur,<br />
-                                                    Sault Ste. <br />Marie, MI 49783
+                                                    @if(!empty($userData->address)){{ $userData->address }} @else Street 1235 @endif ,
+                                                    @if(!empty($userData->zone)){{ $userData->zone }} @else 75 Business Spur, @endif <br />
+                                                    @if(!empty($userData->district)){{ $userData->district }} @else Sault Ste. @endif <br />
+                                                    Phone No: {{ $userData->phone }}
+                                                <br/>
                                                 </address>
-                                                <p>New York</p>
+                                                <p>Nepal</p>
                                                 <a href="#" class="btn-small">Edit</a>
                                             </div>
                                         </div>
@@ -212,10 +214,34 @@
                                                             </div>
                                                                 @endif
                                                 </div>
-                                                <div class="form-group col-md-12">
-                                                    <label>Address <span class="required">*</span></label>
-                                                    <input required="" class="form-control" name="address" type="text" value="{{ $userData->address }}" />
-                                                </div>
+                                                <div class="form-group">
+                                                <div class="row">
+                                                  
+                                                <input type="hidden" name="" value="Nepal" id="country" >
+                                                <div class="col-md-3">
+                                                    <label>Zone <span class="required">*</span></label>
+                                                    <select required name="zones" id="zones" style="height:64px"class="form-control">
+                                                        <option value="" disabled selected>Choose Zone</option>
+                                                </select>                                         
+                                               </div>
+                                            <div class="col-md-3">
+                                                <label>District <span class="required">*</span></label>
+
+                                            <select style="height:64px" required name="districts" id="districts" class="form-control">
+                                                    <option value="" disabled selected>Choose District</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Address <span class="required">*</span></label>
+                                            <input required="" class="form-control" name="address" type="text" value="{{ $userData->address }}" />
+
+                                        </div>
+
+                                        </div>
+
+                                    </div>
+
+
                                                 <div class="form-group col-md-12">
                                                     <label>User Photo <span class="required">*</span></label>
                                                     <input class="form-control" name="photo" type="file" id="image" />
@@ -311,8 +337,32 @@
         </div>
     </div>
 </div>
+<script src="{{ asset('frontend/assets/js/zonesanddistrtics.js') }}"></script>
+<script>
+    window.onload = function() {
+        var zonesel = document.getElementById("zones");
+        var districtsel = document.getElementById("districts");
+       
+        for (var x in stateObject) {
+          zonesel.options[zonesel.options.length] = new Option(x, x);
+        }
 
-<script type="text/javascript">
+           zonesel.onchange = function() {
+    districtsel.length = 1;
+
+    if(this.selectedIndex<1)return;
+    var z = stateObject[this.value];
+    for (var i = 0; i < z.length; i++) {
+      districtsel.options[districtsel.options.length] = new Option(z[i], z[i]);
+    }
+  }
+        
+      }
+
+
+
+
+
     $(document).ready(function(){
         $('#image').change(function(e){
             var reader = new FileReader();
@@ -322,7 +372,14 @@
             reader.readAsDataURL(e.target.files['0']);
         })
     });
+  
+
+
+
+
+
 </script>
+
 
 
 @endsection
