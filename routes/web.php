@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\WishlistController;
+use App\Http\Controllers\User\CompareController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\Auth\OtpController;
@@ -95,7 +96,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 
 
-Route::middleware(['auth', 'role:vendor'])->group(function () {
+// Route::middleware(['auth', 'role:vendor'])->group(function () {
 
     // Vendor Dashboard
 
@@ -141,7 +142,8 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
             Route::get('/vendor/subcategory/ajax/{category_id}', 'VendorGetSubCategory');
         });
     }); // end group middleware
-});
+
+//  }); 
 
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->middleware(RedirectIfAuthenticated::class);
@@ -241,6 +243,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
         Route::get('product/active/{id}', 'ProductActive')->name('product.active');
 
+
         Route::get('delete/product/{id}', 'ProductDelete')->name('delete.product');
     });
 
@@ -248,17 +251,38 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::controller(SliderController::class)->group(function () {
         Route::get('all/slider', 'AllSlider')->name('all.slider');
 
-        Route::get('add/slider', 'AddSlider')->name('add.slider');
 
-        Route::post('store/slider', 'StoreSlider')->name('store.slider');
+        Route::get('/add/slider', 'AddSlider')->name('add.slider');
 
-        Route::get('edit/slider/{id}', 'EditSlider')->name('edit.slider');
+        Route::post('/store/slider', 'StoreSlider')->name('store.slider');
 
-        Route::post('update/slider', 'UpdateSlider')->name('update.slider');
+        Route::get('/edit/slider/{id}', 'EditSlider')->name('edit.slider');
+
+        Route::post('/update/slider', 'UpdateSlider')->name('update.slider');
+
 
         Route::get('delete/slider/{id}', 'DeleteSlider')->name('delete.slider');
     });
 
+
+
+
+    
+          // Banner All Route
+          Route::controller(BannerController::class)->group(function(){
+            Route::get('/all/banner', 'AllBanner')->name('all.banner');
+    
+            Route::get('/add/banner', 'AddBanner')->name('add.banner');
+    
+            Route::post('/store/banner', 'StoreBanner')->name('store.banner');
+    
+            Route::get('/edit/banner/{id}', 'EditBanner')->name('edit.banner');
+    
+            Route::post('/update/banner', 'UpdateBanner')->name('update.banner');
+    
+            Route::get('/delete/banner/{id}', 'DeleteBanner')->name('delete.banner');
+    
+        });
 
 
     // Banner All Route
@@ -307,6 +331,36 @@ Route::post('/dcart/data/store/{id}', [CartController::class, 'AddToCartDetails'
 
 // Add to wishlist
 Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'AddToWishList']);
+
+// Add to compare 
+Route::post('/add-to-compare/{product_id}', [CompareController::class,'AddToCompare']);
+
+
+// User All route
+Route::middleware(['auth', 'role:user'])->group(function () {
+      // wishlist All Route
+      Route::controller(WishlistController::class)->group(function(){
+        Route::get('/wishlist', 'AllWishlist')->name('wishlist');
+
+        Route::get('/get-wishlist-product', 'GetWishlistProduct');
+
+        Route::get('/wishlist-remove/{id}', 'WishlistRemove');
+
+    });
+
+
+    // compare All Route
+    Route::controller(CompareController::class)->group(function(){
+        Route::get('/compare', 'AllCompare')->name('compare');
+
+
+        Route::get('/get-compare-product', 'GetCompareProduct');
+
+        Route::get('/compare-remove/{id}', 'CompareRemove');
+
+    });
+
+}); // end group middleware
 
 
 //Login with Google
