@@ -12,7 +12,6 @@
                 <div class="col-xl-3 col-lg-4">
                     <div class="header-info">
                         <ul>
-
                             <li><a href="shop-order.html">Order Tracking</a></li>
                         </ul>
                     </div>
@@ -114,7 +113,7 @@
                                 <a href="{{ route('compare') }}"><span class="lable ml-0">Compare</span></a>
                             </div>
 
-                           
+
 
                             <div class="header-action-icon-2">
                                 <a href="shop-wishlist.html">

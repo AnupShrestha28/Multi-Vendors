@@ -212,10 +212,34 @@
                                                             </div>
                                                                 @endif
                                                 </div>
-                                                <div class="form-group col-md-12">
-                                                    <label>Address <span class="required">*</span></label>
-                                                    <input required="" class="form-control" name="address" type="text" value="{{ $userData->address }}" />
-                                                </div>
+                                                <div class="form-group">
+                                                <div class="row">
+                                                  
+                                                <input type="hidden" name="" value="Nepal" id="country" >
+                                                <div class="col-md-3">
+                                                    <label>Zone <span class="required">*</span></label>
+                                                    <select required name="zones" id="zones" class="form-control">
+                                                        <option value="" disabled selected>Choose Zone</option>
+                                                </select>                                         
+                                               </div>
+                                            <div class="col-md-3">
+                                                <label>District <span class="required">*</span></label>
+
+                                            <select required name="districts" id="districts" class="form-control">
+                                                    <option value="" disabled selected>Choose District</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Address <span class="required">*</span></label>
+                                            <input required="" class="form-control" name="address" type="text" value="{{ $userData->address }}" />
+
+                                        </div>
+
+                                        </div>
+
+                                    </div>
+
+
                                                 <div class="form-group col-md-12">
                                                     <label>User Photo <span class="required">*</span></label>
                                                     <input class="form-control" name="photo" type="file" id="image" />
@@ -311,8 +335,32 @@
         </div>
     </div>
 </div>
+<script src="{{ asset('frontend/assets/js/zonesanddistrtics.js') }}"></script>
+<script>
+    window.onload = function() {
+        var zonesel = document.getElementById("zones");
+        var districtsel = document.getElementById("districts");
+       
+        for (var x in stateObject) {
+          zonesel.options[zonesel.options.length] = new Option(x, x);
+        }
 
-<script type="text/javascript">
+        zonesel.onchange = function() {    //empty Chapters- and Topics- dropdowns
+       
+            //subjectSel.length = 1;   
+            districtsel.length = 1;
+            //display correct values
+            for (var y in stateObject[this.value]) {
+              districtsel.appendChild(new Option(stateObject[this.value][y],y));
+            }
+          }
+        
+      }
+
+
+
+
+
     $(document).ready(function(){
         $('#image').change(function(e){
             var reader = new FileReader();
@@ -322,7 +370,14 @@
             reader.readAsDataURL(e.target.files['0']);
         })
     });
+  
+
+
+
+
+
 </script>
+
 
 
 @endsection
