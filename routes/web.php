@@ -18,6 +18,7 @@ use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CompareController;
+use App\Http\Controllers\User\CheckoutController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\Auth\OtpController;
@@ -392,9 +393,22 @@ Route::get('/coupon-calculation', [CartController::class,'CouponCalculation']);
 
 Route::get('/coupon-remove', [CartController::class,'CouponRemove']);
 
+// Checkout Page Route
+Route::get('/checkout', [CartController::class,'CheckoutCreate'])->name('checkout');
 
+     // Cart All Route
+     Route::controller(CartController::class)->group(function(){
+        Route::get('/mycart', 'MyCart')->name('mycart');
 
+        Route::get('/get-cart-product', 'GetCartProduct');
 
+        Route::get('/cart-remove/{rowId}', 'CartRemove');
+
+        Route::get('/cart-decrement/{rowId}', 'CartDecrement');
+
+        Route::get('/cart-increment/{rowId}', 'CartIncrement');
+
+    });
 
 
 
@@ -422,18 +436,12 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
     });
 
-     // Cart All Route
-     Route::controller(CartController::class)->group(function(){
-        Route::get('/mycart', 'MyCart')->name('mycart');
 
-        Route::get('/get-cart-product', 'GetCartProduct');
+    // wishlist All Route
+    Route::controller(CheckoutController::class)->group(function(){
+        Route::get('/district-get/ajax/{division_id}', 'DistrictGetAjax');
 
-        Route::get('/cart-remove/{rowId}', 'CartRemove');
-
-        Route::get('/cart-decrement/{rowId}', 'CartDecrement');
-
-        Route::get('/cart-increment/{rowId}', 'CartIncrement');
-
+        Route::get('/state-get/ajax/{district_id}', 'StateGetAjax');
     });
 
 }); // end group user middleware
