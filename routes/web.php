@@ -383,6 +383,20 @@ Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'AddToW
 // Add to compare 
 Route::post('/add-to-compare/{product_id}', [CompareController::class,'AddToCompare']);
 
+// frontend coupon system 
+Route::post('/coupon-apply', [CartController::class,'CouponApply']);
+
+
+Route::get('/coupon-calculation', [CartController::class,'CouponCalculation']);
+
+
+Route::get('/coupon-remove', [CartController::class,'CouponRemove']);
+
+
+
+
+
+
 
 // User All route
 Route::middleware(['auth', 'role:user'])->group(function () {
