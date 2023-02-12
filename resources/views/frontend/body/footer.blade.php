@@ -220,7 +220,7 @@
                 },
                 error:function()
                 {
-                    toastr.error("error");
+                    toastr.error('error');
                 }
         });
     });
