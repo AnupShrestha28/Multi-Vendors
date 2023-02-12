@@ -12,10 +12,11 @@
                                 Stay home & get your daily <br />
                                 needs from our shop
                             </h2>
-                            <p class="mb-45">Start You'r Daily Shopping with <span class="text-brand">Nest Mart</span></p>
-                            <form class="form-subcriber d-flex">
-                                <input type="email" placeholder="Your emaill address" />
-                                <button class="btn" type="submit">Subscribe</button>
+                            <p class="mb-45">Start Your Daily Shopping with <span class="text-brand">@if(!empty($company->cname)) {{ $company->cname }} @else Nest Mart @endif</span></p>
+                            <form id="subscriber_form" class="form-subcriber d-flex" class="loader-form" >
+
+                                <input type="text" id="subscriber_email" name="subscriber_email" placeholder="Enter your email address" />
+                                <button class="btn btn-loader" type="submit"><span class="btn-text">Subscribe</span><span class="loading-ring"></span></button>
                             </form>
                         </div>
                         <img src="{{ asset('frontend/assets/imgs/banner/banner-9.png') }}" alt="newsletter" />
@@ -192,4 +193,50 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('frontend/assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
+
+    <script>
+
+        function loaderremove()
+        {
+            $('.loading-ring').css('visibility', 'hidden');
+            $('.btn-text').css('color', 'white');
+        }
+
+    $('#subscriber_form').submit(function(e){
+            $('.btn-text').css('color', 'transparent');
+            $('.loading-ring').css('visibility', 'visible');
+        e.preventDefault();
+     var subscriber_email= $('#subscriber_email').val();
+     var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if(validRegex.test(subscriber_email)==false)
+    {
+        toastr.error("Please Enter valid email address");
+        return false;
+    }
+        $.ajax({
+                type:'post',
+                url:'/add-subscriber-email',
+                data: {
+                    subscriber_email:subscriber_email,_token: '{{csrf_token()}}'
+                },
+                success:function(response){
+                    if(response=="exists"){
+                        toastr.warning("This Email has Already Subscribed",{timeOut:5000});
+                        loaderremove();
+                   }else if(response=="saved"){
+                            toastr.success("Thanks for Subscribing &#128578;",{timeOut:8000});
+                            loaderremove();
+                    }
+                },
+                error:function()
+                {
+                    toastr.error('error');
+                    loaderremove();
+                }
+        });
+    });
+    </script>
+
 </footer>
+
