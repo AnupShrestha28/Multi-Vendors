@@ -442,6 +442,9 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/district-get/ajax/{division_id}', 'DistrictGetAjax');
 
         Route::get('/state-get/ajax/{district_id}', 'StateGetAjax');
+
+        Route::post('/checkout/store', 'CheckoutStore')->name('checkout.store');
+
     });
 
 }); // end group user middleware
