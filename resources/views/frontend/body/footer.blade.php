@@ -12,9 +12,10 @@
                                 Stay home & get your daily <br />
                                 needs from our shop
                             </h2>
-                            <p class="mb-45">Start You'r Daily Shopping with <span class="text-brand">Nest Mart</span></p>
-                            <form class="form-subcriber d-flex">
-                                <input type="email" placeholder="Your emaill address" />
+                            <p class="mb-45">Start Your Daily Shopping with <span class="text-brand">Nest Mart</span></p>
+                            <form id="subscriber_form" class="form-subcriber d-flex" >
+                              
+                                <input type="text" id="subscriber_email" name="subscriber_email" placeholder="Enter your email address" />
                                 <button class="btn" type="submit">Subscribe</button>
                             </form>
                         </div>
@@ -192,4 +193,38 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('frontend/assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
+
+    <script>
+    $('#subscriber_form').submit(function(e){
+        e.preventDefault();
+     var subscriber_email= $('#subscriber_email').val();
+     var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if(validRegex.test(subscriber_email)==false)
+    {
+        alert('please enter valid email address');
+        return false;
+    }
+        $.ajax({
+                type:'post',
+                url:'/add-subscriber-email',
+                data: {
+                    subscriber_email:subscriber_email,_token: '{{csrf_token()}}'
+                },
+                success:function(response){
+                    if(response=="exists"){
+                        toastr.warning("This Email has Already Subscribed",{timeOut:5000});
+                    }else if(response=="saved"){
+                            toastr.success("Thanks for Subscribing &#128578;",{timeOut:5000});
+                    }
+                },
+                error:function()
+                {
+                    alert('error');
+                }
+        });
+    });
+    </script>
+
 </footer>
+

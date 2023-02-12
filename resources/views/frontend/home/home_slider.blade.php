@@ -18,8 +18,9 @@ $slider = App\Models\Slider::orderBy('slider_title','ASC')->limit(5)->get();
                         </h1>
                         <p class="mb-65">{{$item->short_title}}</p>
                         <form class="form-subcriber d-flex">
-                            <input type="email" placeholder="Your emaill address" />
+                            <input type="text"  placeholder="Enter Your email address" />
                             <button class="btn" type="submit">Subscribe</button>
+                           
                         </form>
                     </div>
                 </div>

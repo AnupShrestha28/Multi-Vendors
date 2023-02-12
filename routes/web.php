@@ -23,6 +23,7 @@ use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\Auth\OtpController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\SubscriptionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -101,50 +102,50 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 // Route::middleware(['auth', 'role:vendor'])->group(function () {
 
-    // Vendor Dashboard
+// Vendor Dashboard
 
-    Route::middleware(['auth', 'role:vendor'])->group(function () {
+Route::middleware(['auth', 'role:vendor'])->group(function () {
 
-        Route::get('/vendor/dashboard', [VendorController::class, 'VendorDashboard'])->name('vendor.dashboard');
+    Route::get('/vendor/dashboard', [VendorController::class, 'VendorDashboard'])->name('vendor.dashboard');
 
-        Route::get('/vendor/logout', [VendorController::class, 'VendorDestroy'])->name('vendor.logout');
+    Route::get('/vendor/logout', [VendorController::class, 'VendorDestroy'])->name('vendor.logout');
 
-        Route::get('/vendor/profile', [VendorController::class, 'VendorProfile'])->name('vendor.profile');
+    Route::get('/vendor/profile', [VendorController::class, 'VendorProfile'])->name('vendor.profile');
 
-        Route::post('/vendor/profile/store', [VendorController::class, 'VendorProfileStore'])->name('vendor.profile.store');
+    Route::post('/vendor/profile/store', [VendorController::class, 'VendorProfileStore'])->name('vendor.profile.store');
 
-        Route::get('/vendor/change/password', [VendorController::class, 'VendorChangePassword'])->name('vendor.change.password');
+    Route::get('/vendor/change/password', [VendorController::class, 'VendorChangePassword'])->name('vendor.change.password');
 
-        Route::post('/vendor/update/password', [VendorController::class, 'VendorUpdatePassword'])->name('vendor.update.password');
+    Route::post('/vendor/update/password', [VendorController::class, 'VendorUpdatePassword'])->name('vendor.update.password');
 
-        // Vendor add Product All Routes
-        Route::controller(VendorProductController::class)->group(function () {
+    // Vendor add Product All Routes
+    Route::controller(VendorProductController::class)->group(function () {
 
-            Route::get('vendor/all/product', 'VendorAllProduct')->name('vendor.all.product');
+        Route::get('vendor/all/product', 'VendorAllProduct')->name('vendor.all.product');
 
-            Route::get('vendor/add/product', 'VendorAddProduct')->name('vendor.add.product');
+        Route::get('vendor/add/product', 'VendorAddProduct')->name('vendor.add.product');
 
-            Route::post('vendor/store/product', 'VendorStoreProduct')->name('vendor.store.product');
+        Route::post('vendor/store/product', 'VendorStoreProduct')->name('vendor.store.product');
 
-            Route::get('vendor/edit/product/{id}', 'VendorEditProduct')->name('vendor.edit.product');
+        Route::get('vendor/edit/product/{id}', 'VendorEditProduct')->name('vendor.edit.product');
 
-            Route::post('vendor/update/product', 'VendorUpdateProduct')->name('vendor.update.product');
+        Route::post('vendor/update/product', 'VendorUpdateProduct')->name('vendor.update.product');
 
-            Route::post('vendor/update/product/thambnail', 'VendorUpdateProductThabnail')->name('vendor.update.product.thambnail');
+        Route::post('vendor/update/product/thambnail', 'VendorUpdateProductThabnail')->name('vendor.update.product.thambnail');
 
-            Route::post('vendor/update/product/multiimage', 'VendorUpdateProductmultiImage')->name('vendor.update.product.multiimage');
+        Route::post('vendor/update/product/multiimage', 'VendorUpdateProductmultiImage')->name('vendor.update.product.multiimage');
 
-            Route::get('vendor/product/multiimg/delete/{id}', 'VendorMultiimgDelete')->name('vendor.product.multiimg.delete');
+        Route::get('vendor/product/multiimg/delete/{id}', 'VendorMultiimgDelete')->name('vendor.product.multiimg.delete');
 
-            Route::get('vendor/product/inactive/{id}', 'vendorProductInactive')->name('vendor.product.inactive');
+        Route::get('vendor/product/inactive/{id}', 'vendorProductInactive')->name('vendor.product.inactive');
 
-            Route::get('vendor/product/active/{id}', 'vendorProductActive')->name('vendor.product.active');
+        Route::get('vendor/product/active/{id}', 'vendorProductActive')->name('vendor.product.active');
 
-            Route::get('vendor/delete/product/{id}', 'vendorProductDelete')->name('vendor.delete.product');
+        Route::get('vendor/delete/product/{id}', 'vendorProductDelete')->name('vendor.delete.product');
 
-            Route::get('/vendor/subcategory/ajax/{category_id}', 'VendorGetSubCategory');
-        });
-    }); // end group middleware
+        Route::get('/vendor/subcategory/ajax/{category_id}', 'VendorGetSubCategory');
+    });
+}); // end group middleware
 
 //  }); 
 
@@ -266,88 +267,83 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
         Route::get('delete/slider/{id}', 'DeleteSlider')->name('delete.slider');
     });
-    
-          // Banner All Route
-          Route::controller(BannerController::class)->group(function(){
-            Route::get('/all/banner', 'AllBanner')->name('all.banner');
-    
-            Route::get('/add/banner', 'AddBanner')->name('add.banner');
-    
-            Route::post('/store/banner', 'StoreBanner')->name('store.banner');
-    
-            Route::get('/edit/banner/{id}', 'EditBanner')->name('edit.banner');
-    
-            Route::post('/update/banner', 'UpdateBanner')->name('update.banner');
-    
-            Route::get('/delete/banner/{id}', 'DeleteBanner')->name('delete.banner');
-    
-        });
 
-         // Coupon All Route
-         Route::controller(CouponController::class)->group(function(){
-            Route::get('/all/coupon', 'AllCoupon')->name('all.coupon');
+    // Banner All Route
+    Route::controller(BannerController::class)->group(function () {
+        Route::get('/all/banner', 'AllBanner')->name('all.banner');
 
-            Route::get('/add/coupon', 'AddCoupon')->name('add.coupon');
+        Route::get('/add/banner', 'AddBanner')->name('add.banner');
 
-            Route::post('/store/coupon', 'StoreCoupon')->name('store.coupon');
+        Route::post('/store/banner', 'StoreBanner')->name('store.banner');
 
-            Route::get('/edit/coupon/{id}', 'EditCoupon')->name('edit.coupon');
+        Route::get('/edit/banner/{id}', 'EditBanner')->name('edit.banner');
 
-            Route::post('/update/coupon', 'UpdateCoupon')->name('update.coupon');
+        Route::post('/update/banner', 'UpdateBanner')->name('update.banner');
 
-            Route::get('/delete/coupon/{id}', 'DeleteCoupon')->name('delete.coupon');
-    
-        });
+        Route::get('/delete/banner/{id}', 'DeleteBanner')->name('delete.banner');
+    });
 
-         // Shipping division All Route
-         Route::controller(ShippingAreaController::class)->group(function(){
-            Route::get('/all/division', 'AllDivision')->name('all.division');
+    // Coupon All Route
+    Route::controller(CouponController::class)->group(function () {
+        Route::get('/all/coupon', 'AllCoupon')->name('all.coupon');
 
-            Route::get('/add/division', 'AddDivision')->name('add.division');
+        Route::get('/add/coupon', 'AddCoupon')->name('add.coupon');
 
-            Route::post('/store/division', 'StoreDivision')->name('store.division');
+        Route::post('/store/coupon', 'StoreCoupon')->name('store.coupon');
 
-            Route::get('/edit/division/{id}', 'EditDivision')->name('edit.division');
+        Route::get('/edit/coupon/{id}', 'EditCoupon')->name('edit.coupon');
 
-            Route::post('/update/division', 'UpdateDivision')->name('update.division');
+        Route::post('/update/coupon', 'UpdateCoupon')->name('update.coupon');
 
-            Route::get('/delete/division/{id}', 'DeleteDivision')->name('delete.division');
-    
-        });
+        Route::get('/delete/coupon/{id}', 'DeleteCoupon')->name('delete.coupon');
+    });
 
-         // Shipping district All Route
-         Route::controller(ShippingAreaController::class)->group(function(){
-            Route::get('/all/district', 'AllDistrict')->name('all.district');
+    // Shipping division All Route
+    Route::controller(ShippingAreaController::class)->group(function () {
+        Route::get('/all/division', 'AllDivision')->name('all.division');
 
-            Route::get('/add/district', 'AddDistrict')->name('add.district');
+        Route::get('/add/division', 'AddDivision')->name('add.division');
 
-            Route::post('/store/district', 'StoreDistrict')->name('store.district');
+        Route::post('/store/division', 'StoreDivision')->name('store.division');
 
-            Route::get('/edit/district/{id}', 'EditDistrict')->name('edit.district');
+        Route::get('/edit/division/{id}', 'EditDivision')->name('edit.division');
 
-            Route::post('/update/district', 'UpdateDistrict')->name('update.district');
+        Route::post('/update/division', 'UpdateDivision')->name('update.division');
 
-            Route::get('/delete/district/{id}', 'DeleteDistrict')->name('delete.district');
-    
-        });
+        Route::get('/delete/division/{id}', 'DeleteDivision')->name('delete.division');
+    });
 
-         // Shipping state All Route
-         Route::controller(ShippingAreaController::class)->group(function(){
-            Route::get('/all/state', 'AllState')->name('all.state');
+    // Shipping district All Route
+    Route::controller(ShippingAreaController::class)->group(function () {
+        Route::get('/all/district', 'AllDistrict')->name('all.district');
 
-            Route::get('/add/state', 'AddState')->name('add.state');
+        Route::get('/add/district', 'AddDistrict')->name('add.district');
 
-            Route::post('/store/state', 'StoreState')->name('store.state');
+        Route::post('/store/district', 'StoreDistrict')->name('store.district');
 
-            Route::get('/edit/state/{id}', 'EditState')->name('edit.state');
+        Route::get('/edit/district/{id}', 'EditDistrict')->name('edit.district');
 
-            Route::post('/update/state', 'UpdateState')->name('update.state');
+        Route::post('/update/district', 'UpdateDistrict')->name('update.district');
 
-            Route::get('/delete/state/{id}', 'DeleteState')->name('delete.state');
+        Route::get('/delete/district/{id}', 'DeleteDistrict')->name('delete.district');
+    });
 
-            Route::get('/district/ajax/{division_id}', 'GetDistrict');
-    
-        });
+    // Shipping state All Route
+    Route::controller(ShippingAreaController::class)->group(function () {
+        Route::get('/all/state', 'AllState')->name('all.state');
+
+        Route::get('/add/state', 'AddState')->name('add.state');
+
+        Route::post('/store/state', 'StoreState')->name('store.state');
+
+        Route::get('/edit/state/{id}', 'EditState')->name('edit.state');
+
+        Route::post('/update/state', 'UpdateState')->name('update.state');
+
+        Route::get('/delete/state/{id}', 'DeleteState')->name('delete.state');
+
+        Route::get('/district/ajax/{division_id}', 'GetDistrict');
+    });
 }); // Admin end middleware
 
 // Frontend Product details all route
@@ -382,68 +378,64 @@ Route::post('/dcart/data/store/{id}', [CartController::class, 'AddToCartDetails'
 Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'AddToWishList']);
 
 // Add to compare 
-Route::post('/add-to-compare/{product_id}', [CompareController::class,'AddToCompare']);
+Route::post('/add-to-compare/{product_id}', [CompareController::class, 'AddToCompare']);
 
 // frontend coupon system 
-Route::post('/coupon-apply', [CartController::class,'CouponApply']);
+Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
 
 
-Route::get('/coupon-calculation', [CartController::class,'CouponCalculation']);
+Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
 
 
-Route::get('/coupon-remove', [CartController::class,'CouponRemove']);
+Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
 
 // Checkout Page Route
-Route::get('/checkout', [CartController::class,'CheckoutCreate'])->name('checkout');
+Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
 
-     // Cart All Route
-     Route::controller(CartController::class)->group(function(){
-        Route::get('/mycart', 'MyCart')->name('mycart');
+// Cart All Route
+Route::controller(CartController::class)->group(function () {
+    Route::get('/mycart', 'MyCart')->name('mycart');
 
-        Route::get('/get-cart-product', 'GetCartProduct');
+    Route::get('/get-cart-product', 'GetCartProduct');
 
-        Route::get('/cart-remove/{rowId}', 'CartRemove');
+    Route::get('/cart-remove/{rowId}', 'CartRemove');
 
-        Route::get('/cart-decrement/{rowId}', 'CartDecrement');
+    Route::get('/cart-decrement/{rowId}', 'CartDecrement');
 
-        Route::get('/cart-increment/{rowId}', 'CartIncrement');
-
-    });
+    Route::get('/cart-increment/{rowId}', 'CartIncrement');
+});
 
 
 
 // User All route
 Route::middleware(['auth', 'role:user'])->group(function () {
-      // wishlist All Route
-      Route::controller(WishlistController::class)->group(function(){
+    // wishlist All Route
+    Route::controller(WishlistController::class)->group(function () {
         Route::get('/wishlist', 'AllWishlist')->name('wishlist');
 
         Route::get('/get-wishlist-product', 'GetWishlistProduct');
 
         Route::get('/wishlist-remove/{id}', 'WishlistRemove');
-
     });
 
 
     // compare All Route
-    Route::controller(CompareController::class)->group(function(){
+    Route::controller(CompareController::class)->group(function () {
         Route::get('/compare', 'AllCompare')->name('compare');
 
 
         Route::get('/get-compare-product', 'GetCompareProduct');
 
         Route::get('/compare-remove/{id}', 'CompareRemove');
-
     });
 
 
     // wishlist All Route
-    Route::controller(CheckoutController::class)->group(function(){
+    Route::controller(CheckoutController::class)->group(function () {
         Route::get('/district-get/ajax/{division_id}', 'DistrictGetAjax');
 
         Route::get('/state-get/ajax/{district_id}', 'StateGetAjax');
     });
-
 }); // end group user middleware
 
 
@@ -474,4 +466,12 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 Route::controller(AdminController::class)->group(function () {
     Route::get('/manage/website-details', 'websitedetails')->name('add.webdetails');
     Route::post('/add/company-details', 'addcdetails')->name('add.cdetails');
+    Route::get('/list/subscriptionemail', 'viewsubscribers')->name('subscriber.email');
+    Route::get('/delete/subscribers/{id}', 'deletesubscribers')->name('delete.subscribers');
+});
+
+
+//Add Subscriber Email
+Route::controller(SubscriptionController::class)->group(function () {
+    Route::post('/add-subscriber-email', 'subscription');
 });
