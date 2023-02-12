@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -208,5 +209,22 @@ class AdminController extends Controller
         }
 
         return redirect()->route('add.webdetails')->with($notification);
+    }
+
+    public function viewsubscribers()
+    {
+        $allsubscribers = Subscription::latest()->get();
+        return view('backend.subscription.subscription', compact('allsubscribers'));
+    }
+
+    public function deletesubscribers($id)
+    {
+        $subid = Subscription::find($id);
+        $subid->delete();
+        $notification = array(
+            'message' => 'Subscriber Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        return back()->with($notification);
     }
 }

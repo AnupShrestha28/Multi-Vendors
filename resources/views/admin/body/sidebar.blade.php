@@ -158,6 +158,16 @@
 
         </li>
 
+        <li>
+            <a href="{{ route('subscriber.email') }}">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">Subscribers Email</div>
+            </a>
+
+        </li>
+
+
 
         <li class="menu-label">UI Elements</li>
 
