@@ -114,7 +114,7 @@
 
                             @else
                             <div class="attr-detail attr-size mb-30">
-                                <strong class="mr-10" style="width: 50px;">Color : </strong>
+                                <strong class="mr-10" style="width: 50px;">Color: </strong>
 
                                 <select class="form-control unicase-form-control" id="dcolor">
                                     <option selected="" disabled="">--Choose Color--</option>
@@ -138,6 +138,8 @@
                                 <div class="product-extra-link2">
 
                                     <input type="hidden" id="dproduct_id" value="{{ $product->id }}">
+
+                                    <input type="hidden" id="vproduct_id" value="{{ $product->vendor_id }}">
 
                                     <button type="submit" class="button button-add-to-cart" onclick="addToCartDetails()"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
 

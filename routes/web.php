@@ -19,6 +19,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CompareController;
 use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\User\StripeController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\Auth\OtpController;
@@ -430,8 +431,13 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     });
 
 
+
+    // checkout All Route
+    Route::controller(CheckoutController::class)->group(function(){
+
     // wishlist All Route
     Route::controller(CheckoutController::class)->group(function () {
+
         Route::get('/district-get/ajax/{division_id}', 'DistrictGetAjax');
 
         Route::get('/state-get/ajax/{district_id}', 'StateGetAjax');
@@ -439,6 +445,16 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::post('/checkout/store', 'CheckoutStore')->name('checkout.store');
 
     });
+
+
+
+    // stripe All Route
+    Route::controller(StripeController::class)->group(function(){
+        Route::post('/stripe/order', 'StripeOrder')->name('stripe.order');
+
+    });
+
+
 }); // end group user middleware
 
 
