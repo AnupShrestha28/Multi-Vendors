@@ -202,7 +202,7 @@
      var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if(validRegex.test(subscriber_email)==false)
     {
-        alert('please enter valid email address');
+        toastr.error("Please Enter valid email address");
         return false;
     }
         $.ajax({
@@ -215,12 +215,12 @@
                     if(response=="exists"){
                         toastr.warning("This Email has Already Subscribed",{timeOut:5000});
                     }else if(response=="saved"){
-                            toastr.success("Thanks for Subscribing &#128578;",{timeOut:5000});
+                            toastr.success("Thanks for Subscribing &#128578;",{timeOut:8000});
                     }
                 },
                 error:function()
                 {
-                    alert('error');
+                    toastr.error("error");
                 }
         });
     });

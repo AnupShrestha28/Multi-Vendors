@@ -39,7 +39,7 @@
                                         <td>{{$item->status}}</td>
 										<td>{{ $item->created_at }}</td>
 										<td>
-                                            <a href="{{ route('delete.subscribers',$item->id)}}" class="btn btn-danger" onclick="delete()">Delete</a>
+                                            <a href="{{ route('delete.subscribers',$item->id)}}" class="btn btn-danger">Delete</a>
                                         </td>
 									
 									</tr>
@@ -58,9 +58,7 @@
 
 							</table>
 
-                            <script>
-                              
-                            </script>
+                           
 						</div>
 					</div>
 				</div>
