@@ -487,6 +487,8 @@ Route::controller(AdminController::class)->group(function () {
     Route::post('/add/company-details', 'addcdetails')->name('add.cdetails');
     Route::get('/list/subscriptionemail', 'viewsubscribers')->name('subscriber.email');
     Route::get('/delete/subscribers/{id}', 'deletesubscribers')->name('delete.subscribers');
+    Route::get('/email/subscriber', 'sendEmail')->name('send.email-subscribers');
+    Route::post('/send/email/subscriber', 'sendEmailSubscriber')->name('send.email-to-subscriber');
 });
 
 

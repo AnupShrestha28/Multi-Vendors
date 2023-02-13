@@ -14,6 +14,12 @@
 							</ol>
 						</nav>
 					</div>
+                    <div class="ms-auto">
+						<div class="btn-group">
+
+						<a href="{{ route('send.email-subscribers')}}" class="btn btn-primary">Send Email to Subscriber</a>
+						</div>
+					</div>
 				</div>
 				<!--end breadcrumb-->
 				<hr/>

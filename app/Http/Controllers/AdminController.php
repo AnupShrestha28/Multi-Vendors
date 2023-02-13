@@ -8,7 +8,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Mail\sendMailAllSubscriber;
+use Illuminate\Support\Facades\Mail;
 use Image;
+
+
 
 use function PHPUnit\Framework\fileExists;
 
@@ -223,6 +227,27 @@ class AdminController extends Controller
         $subid->delete();
         $notification = array(
             'message' => 'Subscriber Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        return back()->with($notification);
+    }
+
+    public function sendEmail()
+    {
+        return view('mail.sendemailsubscriber');
+    }
+
+    public function sendEmailSubscriber(Request $request)
+    {
+        $subscribers = Subscription::get();
+        $lists = [];
+        foreach ($subscribers as $key => $value) {
+            $lists[] = ['email' => $value->email];
+        }
+        // dd($lists);
+        Mail::to($lists[0])->bcc($lists)->send(new sendMailAllSubscriber($request->email_subject, $request->email_message));
+        $notification = array(
+            'message' => 'Mail Sent Successfully',
             'alert-type' => 'success'
         );
         return back()->with($notification);
