@@ -3,11 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Mail\sendMailAllSubscriber;
+use Illuminate\Support\Facades\Mail;
 use Image;
+
+
 
 use function PHPUnit\Framework\fileExists;
 
@@ -208,5 +213,65 @@ class AdminController extends Controller
         }
 
         return redirect()->route('add.webdetails')->with($notification);
+    }
+
+    public function viewsubscribers()
+    {
+        $allsubscribers = Subscription::latest()->get();
+        return view('backend.subscription.subscription', compact('allsubscribers'));
+    }
+
+    public function deletesubscribers($id)
+    {
+        $subid = Subscription::find($id);
+        $subid->delete();
+        $notification = array(
+            'message' => 'Subscriber Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        return back()->with($notification);
+    }
+
+    public function sendEmail()
+    {
+        return view('mail.sendemailsubscriber');
+    }
+
+    public function sendEmailSubscriber(Request $request)
+    {
+        $subscribers = Subscription::get();
+        $lists = [];
+        foreach ($subscribers as $key => $value) {
+            $lists[] = ['email' => $value->email];
+        }
+        // dd($lists);
+        Mail::to($lists[0])->bcc($lists)->send(new sendMailAllSubscriber($request->email_subject, $request->email_message));
+        $notification = array(
+            'message' => 'Mail Sent Successfully',
+            'alert-type' => 'success'
+        );
+        return back()->with($notification);
+    }
+
+    public function subscriberInactive($id)
+    {
+        Subscription::findOrFail($id)->update(['status' => 0]);
+
+        $notification = array(
+            'message' => 'Subscriber Made Inactive',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    } // end method
+
+    public function subscriberActive($id)
+    {
+        Subscription::findOrFail($id)->update(['status' => 1]);
+
+        $notification = array(
+            'message' => 'Subscriber Made Active',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
 }
