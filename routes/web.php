@@ -452,6 +452,8 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::controller(StripeController::class)->group(function(){
         Route::post('/stripe/order', 'StripeOrder')->name('stripe.order');
 
+        Route::post('/cash/order', 'CashOrder')->name('cash.order');
+
     });
 
 
@@ -497,4 +499,5 @@ Route::controller(AdminController::class)->group(function () {
 //Add Subscriber Email
 Route::controller(SubscriptionController::class)->group(function () {
     Route::post('/add-subscriber-email', 'subscription');
+});
 });
