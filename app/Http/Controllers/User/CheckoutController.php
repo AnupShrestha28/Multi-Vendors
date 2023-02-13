@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\ShipDivision;
+use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\ShipDivision;
 use App\Models\ShipDistricts;
 use App\Models\ShipState;
 use App\Models\Coupon;
@@ -12,7 +13,6 @@ use Carbon\Carbon;
 use Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
 {
