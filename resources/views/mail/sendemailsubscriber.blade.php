@@ -77,14 +77,21 @@
     $(document).ready(function(){
         $('#myForm').validate({
             rules:{
-                category_name:{
+                email_message:{
                     required : true,
                 },
+                email_subject:{
+                    required:true,
+                }
             },
             messages:{
-                category_name:{
-                    required: 'Please enter category name',
+                email_message:{
+                    required: 'Please enter Email Message to Send',
                 },
+                email_subject:{
+                    required: 'Please enter subject'
+                }
+                
             },
             errorElement : 'span',
             errorPlacement: function(error, element){
