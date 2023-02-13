@@ -211,6 +211,7 @@
      var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if(validRegex.test(subscriber_email)==false)
     {
+        loaderremove();
         toastr.error("Please Enter valid email address");
         return false;
     }
