@@ -252,4 +252,26 @@ class AdminController extends Controller
         );
         return back()->with($notification);
     }
+
+    public function subscriberInactive($id)
+    {
+        Subscription::findOrFail($id)->update(['status' => 0]);
+
+        $notification = array(
+            'message' => 'Subscriber Made Inactive',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    } // end method
+
+    public function subscriberActive($id)
+    {
+        Subscription::findOrFail($id)->update(['status' => 1]);
+
+        $notification = array(
+            'message' => 'Subscriber Made Active',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
 }

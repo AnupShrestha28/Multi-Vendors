@@ -147,7 +147,7 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
     });
 }); // end group middleware
 
-//  }); 
+//  });
 
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->middleware(RedirectIfAuthenticated::class);
@@ -377,10 +377,10 @@ Route::post('/dcart/data/store/{id}', [CartController::class, 'AddToCartDetails'
 // Add to wishlist
 Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'AddToWishList']);
 
-// Add to compare 
+// Add to compare
 Route::post('/add-to-compare/{product_id}', [CompareController::class, 'AddToCompare']);
 
-// frontend coupon system 
+// frontend coupon system
 Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
 
 
@@ -470,6 +470,8 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/delete/subscribers/{id}', 'deletesubscribers')->name('delete.subscribers');
     Route::get('/email/subscriber', 'sendEmail')->name('send.email-subscribers');
     Route::post('/send/email/subscriber', 'sendEmailSubscriber')->name('send.email-to-subscriber');
+    Route::get('subscriber/inactive/{id}', 'subscriberInactive')->name('subscriber.inactive');
+    Route::get('subscribers/active/{id}', 'subscriberActive')->name('subscriber.active');
 });
 
 

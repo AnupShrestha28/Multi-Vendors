@@ -3,7 +3,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
-<div class="page-content"> 
+<div class="page-content">
     <!--breadcrumb-->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
         <div class="breadcrumb-title pe-3">Send Email Subscriber</div>
@@ -17,7 +17,7 @@
             </nav>
         </div>
         <div class="ms-auto">
-            
+
             </div>
         </div>
     </div>
@@ -25,7 +25,7 @@
     <div class="container">
         <div class="main-body">
             <div class="row">
-               
+
                 <div class="col-lg-10">
                     <div class="card">
                         <div class="card-body">
@@ -33,7 +33,7 @@
                             <form id="myForm" method="post" action="{{ route('send.email-to-subscriber') }}" >
                                 @csrf
 
-                           
+
                             <div class="row mb-3">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Subject</h6>
@@ -51,9 +51,9 @@
                                     <textarea class="form-control" name="email_message" id="" cols="89" rows="10" style="resize:none"></textarea>
                                 </div>
                             </div>
-                           
 
-                        
+
+
 
                             <div class="row">
                                 <div class="col-sm-3"></div>
@@ -66,7 +66,7 @@
                     </form>
 
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -91,7 +91,7 @@
                 email_subject:{
                     required: 'Please enter subject'
                 }
-                
+
             },
             errorElement : 'span',
             errorPlacement: function(error, element){
