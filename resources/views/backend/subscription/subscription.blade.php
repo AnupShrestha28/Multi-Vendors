@@ -34,7 +34,7 @@
 										<th>Status</th>
 										<th>Subscribed At</th>
 										<th>Action</th>
-										
+
 									</tr>
 								</thead>
 								<tbody>
@@ -42,12 +42,30 @@
 									<tr>
 										<td>{{$key+1 }}</td>
 										<td>{{$item->email}}</td>
-                                        <td>{{$item->status}}</td>
+                                        <td> @if($item->status == 1)
+
+											<span class="badge rounded-pill bg-success">Active</span>
+
+											@else
+
+											<span class="badge rounded-pill bg-danger">InActive</span>
+
+										@endif
+										</td>
 										<td>{{ $item->created_at }}</td>
 										<td>
                                             <a href="{{ route('delete.subscribers',$item->id)}}" class="btn btn-danger">Delete</a>
+                                            @if($item->status == 1)
+
+											<a href="{{ route('subscriber.inactive',$item->id)}}" class="btn btn-primary" title="Inactive">Inactive</a>
+
+											@else
+
+											<a href="{{ route('subscriber.active',$item->id)}}" class="btn btn-success" title="Active">Active</a>
+
+											@endif
                                         </td>
-									
+
 									</tr>
 									@endforeach
 								<tfoot>
@@ -57,18 +75,18 @@
 										<th>Status</th>
 										<th>Subscribed At</th>
 										<th>Action</th>
-										
+
 									</tr>
 								</tfoot>
 
 
 							</table>
 
-                           
+
 						</div>
 					</div>
 				</div>
-				
+
 			</div>
 
 @endsection

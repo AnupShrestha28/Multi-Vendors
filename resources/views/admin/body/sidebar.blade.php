@@ -157,14 +157,19 @@
             </a>
 
         </li>
-
         <li>
-            <a href="{{ route('subscriber.email') }}">
+            <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="bx bx-category"></i>
                 </div>
-                <div class="menu-title">Subscribers Email</div>
+                <div class="menu-title">Subscribers</div>
             </a>
+            <ul>
+                <li> <a href="{{ route('subscriber.email')}}"><i class="bx bx-right-arrow-alt"></i>All Subscribers Email</a>
+                </li>
+                <li> <a href="{{ route('send.email-subscribers')}}"><i class="bx bx-right-arrow-alt"></i>Send Email</a>
+                </li>
 
+            </ul>
         </li>
 
 
