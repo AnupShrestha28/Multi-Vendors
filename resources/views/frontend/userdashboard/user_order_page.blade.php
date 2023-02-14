@@ -72,7 +72,7 @@
     @endif
                                                         </td>
 
-    <td><a href="{{ url('user/order_details/'.$orders->id)}}" class="btn-sm btn-success"><i class="fa fa-eye"></i> View</a>
+    <td><a href="{{ url('user/order_details/'.$order->id)}}" class="btn-sm btn-success"><i class="fa fa-eye"></i> View</a>
                                                         
                                                             <a href="#" class="btn-sm btn-danger"><i class="fa fa-download"></i> Invoice</a>
                                                         </td>
