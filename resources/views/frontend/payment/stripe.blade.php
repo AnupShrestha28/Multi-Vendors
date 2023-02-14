@@ -32,7 +32,7 @@
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a> 
+            <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
             <span></span> Stripe Payment
         </div>
     </div>
@@ -42,7 +42,7 @@
         <div class="col-lg-8 mb-40">
             <h3 class="heading-2 mb-10">Stripe Payment</h3>
             <div class="d-flex justify-content-between">
-                
+
             </div>
         </div>
     </div>
@@ -54,7 +54,7 @@
                 </div>
                 <div class="divider-2 mb-30"></div>
                 <div class="table-responsive order_table checkout">
-                
+
                 <table class="table no-border">
                 <tbody>
                     @if(Session::has('coupon'))
@@ -66,7 +66,7 @@
                             <h4 class="text-brand text-end">Rs.{{ $cartTotal }}</h4>
                         </td>
                     </tr>
-                    
+
                     <tr>
                         <td class="cart_total_label">
                             <h6 class="text-muted">Coupon Name</h6>
@@ -75,7 +75,7 @@
                             <h6 class="text-brand text-end">{{ session()->get('coupon')['coupon_name']}} ( {{ session()->get('coupon')['coupon_discount']}}% )</h6>
                         </td>
                     </tr>
-                
+
                       <tr>
                         <td class="cart_total_label">
                             <h6 class="text-muted">Coupon Discount</h6>
@@ -84,7 +84,7 @@
                             <h4 class="text-brand text-end">Rs.{{ session()->get('coupon')['discount_amount'] }}</h4>
                         </td>
                     </tr>
-                
+
                       <tr>
                         <td class="cart_total_label">
                             <h6 class="text-muted">Grand Total</h6>
@@ -105,19 +105,19 @@
                     </tr>
 
                     @endif
-                    
+
                 </tbody>
                 </table>
-                
-                
-                
-                
-                
+
+
+
+
+
                 </div>
                 </div>
         </div> <!-- end lg md 6 -->
 
-        
+
 <div class="col-lg-6">
 <div class="border p-40 cart-totals ml-30 mb-50">
 <div class="d-flex align-items-end justify-content-between mb-30">
@@ -126,7 +126,7 @@
 <div class="divider-2 mb-30"></div>
 <div class="table-responsive order_table checkout">
 
-    
+
 <form action="{{route('stripe.order')}}" method="post" id="payment-form">
     @csrf
 <div class="form-row">
@@ -144,7 +144,7 @@
     <input type="hidden" name="notes" value="{{ $data['notes'] }}">
 
     </label>
-     
+
     <div id="card-element">
     <!-- A Stripe Element will be inserted here. -->
     </div>
@@ -164,7 +164,7 @@
 
 <script type="text/javascript">
     // Create a Stripe client.
-var stripe = Stripe('pk_test_51MafZCE8hOMOO1b5U33omwTRX4N5ZDEThE7youaQvwZcgIn5E6uka7iJy6jdduqW17Iv5K0UcxnFdVyjb3nCdUuS008P0G0U8c');
+var stripe = Stripe('pk_test_51MbO8MDBNs6FAHl25vHFDfeEx7YEoggKePDH7ln2evcV2lj6i24pWLUe47y9xrVfhxxmbSYz82S2yRYCfXYXnT8G00YjXJis3k');
 // Create an instance of Elements.
 var elements = stripe.elements();
 // Custom styling can be passed to options when creating an Element.

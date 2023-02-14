@@ -433,7 +433,6 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
 
     // checkout All Route
-    Route::controller(CheckoutController::class)->group(function(){
 
     // wishlist All Route
     Route::controller(CheckoutController::class)->group(function () {
@@ -443,20 +442,14 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/state-get/ajax/{district_id}', 'StateGetAjax');
 
         Route::post('/checkout/store', 'CheckoutStore')->name('checkout.store');
-
     });
 
 
 
     // stripe All Route
-    Route::controller(StripeController::class)->group(function(){
+    Route::controller(StripeController::class)->group(function () {
         Route::post('/stripe/order', 'StripeOrder')->name('stripe.order');
-
-        Route::post('/cash/order', 'CashOrder')->name('cash.order');
-
     });
-
-
 }); // end group user middleware
 
 
@@ -499,5 +492,4 @@ Route::controller(AdminController::class)->group(function () {
 //Add Subscriber Email
 Route::controller(SubscriptionController::class)->group(function () {
     Route::post('/add-subscriber-email', 'subscription');
-});
 });
