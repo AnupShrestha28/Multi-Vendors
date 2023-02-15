@@ -481,9 +481,10 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
         Route::get('/user/order_details/{order_id}', 'UserOrderDetails');
 
+        Route::get('/user/invoice_download/{order_id}', 'UserOrderInvoice');
+
     });
-
-
+});
 }); // end group user middleware
 
 
@@ -527,4 +528,4 @@ Route::controller(AdminController::class)->group(function () {
 Route::controller(SubscriptionController::class)->group(function () {
     Route::post('/add-subscriber-email', 'subscription');
 });
-});
+
