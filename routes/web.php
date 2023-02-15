@@ -19,6 +19,9 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CompareController;
 use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\User\AllUserController;
+use App\Http\Controllers\Backend\VendorOrderController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\SocialController;
@@ -145,10 +148,16 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
         Route::get('vendor/delete/product/{id}', 'vendorProductDelete')->name('vendor.delete.product');
 
         Route::get('/vendor/subcategory/ajax/{category_id}', 'VendorGetSubCategory');
+
+        // Vendor order All Routes
+        Route::controller(VendorOrderController::class)->group(function () {
+
+            Route::get('vendor/order', 'VendorOrder')->name('vendor.order');
+        });
     });
 }); // end group middleware
 
-//  });
+
 
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->middleware(RedirectIfAuthenticated::class);
@@ -344,6 +353,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/delete/state/{id}', 'DeleteState')->name('delete.state');
 
         Route::get('/district/ajax/{division_id}', 'GetDistrict');
+        Route::controller(OrderController::class)->group(function () {
+            Route::get('/pending/order', 'PendingOrder')->name('pending.order');
+        });
     });
 }); // Admin end middleware
 
@@ -449,6 +461,15 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     // stripe All Route
     Route::controller(StripeController::class)->group(function () {
         Route::post('/stripe/order', 'StripeOrder')->name('stripe.order');
+    });
+    Route::controller(AllUserController::class)->group(function () {
+        Route::get('/user/account/page', 'UserAccount')->name('user.account.page');
+
+        Route::get('/user/change/password', 'UserChangePassword')->name('user.change.password');
+
+        Route::get('/user/order/page', 'UserOrderPage')->name('user.order.page');
+
+        Route::get('/user/order_details/{order_id}', 'UserOrderDetails');
     });
 }); // end group user middleware
 
