@@ -11,6 +11,9 @@ use App\Models\Brand;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Company;
+use App\Models\OrderItem;
+use DB;
+use Illuminate\Support\Facades\DB as FacadesDB;
 
 class IndexController extends Controller
 {
@@ -34,7 +37,20 @@ class IndexController extends Controller
 
         $special_deals = Product::where('special_deals', 1)->orderBy('id', 'DESC')->limit(3)->get();
 
-        return view('frontend.index', compact('skip_category_0', 'skip_product_0', 'skip_category_2', 'skip_product_2', 'skip_category_6', 'skip_product_6', 'hot_deals', 'special_offer', 'new', 'special_deals'));
+        $product_count = OrderItem::select('product_id', FacadesDB::raw('count(product_id) AS total_count'))->groupBy('product_id')->get();
+        $lists = [];
+
+
+        foreach ($product_count as $count) {
+            if ($count->total_count > 1) {
+                //dd('yes');
+                $productid = $count->product_id;
+                $lists[] = ['product_id' => $count->product_id];
+            }
+        }
+
+
+        return view('frontend.index', compact('skip_category_0', 'skip_product_0', 'skip_category_2', 'skip_product_2', 'skip_category_6', 'skip_product_6', 'hot_deals', 'special_offer', 'new', 'special_deals', 'lists'));
     } // end method
 
     public function ProductDetails($id, $slug)

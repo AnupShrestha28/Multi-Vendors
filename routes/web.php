@@ -461,6 +461,7 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     // stripe All Route
     Route::controller(StripeController::class)->group(function () {
         Route::post('/stripe/order', 'StripeOrder')->name('stripe.order');
+        Route::post('/cash/order', 'CashOrder')->name('cash.order');
     });
     Route::controller(AllUserController::class)->group(function () {
         Route::get('/user/account/page', 'UserAccount')->name('user.account.page');

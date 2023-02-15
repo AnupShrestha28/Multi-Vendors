@@ -1,5 +1,7 @@
 
 
+
+
 <style>
     .images-user-draft {
         margin: 8px;
@@ -114,6 +116,22 @@
     <div id="gallery">
         <div class="gallery-heading">
             <h1 style="text-align: center"><br><br>Product Drafting</h1>
+
+            @php
+
+            foreach($lists as $list)
+            {
+                    $products=App\Models\Product::where('id',$list['product_id'])->get();
+                    foreach($products as $product)
+                    {
+
+                        dump($product->product_thambnail);
+                    }
+            }
+
+            @endphp
+
+
         </div>
 
 
@@ -126,15 +144,6 @@
             <div class="row">
                 <div class="col-md-12">
                     <div id="photoss" class="owl-carousel owl-theme">
-                        <div class="images-user-draft">
-                            <img src="{{ asset('adminbackend/assets/images/logo-icon.png') }}" alt="" class="img-responsive">
-                            <div class="image-overlay">
-                                <div class="image-info text-center">
-                                    <h3> Name</h3>
-                                </div>
-                            </div>
-                        </div>
-
 
                         <div class="images-user-draft">
                             <img src="{{ asset('frontend/assets/imgs/theme/brandlogo.png')}}" alt="" class="img-responsive">
@@ -144,6 +153,7 @@
                                 </div>
                             </div>
                         </div>
+
 
 
 
