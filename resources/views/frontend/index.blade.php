@@ -2,7 +2,7 @@
 @section('main')
 
 @include('frontend.home.home_slider')
-
+@include('frontend.home.UserProductDraft')
 
 
 <!--End hero slider-->

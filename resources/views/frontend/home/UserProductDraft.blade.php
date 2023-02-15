@@ -1,15 +1,12 @@
 
+
 <style>
-    .images {
+    .images-user-draft {
         margin: 8px;
-
-
         position: relative;
-
-
     }
 
-    .images img {
+    .images-user-draft img {
         height: 150px;
         width: 250px !important;
         object-fit: cover;
@@ -48,13 +45,13 @@
         color: #fff;
     }
 
-    .images:hover .image-overlay {
+    .images-user-draft:hover .image-overlay {
         opacity: 1;
 
     }
 
 
-    .images:hover .image-info {
+    .images-user-draft:hover .image-info {
         transition: transform 0.5s ease;
         -webkit-transform: translateY(-30px);
         transform: translateY(-30px);
@@ -128,9 +125,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div id="photos" class="owl-carousel owl-theme">
-                        <div class="images">
-                            <img src="images/1.png" alt="buddha" class="img-responsive">
+                    <div id="photoss" class="owl-carousel owl-theme">
+                        <div class="images-user-draft">
+                            <img src="{{ asset('adminbackend/assets/images/logo-icon.png') }}" alt="" class="img-responsive">
                             <div class="image-overlay">
                                 <div class="image-info text-center">
                                     <h3> Name</h3>
@@ -139,8 +136,8 @@
                         </div>
 
 
-                        <div class="images">
-                            <img src="images/benches.jpg" alt="buddha" class="img-responsive">
+                        <div class="images-user-draft">
+                            <img src="{{ asset('frontend/assets/imgs/theme/brandlogo.png')}}" alt="" class="img-responsive">
                             <div class="image-overlay">
                                 <div class="image-info text-center">
                                     <h3>Name</h3>
@@ -149,45 +146,7 @@
                         </div>
 
 
-                        <div class="images">
-                            <img src="images/bridge.jpg" alt="buddha" class="img-responsive">
-                            <div class="image-overlay">
-                                <div class="image-info text-center">
-                                    <h3>Name</h3>
-                                </div>
-                            </div>
-                        </div>
 
-
-                        <div class="images">
-                            <img src="images/1.png" alt="buddha" class="img-responsive">
-                            <div class="image-overlay">
-                                <div class="image-info text-center">
-                                    <h3>Name</h3>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="images">
-                            <img src="images/1.png" alt="" class="img-responsive">
-                            <div class="image-overlay">
-                                <div class="image-info text-center">
-                                    <h3>Name</h3>
-
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="images">
-                            <img src="images/1.png" alt="" class="img-responsive">
-                            <div class="image-overlay">
-                                <div class="image-info text-center">
-                                    <h3>Name</h3>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -197,32 +156,6 @@
 
     <div class="bottomline draft-line"></div>
 
+
 </section>
-<script src="jquery.js"></script>
-<script src="owl.carousel.min.js"></script>
-<script>
-$(function () {
-    $("#photos").owlCarousel({
-        items: 6,
-        autoplay: false,
-        smartSpeed: 600,
-        loop: true,
-        autoplayHoverPause: true,
-        nav: true,
-        dots: false,
-        navText: ['<i class="fa fa-angle-left left"></i>',
-            '<i class="fa fa-angle-right right"></i>'
-        ],
-        responsive: {
 
-            0: {
-                items: 1
-            },
-
-            480: {
-                items: 6
-            },
-        }
-    });
-});
-</script>
