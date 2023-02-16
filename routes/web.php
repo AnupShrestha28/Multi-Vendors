@@ -28,6 +28,7 @@ use App\Http\Controllers\SocialController;
 use App\Http\Controllers\Auth\OtpController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\UserDraftController;
 
 /*
 |--------------------------------------------------------------------------
@@ -514,4 +515,8 @@ Route::controller(AdminController::class)->group(function () {
 //Add Subscriber Email
 Route::controller(SubscriptionController::class)->group(function () {
     Route::post('/add-subscriber-email', 'subscription');
+});
+
+Route::controller(UserDraftController::class)->group(function () {
+    Route::get('/delete/draft/{id}', 'removeFromDraft')->name('remove.draft');
 });

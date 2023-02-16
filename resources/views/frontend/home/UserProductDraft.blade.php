@@ -138,17 +138,21 @@
     }
 
 </style>
+@php
+$lists=App\Models\UserDraft::get();
+  @endphp
 @if(!empty($lists))
+@foreach($lists as $list)
+                            @if($list->isdeleted==0)
+                            @php
+                                $products=App\Models\Product::where('id',$list['product_id'])->get();
+                                @endphp
 
 <section id="Product-Drafting">
 
     <div id="user-draft-product">
         <div class="user-draft-product-heading">
             <h1 style="text-align: center"><br><br>Product Drafting</h1>
-
-
-
-
         </div>
 
 
@@ -161,11 +165,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div id="photoss" class="owl-carousel owl-theme">
-                        @foreach($lists as $list)
-
-                            @php
-                                $products=App\Models\Product::where('id',$list['product_id'])->get();
-                                @endphp
+                            
+                        
 
 
                         @foreach($products as $product)
@@ -200,6 +201,11 @@
                                                         <a aria-label="Compare" class="action-btn" id="{{ $product->id }}" onclick="addToCompare(this.id)"><i class="fi-rs-shuffle"></i></a>
 
                                                         <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal" id="{{ $product->id }}" onclick="productView(this.id)"><i class="fi-rs-eye"></i></a>
+                                                        @php
+                                                            $draft= App\Models\UserDraft::where('product_id',$product->id)->first();
+                                                        @endphp
+
+                                                        <a href="{{ route('remove.draft',$draft->product_id) }}" ><i class="fi-rs-trash"></i></a>
                                                     </div>
                                                 </div>
 
@@ -211,8 +217,7 @@
 
 
                             @endforeach
-
-                            @endforeach
+                           
 
 
                     </div>
@@ -226,5 +231,7 @@
 
 
 </section>
+@endif
+@endforeach
 @endif
 

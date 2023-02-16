@@ -3,7 +3,7 @@
 
 
 @include('frontend.home.home_slider')
-@include('frontend.home.UserProductDraft',$lists)
+@include('frontend.home.UserProductDraft')
 
 
 <!--End hero slider-->

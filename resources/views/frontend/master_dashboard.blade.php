@@ -995,9 +995,7 @@
 
         <script>
 
-            $('.images-user-draft').mouseenter(function(){
-                $(.product-cart-wrap).trigger('mouseover');
-            })
+
         </script>
 
 </body>
