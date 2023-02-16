@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Models\Company;
 use App\Models\OrderItem;
 use DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB as FacadesDB;
 
 class IndexController extends Controller
@@ -36,16 +37,18 @@ class IndexController extends Controller
         $new = Product::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
 
         $special_deals = Product::where('special_deals', 1)->orderBy('id', 'DESC')->limit(3)->get();
-
-        $product_count = OrderItem::select('product_id', FacadesDB::raw('count(product_id) AS total_count'))->groupBy('product_id')->get();
         $lists = [];
+        if (Auth::check()) {
+
+            $product_count = OrderItem::select('product_id', FacadesDB::raw('count(product_id) AS total_count'))->where('user_id', auth()->user()->id)->groupBy('product_id')->get();
 
 
-        foreach ($product_count as $count) {
-            if ($count->total_count > 1) {
-                //dd('yes');
-                $productid = $count->product_id;
-                $lists[] = ['product_id' => $count->product_id];
+            foreach ($product_count as $count) {
+                if ($count->total_count > 1) {
+                    //dd('yes');
+                    $productid = $count->product_id;
+                    $lists[] = ['product_id' => $count->product_id];
+                }
             }
         }
 

@@ -977,9 +977,11 @@
                     navText: ['<i class="fa fa-angle-left left"></i>',
                         '<i class="fa fa-angle-right right"></i>'
                     ],
+
+
                     responsive: {
                         0: {
-                            items: 1
+                            items: 4
                         },
 
                         480: {
@@ -988,10 +990,15 @@
                     }
                 });
             });
-            </script>
 
+        </script>
 
+        <script>
 
+            $('.images-user-draft').mouseenter(function(){
+                $(.product-cart-wrap).trigger('mouseover');
+            })
+        </script>
 
 </body>
 
