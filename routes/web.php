@@ -353,9 +353,25 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/delete/state/{id}', 'DeleteState')->name('delete.state');
 
         Route::get('/district/ajax/{division_id}', 'GetDistrict');
+
+    });
+
+    // Admin Order All Route
+    Route::controller(OrderController::class)->group(function () {
+        Route::get('/pending/order', 'PendingOrder')->name('pending.order');
+
+        Route::get('/admin/order/details/{order_id}', 'AdminOrderDetails')->name('admin.order.details');
+
+        Route::get('/admin/confirmed/order', 'AdminConfirmedOrder')->name('admin.confirmed.order');
+
+        Route::get('/admin/processing/order', 'AdminProcessingOrder')->name('admin.processing.order');
+
+        Route::get('/admin/delivered/order', 'AdminDeliveredOrder')->name('admin.delivered.order');
+
         Route::controller(OrderController::class)->group(function () {
             Route::get('/pending/order', 'PendingOrder')->name('pending.order');
         });
+
     });
 }); // Admin end middleware
 
@@ -455,8 +471,6 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
         Route::post('/checkout/store', 'CheckoutStore')->name('checkout.store');
     });
-
-
 
     // stripe All Route
     Route::controller(StripeController::class)->group(function () {
