@@ -104,8 +104,8 @@
       <tr class="font">
         <th>Image</th>
         <th>Product Name</th>
-        <th>Size</th>
         <th>Color</th>
+        <th>Size</th>
         <th>Code</th>
         <th>Quantity</th>
         <th>Vendor</th>
