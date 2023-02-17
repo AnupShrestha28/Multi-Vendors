@@ -9,12 +9,14 @@ use Carbon\Carbon;
 
 class CouponController extends Controller
 {
-    public function AllCoupon(){
+    public function AllCoupon()
+    {
         $coupon = Coupon::latest()->get();
-        return view('backend.coupon.coupon_all',compact('coupon'));
+        return view('backend.coupon.coupon_all', compact('coupon'));
     } // end method
 
-    public function AddCoupon(){
+    public function AddCoupon()
+    {
         return view('backend.coupon.coupon_add');
     } // end method
 
@@ -33,12 +35,14 @@ class CouponController extends Controller
         return redirect()->route('all.coupon')->with($notification);
     } // end method
 
-    public function EditCoupon($id){
+    public function EditCoupon($id)
+    {
         $coupon = Coupon::findOrFail($id);
-        return view('backend.coupon.edit_coupon',compact('coupon'));
+        return view('backend.coupon.edit_coupon', compact('coupon'));
     } // end method
 
-    public function UpdateCoupon(Request $request){
+    public function UpdateCoupon(Request $request)
+    {
         $coupon_id = $request->id;
 
         Coupon::findOrFail($coupon_id)->update([
@@ -54,7 +58,8 @@ class CouponController extends Controller
         return redirect()->route('all.coupon')->with($notification);
     } // end method
 
-    public function DeleteCoupon($id){
+    public function DeleteCoupon($id)
+    {
         Coupon::findOrFail($id)->delete();
 
         $notification = array(

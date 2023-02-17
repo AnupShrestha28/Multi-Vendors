@@ -144,7 +144,7 @@ class LoginRequest extends FormRequest
      *
      * @return void
      *
-     * @throws \Illuminate\Validation\ValidationException
+     * @throws \Illuminate\Validation\ValidationExceptions
      */
     public function ensureIsNotRateLimited()
     {
