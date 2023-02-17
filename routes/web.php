@@ -368,9 +368,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
         Route::get('/admin/delivered/order', 'AdminDeliveredOrder')->name('admin.delivered.order');
 
-        Route::controller(OrderController::class)->group(function () {
-            Route::get('/pending/order', 'PendingOrder')->name('pending.order');
-        });
+        Route::get('/pending/confirm/{order_id}', 'PendingToConfirm')->name('pending-confirm');
+
+        Route::get('/confirm/processing/{order_id}', 'ConfirmToProcess')->name('confirm-processing');
+
+        Route::get('/processing/delivered/{order_id}', 'ProcessToDelivered')->name('processing-delivered');
+
+        Route::get('/admin/invoice/download/{order_id}', 'AdminInvoiceDownload')->name('admin.invoice.download');
 
     });
 }); // Admin end middleware
@@ -452,15 +456,13 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::controller(CompareController::class)->group(function () {
         Route::get('/compare', 'AllCompare')->name('compare');
 
-
         Route::get('/get-compare-product', 'GetCompareProduct');
 
         Route::get('/compare-remove/{id}', 'CompareRemove');
     });
 
-
-
     // checkout All Route
+    Route::controller(CheckoutController::class)->group(function(){
 
     // wishlist All Route
     Route::controller(CheckoutController::class)->group(function () {
@@ -475,6 +477,8 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     // stripe All Route
     Route::controller(StripeController::class)->group(function () {
         Route::post('/stripe/order', 'StripeOrder')->name('stripe.order');
+
+        Route::post('/cash/order', 'CashOrder')->name('cash.order');
     });
     Route::controller(AllUserController::class)->group(function () {
         Route::get('/user/account/page', 'UserAccount')->name('user.account.page');
@@ -485,12 +489,9 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
         Route::get('/user/order_details/{order_id}', 'UserOrderDetails');
 
-
         Route::get('/user/invoice_download/{order_id}', 'UserOrderInvoice');
 
     });
-});
-
     });
 
 }); // end group user middleware
