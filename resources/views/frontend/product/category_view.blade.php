@@ -109,6 +109,7 @@
                                 <div class="product-category">
                                     <a href="shop-grid-right.html">{{ $product['category']['category_name']}}</a>
                                 </div>
+
                                 <h2><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"> {{ $product->product_name }}</a></h2>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">

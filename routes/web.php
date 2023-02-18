@@ -467,7 +467,6 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/compare-remove/{id}', 'CompareRemove');
     });
 
-    // checkout All Route
 
     // wishlist All Route
     Route::controller(CheckoutController::class)->group(function () {
@@ -477,19 +476,20 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/state-get/ajax/{district_id}', 'StateGetAjax');
 
         Route::post('/checkout/store', 'CheckoutStore')->name('checkout.store');
+
     });
 
-    // stripe All Route
-    Route::controller(StripeController::class)->group(function () {
-        Route::post('/stripe/order', 'StripeOrder')->name('stripe.order');
-        Route::post('/cash/order', 'CashOrder')->name('cash.order');
-    });
+
     Route::controller(AllUserController::class)->group(function () {
         Route::get('/user/account/page', 'UserAccount')->name('user.account.page');
 
         Route::get('/user/change/password', 'UserChangePassword')->name('user.change.password');
 
         Route::get('/user/order/page', 'UserOrderPage')->name('user.order.page');
+
+    Route::controller(StripeController::class)->group(function () {
+        Route::post('/stripe/order', 'StripeOrder')->name('stripe.order');
+    });
 
 
         Route::get('/user/order_details/{order_id}', 'UserOrderDetails');
@@ -500,7 +500,7 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     });
 
 
-  
+
 }); // end group user middleware
 
 

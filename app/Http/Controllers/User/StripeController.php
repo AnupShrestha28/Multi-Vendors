@@ -11,8 +11,6 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\OrderMail;
 
 
 class StripeController extends Controller
@@ -25,6 +23,7 @@ class StripeController extends Controller
         } else {
             $total_amount = round(Cart::total());
         }
+
 
         \Stripe\Stripe::setApiKey('sk_test_51MbO8MDBNs6FAHl24WW6p99jxt0yQdiocMfGdQmWBfIyvkk6i7sGGZmuh8tIIJZHYMtC2xxEQb2KX0DlaodcDofL00D3f2Ci0K');
         $token = $_POST['stripeToken'];
@@ -138,6 +137,7 @@ class StripeController extends Controller
             'order_month' => Carbon::now()->format('F'),
             'order_year' => Carbon::now()->format('Y'),
             'status' => 'pending',
+
             'created_at' => Carbon::now()
         ]);
 
