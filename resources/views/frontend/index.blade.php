@@ -1,7 +1,10 @@
 @extends('frontend.master_dashboard')
 @section('main')
 
+
 @include('frontend.home.home_slider')
+@include('frontend.home.UserProductDraft')
+
 
 <!--End hero slider-->
 @include('frontend.home.home_features_category')
@@ -20,6 +23,8 @@
 
 
 <!-- Fashion Category -->
+
+
 
 <section class="product-tabs section-padding position-relative">
     <div class="container">

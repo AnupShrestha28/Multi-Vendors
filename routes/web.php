@@ -19,12 +19,16 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CompareController;
 use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\User\AllUserController;
+use App\Http\Controllers\Backend\VendorOrderController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\Auth\OtpController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\UserDraftController;
 
 /*
 |--------------------------------------------------------------------------
@@ -145,10 +149,16 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
         Route::get('vendor/delete/product/{id}', 'vendorProductDelete')->name('vendor.delete.product');
 
         Route::get('/vendor/subcategory/ajax/{category_id}', 'VendorGetSubCategory');
+
+        // Vendor order All Routes
+        Route::controller(VendorOrderController::class)->group(function () {
+
+            Route::get('vendor/order', 'VendorOrder')->name('vendor.order');
+        });
     });
 }); // end group middleware
 
-//  });
+
 
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->middleware(RedirectIfAuthenticated::class);
@@ -344,6 +354,34 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/delete/state/{id}', 'DeleteState')->name('delete.state');
 
         Route::get('/district/ajax/{division_id}', 'GetDistrict');
+
+        Route::controller(OrderController::class)->group(function () {
+            Route::get('/pending/order', 'PendingOrder')->name('pending.order');
+        });
+
+    });
+
+    // Admin Order All Route
+    Route::controller(OrderController::class)->group(function () {
+        Route::get('/pending/order', 'PendingOrder')->name('pending.order');
+
+        Route::get('/admin/order/details/{order_id}', 'AdminOrderDetails')->name('admin.order.details');
+
+        Route::get('/admin/confirmed/order', 'AdminConfirmedOrder')->name('admin.confirmed.order');
+
+        Route::get('/admin/processing/order', 'AdminProcessingOrder')->name('admin.processing.order');
+
+        Route::get('/admin/delivered/order', 'AdminDeliveredOrder')->name('admin.delivered.order');
+
+        Route::get('/pending/confirm/{order_id}', 'PendingToConfirm')->name('pending-confirm');
+
+        Route::get('/confirm/processing/{order_id}', 'ConfirmToProcess')->name('confirm-processing');
+
+        Route::get('/processing/delivered/{order_id}', 'ProcessToDelivered')->name('processing-delivered');
+
+        Route::get('/admin/invoice/download/{order_id}', 'AdminInvoiceDownload')->name('admin.invoice.download');
+
+
     });
 }); // Admin end middleware
 
@@ -424,14 +462,10 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::controller(CompareController::class)->group(function () {
         Route::get('/compare', 'AllCompare')->name('compare');
 
-
         Route::get('/get-compare-product', 'GetCompareProduct');
 
         Route::get('/compare-remove/{id}', 'CompareRemove');
     });
-
-
-
 
 
     // wishlist All Route
@@ -442,14 +476,31 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/state-get/ajax/{district_id}', 'StateGetAjax');
 
         Route::post('/checkout/store', 'CheckoutStore')->name('checkout.store');
+
     });
 
 
+    Route::controller(AllUserController::class)->group(function () {
+        Route::get('/user/account/page', 'UserAccount')->name('user.account.page');
 
-    // stripe All Route
+        Route::get('/user/change/password', 'UserChangePassword')->name('user.change.password');
+
+        Route::get('/user/order/page', 'UserOrderPage')->name('user.order.page');
+
     Route::controller(StripeController::class)->group(function () {
         Route::post('/stripe/order', 'StripeOrder')->name('stripe.order');
     });
+
+
+        Route::get('/user/order_details/{order_id}', 'UserOrderDetails');
+
+        Route::get('/user/invoice_download/{order_id}', 'UserOrderInvoice');
+
+    });
+    });
+
+
+
 }); // end group user middleware
 
 
@@ -493,3 +544,9 @@ Route::controller(AdminController::class)->group(function () {
 Route::controller(SubscriptionController::class)->group(function () {
     Route::post('/add-subscriber-email', 'subscription');
 });
+
+
+Route::controller(UserDraftController::class)->group(function () {
+    Route::get('/delete/draft/{id}', 'removeFromDraft')->name('remove.draft');
+});
+
