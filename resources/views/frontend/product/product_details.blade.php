@@ -19,15 +19,17 @@
                             <span class="zoom-icon"><i class="fi-rs-search"></i></span>
                             <!-- MAIN SLIDES -->
                             <div class="product-image-slider">
+                                <div><img src="{{asset($product->product_thambnail)}}" alt=""></div>
                                 @foreach($multiImage as $img)
                                 <figure class="border-radius-10">
                                     <img src="{{ asset($img->photo_name) }}" alt="product image" />
                                 </figure>
                                 @endforeach
-                               
+
                             </div>
                             <!-- THUMBNAILS -->
                             <div class="slider-nav-thumbnails">
+                                <div><img src="{{asset($product->product_thambnail)}}" alt=""></div>
                                 @foreach($multiImage as $img)
                                 <div><img src="{{ asset($img->photo_name) }}" alt="product image" /></div>
                                 @endforeach
@@ -57,7 +59,7 @@
                             </div>
                             <div class="clearfix product-price-cover">
 
-                                
+
                                 @php
 
                                 $amount = $product->selling_price - $product->discount_price;
@@ -104,7 +106,7 @@
                                     @endforeach
 
                                 </select>
-                                
+
                             </div>
 
                             @endif
@@ -124,7 +126,7 @@
                                     @endforeach
 
                                 </select>
-                                
+
                             </div>
 
                             @endif
@@ -143,7 +145,7 @@
 
                                     <button type="submit" class="button button-add-to-cart" onclick="addToCartDetails()"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
 
-                                    
+
                                     <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
                                     <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
                                 </div>
@@ -168,7 +170,7 @@
 <ul class="float-start">
 <li class="mb-5">Product Code: <a href="#">{{$product->product_code}}</a></li>
 <li class="mb-5">Tags: <a href="#" rel="tag">{{$product->product_tags}}</a></li>
-<li>Stock:<span class="in-stock text-brand ml-5">({{$product->product_qty}}) Items In Stock</span></li> 
+<li>Stock:<span class="in-stock text-brand ml-5">({{$product->product_qty}}) Items In Stock</span></li>
 </ul>
 </div>
                         </div>
@@ -195,8 +197,8 @@
                             <div class="tab-pane fade show active" id="Description">
                                 <div class="">
                                     <p>{!! $product->long_descp !!}</p>
-                                    
-                                   
+
+
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="Additional-info">
@@ -303,8 +305,8 @@
                                             <a href="vendor-details-2.html">{{ $product['vendor']['name']}}</a>
                                         </h6>
 
-                                        @endif 
-                                        
+                                        @endif
+
                                         <div class="product-rate-cover text-end">
                                             <div class="product-rate d-inline-block">
                                                 <div class="product-rating" style="width: 90%"></div>
@@ -319,7 +321,7 @@
                                     <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-location.svg') }}" alt="" /><strong>Address: </strong> <span>Owner</span></li>
                                     <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-contact.svg') }}" alt="" /><strong>Contact Seller:</strong><span>Owner</span></li>
                                 </ul>
-                             
+
 
                                 @else
                                 <ul class="contact-infor mb-50">
@@ -336,8 +338,8 @@
                                 <p>{{ $product['vendor']['vendor_short_info'] }}</p>
 
                                 @endif
-                             
-                               
+
+
                             </div>
                             <div class="tab-pane fade" id="Reviews">
                                 <!--Comments-->
@@ -488,8 +490,8 @@
                     </div>
                     <div class="col-12">
                         <div class="row related-products">
-                            
-                            @foreach($relatedProduct as $product) 
+
+                            @foreach($relatedProduct as $product)
                             <div class="col-lg-3 col-md-4 col-12 col-sm-6">
                                 <div class="product-cart-wrap hover-up">
                                     <div class="product-img-action-wrap">
@@ -502,7 +504,7 @@
                                             <a aria-label="Add To Wishlist" class="action-btn" id="{{ $product->id }}" onclick="addToWishlist(this.id)"><i class="fi-rs-heart"></i></a>
 
                                             <a aria-label="Compare" class="action-btn" id="{{ $product->id }}" onclick="addToCompare(this.id)"><i class="fi-rs-shuffle"></i></a>
-        
+
                                             <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal" id="{{ $product->id }}" onclick="productView(this.id)"><i class="fi-rs-eye"></i></a>
                                         </div>
                                         <div class="product-badges product-badges-position product-badges-mrg">
@@ -524,7 +526,7 @@
                                             <span class="hot">{{ round($discount) }}%</span>
 
                                             @endif
-                                            
+
                                         </div>
                                     </div>
                                     <div class="product-content-wrap">
@@ -545,7 +547,7 @@
                                             <span class="old-price">Rs.{{ $product->selling_price }}</span>
                                         </div>
                                         @endif
-                                        
+
                                     </div>
                                 </div>
                             </div>

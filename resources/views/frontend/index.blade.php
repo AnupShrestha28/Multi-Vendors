@@ -25,7 +25,7 @@
     <div class="container">
         <div class="section-title style-2 wow animate__animated animate__fadeIn">
             <h3>{{ $skip_category_0->category_name }} Category</h3>
-           
+
         </div>
         <!--End nav-tabs-->
         <div class="tab-content" id="myTabContent">
@@ -70,7 +70,7 @@
                                     <span class="hot">{{ round($discount) }}%</span>
 
                                     @endif
-                                    
+
                                 </div>
                             </div>
                             <div class="product-content-wrap">
@@ -94,7 +94,7 @@
 
                                     @endif
 
-                                    
+
 
 
                                 </div>
@@ -122,12 +122,12 @@
                     </div>
                     <!--end product card-->
                     @endforeach
-                   
+
                 </div>
                 <!--End product-grid-4-->
             </div>
-           
-           
+
+
         </div>
         <!--End tab-content-->
     </div>
@@ -143,7 +143,7 @@
     <div class="container">
         <div class="section-title style-2 wow animate__animated animate__fadeIn">
             <h3>{{ $skip_category_2->category_name }} Category</h3>
-           
+
         </div>
         <!--End nav-tabs-->
         <div class="tab-content" id="myTabContent">
@@ -188,7 +188,7 @@
                                     <span class="hot">{{ round($discount) }}%</span>
 
                                     @endif
-                                    
+
                                 </div>
                             </div>
                             <div class="product-content-wrap">
@@ -212,7 +212,7 @@
 
                                     @endif
 
-                                    
+
 
 
                                 </div>
@@ -240,12 +240,12 @@
                     </div>
                     <!--end product card-->
                     @endforeach
-                   
+
                 </div>
                 <!--End product-grid-4-->
             </div>
-           
-           
+
+
         </div>
         <!--End tab-content-->
     </div>
@@ -261,7 +261,7 @@
     <div class="container">
         <div class="section-title style-2 wow animate__animated animate__fadeIn">
             <h3>{{ $skip_category_6->category_name }} Category</h3>
-           
+
         </div>
         <!--End nav-tabs-->
         <div class="tab-content" id="myTabContent">
@@ -306,7 +306,7 @@
                                     <span class="hot">{{ round($discount) }}%</span>
 
                                     @endif
-                                    
+
                                 </div>
                             </div>
                             <div class="product-content-wrap">
@@ -330,7 +330,7 @@
 
                                     @endif
 
-                                    
+
 
 
                                 </div>
@@ -358,12 +358,12 @@
                     </div>
                     <!--end product card-->
                     @endforeach
-                   
+
                 </div>
                 <!--End product-grid-4-->
             </div>
-           
-           
+
+
         </div>
         <!--End tab-content-->
     </div>
@@ -491,7 +491,7 @@
                     </article>
                     @endforeach
 
-                    
+
                 </div>
             </div>
             <div class="col-xl-3 col-lg-4 col-md-6 mb-sm-5 mb-md-0 d-none d-xl-block wow animate__animated animate__fadeInUp" data-wow-delay=".3s">
@@ -502,7 +502,7 @@
                     <article class="row align-items-center hover-up">
                         <figure class="col-md-4 mb-0">
                             <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"><img src="{{ asset($item->product_thambnail) }}" alt="" /></a>
-                        </figure>  
+                        </figure>
                         <div class="col-md-8 mb-0">
                             <h6>
                                 <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}">{{ $item->product_name }}</a>
@@ -530,7 +530,7 @@
                     </article>
                     @endforeach
 
-                
+
                 </div>
             </div>
         </div>
