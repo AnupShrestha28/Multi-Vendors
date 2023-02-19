@@ -1,16 +1,16 @@
-@extends('admin.admin_dashboard')
-@section('admin')
+@extends('vendor.vendor_dashboard')
+@section('vendor')
 
 <div class="page-content">
 				<!--breadcrumb-->
 				<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-					<div class="breadcrumb-title pe-3">Admin Odrder Details</div>
+					<div class="breadcrumb-title pe-3">Vendor Odrder Details</div>
 					<div class="ps-3">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb mb-0 p-0">
 								<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
 								</li>
-								<li class="breadcrumb-item active" aria-current="page">Admin Odrder Details</li>
+								<li class="breadcrumb-item active" aria-current="page">Vendor Odrder Details</li>
 							</ol>
 						</nav>
 					</div>
@@ -82,7 +82,7 @@
 						<div class="card">
 							<div class="card-header">
 								<h5>Order Details</h5>
-								<span class="text-danger" style="font-weight:bold;">Your order invoice : {{ $order->invoice_no }}</span>
+								<span class="text-danger" style="font-weight:bold;">Invoice : {{ $order->invoice_no }}</span>
 							</div>
 							<hr>
 							<div class="card-body">
@@ -120,23 +120,6 @@
 									<tr>
 										<th>Order Status :</th>
 										<th><span class="badge bg-danger" style="font-size: 15px;">{{ $order->status }}</span></th>
-									</tr>
-
-									<tr>
-										<th> </th>
-										<th>
-											@if($order->status == 'pending')
-											<a href="{{ route('pending-confirm',$order->id)}}" class="btn btn-block btn-success" id="confirm">Confirm Order</a>
-
-											@elseif($order->status == 'confirm')
-											<a href="{{ route('confirm-processing',$order->id)}}" class="btn btn-block btn-success" id="processing">Processing Order</a> 
-
-											@elseif($order->status == 'processing')
-											<a href="{{ route('processing-delivered',$order->id)}}" class="btn btn-block btn-success" id="delivered">Delivered Order</a> 
-
-											@endif
-											
-										</th>
 									</tr>
 								</table>
 							</div>
