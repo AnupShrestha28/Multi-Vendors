@@ -161,6 +161,7 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
 
             Route::get('vendor/order/details/{order_id}', 'VendorOrderDetails')->name('vendor.order.details');
         });
+        //
     });
 }); // end group middleware
 
@@ -360,7 +361,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/delete/state/{id}', 'DeleteState')->name('delete.state');
 
         Route::get('/district/ajax/{division_id}', 'GetDistrict');
-
     });
 
     // Admin Order All Route
@@ -382,7 +382,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/processing/delivered/{order_id}', 'ProcessToDelivered')->name('processing-delivered');
 
         Route::get('/admin/invoice/download/{order_id}', 'AdminInvoiceDownload')->name('admin.invoice.download');
-
     });
 
     // Return order All Routes
@@ -394,7 +393,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
         Route::get('complete/return/request', 'CompleteReturnRequest')->name('complete.return.request');
     });
-
 }); // Admin end middleware
 
 // Frontend Product details all route
@@ -480,42 +478,40 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     });
 
     // checkout All Route
-    Route::controller(CheckoutController::class)->group(function(){
-
-    // wishlist All Route
     Route::controller(CheckoutController::class)->group(function () {
 
-        Route::get('/district-get/ajax/{division_id}', 'DistrictGetAjax');
+        // wishlist All Route
+        Route::controller(CheckoutController::class)->group(function () {
 
-        Route::get('/state-get/ajax/{district_id}', 'StateGetAjax');
+            Route::get('/district-get/ajax/{division_id}', 'DistrictGetAjax');
 
-        Route::post('/checkout/store', 'CheckoutStore')->name('checkout.store');
+            Route::get('/state-get/ajax/{district_id}', 'StateGetAjax');
+
+            Route::post('/checkout/store', 'CheckoutStore')->name('checkout.store');
+        });
+
+        // stripe All Route
+        Route::controller(StripeController::class)->group(function () {
+            Route::post('/stripe/order', 'StripeOrder')->name('stripe.order');
+
+            Route::post('/cash/order', 'CashOrder')->name('cash.order');
+        });
+        Route::controller(AllUserController::class)->group(function () {
+            Route::get('/user/account/page', 'UserAccount')->name('user.account.page');
+
+            Route::get('/user/change/password', 'UserChangePassword')->name('user.change.password');
+
+            Route::get('/user/order/page', 'UserOrderPage')->name('user.order.page');
+
+            Route::get('/user/order_details/{order_id}', 'UserOrderDetails');
+
+            Route::get('/user/invoice_download/{order_id}', 'UserOrderInvoice');
+
+            Route::post('/return/order/{order_id}', 'ReturnOrder')->name('return.order');
+
+            Route::get('/return/order/page', 'ReturnOrderPage')->name('return.order.page');
+        });
     });
-
-    // stripe All Route
-    Route::controller(StripeController::class)->group(function () {
-        Route::post('/stripe/order', 'StripeOrder')->name('stripe.order');
-
-        Route::post('/cash/order', 'CashOrder')->name('cash.order');
-    });
-    Route::controller(AllUserController::class)->group(function () {
-        Route::get('/user/account/page', 'UserAccount')->name('user.account.page');
-
-        Route::get('/user/change/password', 'UserChangePassword')->name('user.change.password');
-
-        Route::get('/user/order/page', 'UserOrderPage')->name('user.order.page');
-
-        Route::get('/user/order_details/{order_id}', 'UserOrderDetails');
-
-        Route::get('/user/invoice_download/{order_id}', 'UserOrderInvoice');
-
-        Route::post('/return/order/{order_id}', 'ReturnOrder')->name('return.order');
-
-        Route::get('/return/order/page', 'ReturnOrderPage')->name('return.order.page');
-
-    });
-    });
-
 }); // end group user middleware
 
 
@@ -559,4 +555,3 @@ Route::controller(AdminController::class)->group(function () {
 Route::controller(SubscriptionController::class)->group(function () {
     Route::post('/add-subscriber-email', 'subscription');
 });
-
