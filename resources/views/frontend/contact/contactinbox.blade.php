@@ -86,6 +86,7 @@
                           </tr>
                         </thead>
                         <tbody>
+                            @foreach($contact as $item)
                           <tr class="unread">
                             <td class="tbl-checkbox">
                               <label class="form-check-label">
@@ -93,7 +94,7 @@
                                 <span class="form-check-sign"></span>
                               </label>
                             </td>
-                            <td class="hidden-xs">Nelson Lane</td>
+                            <td class="hidden-xs">{{  $item->user()->$name}}</td>
                             <td class="max-texts">
                               <a href="#">
                                 <span class="badge badge-primary">Work</span>
@@ -102,6 +103,7 @@
                                 <td></td>
                             <td class="text-right"> 12:30 PM </td>
                           </tr>
+                          @endforeach
                         </tbody>
                       </table>
                     </div>

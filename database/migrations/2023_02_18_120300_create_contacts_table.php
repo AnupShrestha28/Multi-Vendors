@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('subject');
+            $table->string('priority');
+            $table->longText('message');
             $table->timestamps();
         });
     }

@@ -567,4 +567,5 @@ Route::controller(ContactController::class)->group(function () {
     Route::get('/customer/contact', 'contactPage')->name('customer.contact');
     Route::get('/contact/inbox', 'contactInbox')->name('contact.inbox');
     Route::get('/contact/read', 'contactRead')->name('contact.read');
+    Route::post('/customer/contactsend', 'contactMessageSend')->name('contact.messagesend');
 });

@@ -22,7 +22,8 @@
                 </div>
                 <div class="card-body">
 
-                  <form method="POST">
+                  <form action="{{ route('contact.messagesend') }}" id="contactForm" method="POST" class="loader-form">
+                    @csrf
                     <div class="col-lg-12">
                       <div class="row">
                         <div class="col-lg-6 ">
@@ -45,7 +46,9 @@
 
 
                               <select name="priority" id="priority" style="border: 1px solid #ececec">
+                                <option value="" selected disabled>Choose</option>
                                 <option value="High">High</option>
+                                <option value="Medium">Medium</option>
                                 <option value="Low">Low</option>
 
                               </select>
@@ -68,8 +71,8 @@
                         </div>
                       </div>
                       <div class="form-group text-left">
-                        <button type="submit" class="btn btn-round btn-lg btn-primary">
-                          Send Message
+                            <button class="btn btn-loader btn-round btn-lg btn-primary" type="submit"><span class="btn-text">Send Message</span><span class="loading-ring"></span></button>
+
                         </button>
                       </div>
                     </div>
@@ -89,6 +92,59 @@
   <script src="{{ asset('frontend/contactassets/js/app.min.js') }}"></script>
   <script src="{{ asset('frontend/contactassets/js/scripts.js') }}"></script>
   <script src="{{ asset('frontend/contactassets/js/custom.js') }}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+@if(auth()->check())
+  <script type="text/javascript">
+    $(document).ready(function(){
+        function loaderremove()
+            {
+                $('.loading-ring').css('visibility', 'hidden');
+                $('.btn-text').css('color', 'white');
+            }
+        $('#contactForm').validate({
+            rules:{
+                priority:{
+                    required : true,
+                },
+                subject:{
+                    required:true,
+                },
+                message:{
+                    required:true,
+                }
+            },
+            messages:{
+                priority:{
+                    required: 'Please select Priority',
+                },
+                subject:{
+                    required: 'Please enter subject'
+                },
+                messsage:{
+                    required: 'Please enter some message'
+                },
+
+            },
+            errorElement : 'span',
+            errorPlacement: function(error, element){
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                loaderremove();
+            },
+            highlight : function(element, errorClass, validClass){
+                $(element).addClass('is-invalid');
+                loaderremove();
+
+            },
+            unhighlight : function(element, errorClass, validClass){
+                $(element).removeClass('is-invalid');
+
+            },
+        });
+    });
+</script>
+@endif
+
 
   @endsection
 

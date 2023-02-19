@@ -78,6 +78,8 @@
     <script src="{{ asset('frontend/assets/js/plugins/jquery.vticker-min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/plugins/jquery.theia.sticky.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/plugins/jquery.elevatezoom.js') }}"></script>
+    <script src="{{ asset('adminbackend/assets/js/validate.min.js')}}"></script>
+
     <!-- Template  JS -->
     <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
     <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
