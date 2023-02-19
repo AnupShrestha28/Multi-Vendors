@@ -47,7 +47,7 @@
                                         <td>{{$item['order']['payment_method']}}</td>
                                         <td> <span class="badge rounded-pill bg-success">{{$item['order']['status']}}</span></td>
 										<td>
-                                            <a href="{{ route('vendor.order.details',$item->order->id) }}" class="btn btn-info" title="Details"><i class="fa fa-eye"></i></a>
+                                            <a href="" class="btn btn-info" title="Details"><i class="fa fa-eye"></i></a>
                                         </td>
 									
 									</tr>
