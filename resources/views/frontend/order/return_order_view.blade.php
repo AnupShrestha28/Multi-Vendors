@@ -10,7 +10,7 @@
     <div class="container">
         <div class="breadcrumb">
             <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-            <span></span> My Account 
+            <span></span> Return Order Page 
         </div>
     </div>
 </div>
@@ -43,6 +43,7 @@
                                                         <th>Total Amount</th>
                                                         <th>Payment</th>
                                                         <th>Invoice</th>
+                                                        <th>Reason</th>
                                                         <th>Status</th>
                                                         <th>Actions</th>
                                                     </tr>
@@ -56,22 +57,17 @@
                                                         <td>{{ $order->payment_method}}</td>
                                                         <td>{{ $order->invoice_no}}</td>
 
+                                                        <td>{{ $order->return_reason}}</td>
+
                                                         <td>
-    @if($order->status == 'pending')                                                           
+    @if($order->return_order == 0)           
+    <span class="badge rounded-pill bg-danger">No Return Request</span>
+
+    @elseif($order->return_order == 1)
     <span class="badge rounded-pill bg-danger">Pending</span>
 
-    @elseif($order->status == 'confirm')
-    <span class="badge rounded-pill bg-info">Confirm</span>
-
-    @elseif($order->status == 'processing')
-    <span class="badge rounded-pill bg-warning">Processing</span>
-
-    @elseif($order->status == 'deliverd')
-    <span class="badge rounded-pill bg-success">Delivered</span>
-
-    @if($order->return_order == 1)
-    <span class="badge rounded-pill" style="background: red;">Return</span>
-    @endif
+    @elseif($order->return_order == 2)
+    <span class="badge rounded-pill bg-success">Success</span>
 
     @endif
                                                         </td>

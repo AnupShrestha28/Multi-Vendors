@@ -22,6 +22,7 @@ use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\Backend\VendorOrderController;
+use App\Http\Controllers\Backend\ReturnController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\SocialController;
@@ -377,6 +378,17 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/invoice/download/{order_id}', 'AdminInvoiceDownload')->name('admin.invoice.download');
 
     });
+
+    // Return order All Routes
+    Route::controller(ReturnController::class)->group(function () {
+
+        Route::get('return/request', 'ReturnRequest')->name('return.request');
+
+        Route::get('return/request/approved/{order_id}', 'ReturnRequestApproved')->name('return.request.approved');
+
+        Route::get('complete/return/request', 'CompleteReturnRequest')->name('complete.return.request');
+    });
+
 }); // Admin end middleware
 
 // Frontend Product details all route
@@ -490,6 +502,10 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/user/order_details/{order_id}', 'UserOrderDetails');
 
         Route::get('/user/invoice_download/{order_id}', 'UserOrderInvoice');
+
+        Route::post('/return/order/{order_id}', 'ReturnOrder')->name('return.order');
+
+        Route::get('/return/order/page', 'ReturnOrderPage')->name('return.order.page');
 
     });
     });

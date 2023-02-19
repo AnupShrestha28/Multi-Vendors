@@ -125,3 +125,35 @@ $(function(){
 
   });
   // delivering order end
+
+
+  
+   // Return approve starts
+   $(function(){
+    $(document).on('click','#approved',function(e){
+        e.preventDefault();
+        var link = $(this).attr("href");
+
+  
+                  Swal.fire({
+                    title: 'Are you sure to approved?',
+                    text: "Return Order Approved",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Approved!'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      window.location.href = link
+                      Swal.fire(
+                        'Approved!',
+                        'Approved Successfully',
+                        'success'
+                      )
+                    }
+                  }) 
+    });
+
+  });
+  // Return approve end
