@@ -11,7 +11,7 @@
                         <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a> <span></span> {{ $breadcat->category_name }}
                     </div>
                 </div>
-               
+
             </div>
         </div>
     </div>
@@ -102,13 +102,14 @@
                                     <span class="hot">{{ round($discount) }}%</span>
 
                                     @endif
-                                    
+
                                 </div>
                             </div>
                             <div class="product-content-wrap">
                                 <div class="product-category">
                                     <a href="shop-grid-right.html">{{ $product['category']['category_name']}}</a>
                                 </div>
+
                                 <h2><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"> {{ $product->product_name }}</a></h2>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">
@@ -126,7 +127,7 @@
 
                                     @endif
 
-                                    
+
 
 
                                 </div>
@@ -174,10 +175,10 @@
                     </ul>
                 </nav>
             </div>
-            
+
             <!--End Deals-->
 
-            
+
         </div>
         <div class="col-lg-1-5 primary-sidebar sticky-sidebar">
             <div class="sidebar-widget widget-category-2 mb-30">
@@ -195,7 +196,7 @@
                     @endforeach
                 </ul>
             </div>
-            
+
             <!-- Product sidebar Widget -->
             <div class="sidebar-widget product-sidebar mb-30 p-30 bg-grey border-radius-10">
                 <h5 class="section-title style-1 mb-30">New products</h5>
@@ -214,7 +215,7 @@
                         <p class="price mb-0 mt-5">Rs.{{ $product->discount_price }}</p>
 
                         @endif
-                        
+
                         <div class="product-rate">
                             <div class="product-rating" style="width: 90%"></div>
                         </div>
@@ -222,7 +223,7 @@
                 </div>
                 @endforeach
             </div>
-           
+
         </div>
     </div>
 </div>

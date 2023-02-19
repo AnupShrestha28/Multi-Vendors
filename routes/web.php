@@ -29,6 +29,7 @@ use App\Http\Controllers\SocialController;
 use App\Http\Controllers\Auth\OtpController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\UserDraftController;
 
 /*
 |--------------------------------------------------------------------------
@@ -355,6 +356,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
         Route::get('/district/ajax/{division_id}', 'GetDistrict');
 
+        Route::controller(OrderController::class)->group(function () {
+            Route::get('/pending/order', 'PendingOrder')->name('pending.order');
+        });
+
     });
 
     // Admin Order All Route
@@ -376,6 +381,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/processing/delivered/{order_id}', 'ProcessToDelivered')->name('processing-delivered');
 
         Route::get('/admin/invoice/download/{order_id}', 'AdminInvoiceDownload')->name('admin.invoice.download');
+
 
     });
 
@@ -473,8 +479,6 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/compare-remove/{id}', 'CompareRemove');
     });
 
-    // checkout All Route
-    Route::controller(CheckoutController::class)->group(function(){
 
     // wishlist All Route
     Route::controller(CheckoutController::class)->group(function () {
@@ -484,20 +488,21 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/state-get/ajax/{district_id}', 'StateGetAjax');
 
         Route::post('/checkout/store', 'CheckoutStore')->name('checkout.store');
+
     });
 
-    // stripe All Route
-    Route::controller(StripeController::class)->group(function () {
-        Route::post('/stripe/order', 'StripeOrder')->name('stripe.order');
 
-        Route::post('/cash/order', 'CashOrder')->name('cash.order');
-    });
     Route::controller(AllUserController::class)->group(function () {
         Route::get('/user/account/page', 'UserAccount')->name('user.account.page');
 
         Route::get('/user/change/password', 'UserChangePassword')->name('user.change.password');
 
         Route::get('/user/order/page', 'UserOrderPage')->name('user.order.page');
+
+    Route::controller(StripeController::class)->group(function () {
+        Route::post('/stripe/order', 'StripeOrder')->name('stripe.order');
+    });
+
 
         Route::get('/user/order_details/{order_id}', 'UserOrderDetails');
 
@@ -509,6 +514,8 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
     });
     });
+
+
 
 }); // end group user middleware
 
@@ -552,5 +559,10 @@ Route::controller(AdminController::class)->group(function () {
 //Add Subscriber Email
 Route::controller(SubscriptionController::class)->group(function () {
     Route::post('/add-subscriber-email', 'subscription');
+});
+
+
+Route::controller(UserDraftController::class)->group(function () {
+    Route::get('/delete/draft/{id}', 'removeFromDraft')->name('remove.draft');
 });
 
