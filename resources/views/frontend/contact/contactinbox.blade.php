@@ -1,23 +1,44 @@
-
+@extends('admin.admin_dashboard')
+@section('admin')
 <link rel="stylesheet" href="{{ asset('frontend/contactassets/js/app.min.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/contactassets/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/contactassets/css/components.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/contactassets/css/custom.css') }}">
 
+<div class="page-content">
+    <!--breadcrumb-->
+    <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+        <div class="breadcrumb-title pe-3">Contact Inbox</div>
+        <div class="ps-3">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0 p-0">
+                    <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Contact Inbox</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="ms-auto">
+
+            </div>
+        </div>
+    </div>
+
+
   <div id="app">
     <div class="main-wrapper main-wrapper-1">
-      <div class="main-content">
+      <div class="main-content" style="padding-left:15px;padding-top:0">
         <section class="section">
           <div class="section-body">
             <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="card">
                   <div class="body">
 
                   </div>
                 </div>
               </div>
-              <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="card">
                   <div class="boxs mail_listing">
                     <div class="inbox-center table-responsive">
@@ -36,12 +57,12 @@
                                   <div class="email-btn-group m-l-15">
                                     <a href="#" class="col-dark-gray waves-effect m-r-20" title="back"
                                       data-toggle="tooltip">
-                                      <i class="material-icons">keyboard_return</i>
+                                      <i class="fa fa-arrow-left"></i>Back
                                     </a>
 
                                     <a href="#" class="col-dark-gray waves-effect m-r-20" title="Delete"
                                       data-toggle="tooltip">
-                                      <i class="material-icons">delete</i>
+                                      <i class="fa fa-trash"></i>Delete
                                     </a>
 
                                   </div>
@@ -53,11 +74,11 @@
                                 <div class="email-btn-group m-l-15">
                                   <a href="#" class="col-dark-gray waves-effect m-r-20" title="previous"
                                     data-toggle="tooltip">
-                                    <i class="material-icons">navigate_before</i>
+                                    <i class="fa fa-arrow-left"></i>
                                   </a>
                                   <a href="#" class="col-dark-gray waves-effect m-r-20" title="next"
                                     data-toggle="tooltip">
-                                    <i class="material-icons">navigate_next</i>
+                                    <i class="fa fa-arrow-right"></i>
                                   </a>
                                 </div>
                               </div>
@@ -78,9 +99,7 @@
                                 <span class="badge badge-primary">Work</span>
                                 Lorem ipsum perspiciatis unde omnis iste natus</a>
                             </td>
-                            <td class="hidden-xs">
-                              <i class="material-icons">attach_file</i>
-                            </td>
+                                <td></td>
                             <td class="text-right"> 12:30 PM </td>
                           </tr>
                         </tbody>
@@ -101,9 +120,11 @@
 
     </div>
   </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="{{ asset('frontend/contactassets/js/app.min.js') }}"></script>
   <script src="{{ asset('frontend/contactassets/js/scripts.js') }}"></script>
-
   <script src="{{ asset('frontend/contactassets/js/custom.js') }}"></script>
+
+  @endsection
 
 

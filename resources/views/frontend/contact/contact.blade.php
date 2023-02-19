@@ -1,4 +1,5 @@
-@extends('layouts.app')
+@extends('frontend.master_dashboard')
+
 
 @section('main')
   <link rel="stylesheet" href="{{ asset('frontend/contactassets/js/app.min.css') }}">
@@ -29,13 +30,9 @@
                           <div class="form-group floating-addon">
                             <label>Subject</label>
                             <div class="input-group">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                  <i class="far fa-user"></i>
-                                </div>
-                              </div>
-                              <input id="name" type="text" class="form-control"  autofocus
-                                placeholder="Name">
+
+                              <input id="subject" type="text" name="subject" class="form-control" style="padding-left:10px !important" autofocus
+                                placeholder="Enter Subject">
                             </div>
                           </div>
                         </div>
@@ -45,12 +42,13 @@
                           <div class="form-group floating-addon">
                             <label>Priority</label>
                             <div class="input-group">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                  <i class="fas fa-envelope"></i>
-                                </div>
-                              </div>
-                              <input id="email" type="email" class="form-control" name="email" placeholder="Email">
+
+
+                              <select name="priority" id="priority" style="border: 1px solid #ececec">
+                                <option value="High">High</option>
+                                <option value="Low">Low</option>
+
+                              </select>
                             </div>
                           </div>
 
@@ -62,7 +60,7 @@
                         <div class="col-lg-12 p-0">
                           <div class="form-group">
                             <label>Message</label>
-                            <textarea style="height:200px !important" class="form-control"
+                            <textarea style="height:200px !important" name="message" id="message" class="form-control"
                               placeholder="Enter your message"></textarea>
                           </div>
 
