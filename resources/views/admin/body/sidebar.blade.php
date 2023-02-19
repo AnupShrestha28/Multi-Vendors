@@ -1,3 +1,4 @@
+
 <div class="sidebar-wrapper" data-simplebar="true">
     <div class="sidebar-header">
         <div>
@@ -172,6 +173,15 @@
             </ul>
         </li>
 
+
+        <li>
+            <a href="{{ route('contact.inbox') }}">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">Contact Inbox</div>
+            </a>
+
+        </li>
 
 
         <li class="menu-label">UI Elements</li>
