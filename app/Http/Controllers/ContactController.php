@@ -21,9 +21,10 @@ class ContactController extends Controller
         return view('frontend.contact.contactinbox', compact('contact'));
     }
 
-    public function contactRead()
+    public function contactRead($id)
     {
-        return view('frontend.contact.contactread');
+        $contactread = Contact::find($id);
+        return view('frontend.contact.contactread', compact('contactread'));
     }
 
     public function contactMessageSend(Request $request)
@@ -50,5 +51,12 @@ class ContactController extends Controller
 
             return redirect('login')->with($notification);
         }
+    }
+
+    public function deleteSelected(Request $request)
+    {
+        Contact::whereIn('id', $request->get('selected'))->delete();
+
+        return response("Selected posts deleted successfully.", 200);
     }
 }

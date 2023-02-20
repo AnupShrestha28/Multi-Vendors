@@ -95,7 +95,8 @@ class VendorController extends Controller
         return back()->with("status", "Password Changed Successfully");
     } // end method
 
-    public function BecomeVendor(){
+    public function BecomeVendor()
+    {
         return view('auth.become_vendor');
     } // end method
 
@@ -138,4 +139,3 @@ class VendorController extends Controller
         return redirect(RouteServiceProvider::HOME);
     } // end method
 }
-

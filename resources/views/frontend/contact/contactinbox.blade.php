@@ -42,7 +42,7 @@
                 <div class="card">
                   <div class="boxs mail_listing">
                     <div class="inbox-center table-responsive">
-                      <table class="table table-hover">
+                      <table class="table table-hover" id="inboxTable">
                         <thead>
                           <tr>
                             <th class="text-center">
@@ -60,7 +60,7 @@
                                       <i class="fa fa-arrow-left"></i>Back
                                     </a>
 
-                                    <a href="#" class="col-dark-gray waves-effect m-r-20" title="Delete"
+                                    <a id="deleteChecked" class="col-dark-gray waves-effect m-r-20" title="Delete"
                                       data-toggle="tooltip">
                                       <i class="fa fa-trash"></i>Delete
                                     </a>
@@ -86,22 +86,37 @@
                           </tr>
                         </thead>
                         <tbody>
+                            <tr class="unread " style="height: 30px !important">
+                                <th class="tbl-checkbox">
+                                  <label class="form-check-label">
+                                        Select
+                                  </label>
+                                </th>
+                                <th class="hidden-xs">Name</th>
+                                <th class="max-texts">
+
+                                    <span style="text-overflow:ellipsis">Priority</span>
+                                    <span style="margin-left:5rem">Subject</span>
+                                </th>
+                                    <td></td>
+                                <th class="text-right d-flex" style="align-items: center;justify-content:end" > Date</th>
+                              </tr>
                             @foreach($contact as $item)
                           <tr class="unread">
-                            <td class="tbl-checkbox">
+                            <td class="tbl-checkbox" id="checkbox">
                               <label class="form-check-label">
-                                <input type="checkbox">
+                                <input class="check" value="{{ $item->id }}" type="checkbox">
                                 <span class="form-check-sign"></span>
                               </label>
                             </td>
-                            <td class="hidden-xs">{{  $item->user()->$name}}</td>
+                            <td class="hidden-xs">{{  $item->user->name}}</td>
                             <td class="max-texts">
-                              <a href="#">
-                                <span class="badge badge-primary">Work</span>
-                                Lorem ipsum perspiciatis unde omnis iste natus</a>
+                              <a href="{{ route('contact.read',$item->id) }}">
+                                <span style="text-overflow:ellipsis"class="badge badge-primary">{{ $item->priority }}</span>
+                                <strong class="ms-3">{{ $item->subject }}</strong></a>
                             </td>
                                 <td></td>
-                            <td class="text-right"> 12:30 PM </td>
+                            <td class="text-right d-flex" style="align-items: center;justify-content:end" > {{ $item->created_at }} </td>
                           </tr>
                           @endforeach
                         </tbody>
@@ -109,7 +124,7 @@
                     </div>
                     <div class="row">
                       <div class="col-sm-7 ">
-                        <p class="p-15">Showing 1 - 15 of 200</p>
+                        <p class="p-15">Showing  1- 15 of {{ $contact->count() }} </p>
                       </div>
                     </div>
                   </div>
@@ -126,6 +141,49 @@
   <script src="{{ asset('frontend/contactassets/js/app.min.js') }}"></script>
   <script src="{{ asset('frontend/contactassets/js/scripts.js') }}"></script>
   <script src="{{ asset('frontend/contactassets/js/custom.js') }}"></script>
+  <script>
+    $(document).ready(function() {
+        $('#deleteChecked').on('click', function() {
+           console.log("hello");
+          var selected = [];
+          $('#inboxTable .check:checked').each(function() {
+            selected.push($(this).val());
+          });
+
+          Swal.fire({
+            icon: 'warning',
+              title: 'Are you sure you want to delete selected record(s)?',
+              showDenyButton: false,
+              showCancelButton: true,
+              confirmButtonText: 'Yes'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              $.ajax({
+                type: 'post',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url:{{ route('contact.delete') }},
+                data: {
+                  'selected': selected
+                },
+                success: function (response, textStatus, xhr) {
+                  Swal.fire({
+                    icon: 'success',
+                      title: response,
+                      showDenyButton: false,
+                      showCancelButton: false,
+                      confirmButtonText: 'Yes'
+                  }).then((result) => {
+                    window.location={{ route('contact.inbox') }}
+                  });
+                }
+              });
+            }
+          });
+        });
+    });
+  </script>
 
   @endsection
 

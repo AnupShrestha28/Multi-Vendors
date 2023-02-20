@@ -1,8 +1,28 @@
+@extends('admin.admin_dashboard')
+@section('admin')
 <link rel="stylesheet" href="{{ asset('frontend/contactassets/js/app.min.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/contactassets/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/contactassets/css/components.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/contactassets/css/custom.css') }}">
 
+<div class="page-content">
+    <!--breadcrumb-->
+    <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+        <div class="breadcrumb-title pe-3">Contact Inbox</div>
+        <div class="ps-3">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0 p-0">
+                    <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Contact Inbox</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="ms-auto">
+
+            </div>
+        </div>
+    </div>
   <div id="app">
     <div class="main-wrapper main-wrapper-1">
 
@@ -26,36 +46,24 @@
                         <div class="mail-sender">
                           <div class="mail-heading">
                             <h4 class="vew-mail-header">
-                              <b>Mail Subject</b>
+                              <b>{{ $contactread->subject }}</b>
                             </h4>
                           </div>
                           <hr>
                           <div class="media">
-                            <a href="#" class="table-img m-r-15">
-                              <img alt="image" src="assets/img/users/user-2.png" class="rounded-circle" width="35"
-                                data-toggle="tooltip" title="Sachin Pandit">
-                            </a>
+
+                              <img alt="image" src=@if(!empty($contactread->user->photo)) {{ asset('upload/user_images/'.$contactread->user->photo) }} @elseif(!empty($contactread->user->social_avatar)) "{{ $contactread->user->social_avatar }}"  @else "{{ url('upload/no_image.jpg') }}" @endif class="rounded-circle" width="35"
+                               title="User Image">
+
                             <div class="media-body">
-                              <span class="date pull-right">4:15AM 04 April 2017</span>
-                              <h5 class="text-primary">Sarah Smith</h5>
-                              <small class="text-muted">From: sarah@example.com</small>
+                              <span class="date pull-right">{{ $contactread->created_at }}</span>
+                              <h5 class="text-primary">{{ $contactread->user->name }}</h5>
+                              <small class="text-muted">From:{{ $contactread->user->email }}</small>
                             </div>
                           </div>
                         </div>
                         <div class="view-mail p-t-20">
-                          <p>Donec ultrices faucibus rutrum. Phasellus sodales vulputate urna, vel
-                            accumsan augue
-                            egestas ac. Donec vitae leo at sem lobortis porttitor eu consequat risus.
-                            Mauris
-                            sed congue orci. Donec ultrices faucibus rutrum. Phasellus sodales
-                            vulputate urna,
-                            vel accumsan augue egestas ac. Donec vitae leo at sem lobortis porttitor eu
-                            consequat
-                            risus. Mauris sed congue orci. Donec ultrices faucibus rutrum. Phasellus
-                            sodales
-                            vulputate urna, vel accumsan augue egestas ac. Donec vitae leo at sem
-                            lobortis porttitor
-                            eu consequat risus. Mauris sed congue orci.</p>
+                          <p>{{ $contactread->message }}</p>
 
                         </div>
 
@@ -82,3 +90,4 @@
   <script src="{{ asset('frontend/contactassets/js/scripts.js') }}"></script>
 
   <script src="{{ asset('frontend/contactassets/js/custom.js') }}"></script>
+@endsection
