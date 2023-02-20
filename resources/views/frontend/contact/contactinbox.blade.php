@@ -1,6 +1,5 @@
 @extends('admin.admin_dashboard')
 @section('admin')
-<link rel="stylesheet" href="{{ asset('frontend/contactassets/js/app.min.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/contactassets/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/contactassets/css/components.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/contactassets/css/custom.css') }}">
@@ -27,7 +26,7 @@
 
   <div id="app">
     <div class="main-wrapper main-wrapper-1">
-      <div class="main-content" style="padding-left:15px;padding-top:0">
+      <div class="main-content" style="padding-left:15px;padding-top:0;transform:translateY(-20px)">
         <section class="section">
           <div class="section-body">
             <div class="row">
