@@ -24,6 +24,9 @@ class ContactController extends Controller
     public function contactRead($id)
     {
         $contactread = Contact::find($id);
+        $contactread->update([
+            'readstatus' => 1,
+        ]);
         return view('frontend.contact.contactread', compact('contactread'));
     }
 
@@ -57,6 +60,6 @@ class ContactController extends Controller
     {
         Contact::whereIn('id', $request->get('selected'))->delete();
 
-        return response("Selected posts deleted successfully.", 200);
+        return response("Selected messages deleted successfully.", 200);
     }
 }

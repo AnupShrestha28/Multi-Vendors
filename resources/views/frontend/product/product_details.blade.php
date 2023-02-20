@@ -19,7 +19,7 @@
                             <span class="zoom-icon"><i class="fi-rs-search"></i></span>
                             <!-- MAIN SLIDES -->
                             <div class="product-image-slider">
-                                <div><img src="{{asset($product->product_thambnail)}}" alt=""></div>
+                                <div><img src="{{asset($product->product_thambnail)}}" alt="Thumbnail"></div>
                                 @foreach($multiImage as $img)
                                 <figure class="border-radius-10">
                                     <img src="{{ asset($img->photo_name) }}" alt="product image" />
@@ -29,7 +29,7 @@
                             </div>
                             <!-- THUMBNAILS -->
                             <div class="slider-nav-thumbnails">
-                                <div><img src="{{asset($product->product_thambnail)}}" alt=""></div>
+                                <div><img src="{{asset($product->product_thambnail)}}" alt="Thumbnail"></div>
                                 @foreach($multiImage as $img)
                                 <div><img src="{{ asset($img->photo_name) }}" alt="product image" /></div>
                                 @endforeach

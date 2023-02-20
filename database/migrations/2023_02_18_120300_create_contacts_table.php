@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('subject');
             $table->string('priority');
             $table->longText('message');
+            $table->tinyInteger('readstatus')->default(0);
             $table->timestamps();
         });
     }

@@ -568,5 +568,5 @@ Route::controller(ContactController::class)->group(function () {
     Route::get('/contact/inbox', 'contactInbox')->name('contact.inbox');
     Route::get('/contact/read/{id}', 'contactRead')->name('contact.read');
     Route::post('/customer/contactsend', 'contactMessageSend')->name('contact.messagesend');
-    Route::post('/inbox/delete', 'deleteSelected')->name('contact.delete');
+    Route::post('/contact/delete', 'deleteSelected')->name('contact.delete');
 });

@@ -45,7 +45,7 @@
                         <div class="mail-sender">
                           <div class="mail-heading">
                             <h4 class="vew-mail-header">
-                              <b>{{ $contactread->subject }}</b>
+                             <a  class="fs-6 text-dark" href="{{ route('contact.inbox') }}"><i class="fa fa-arrow-left"></i><span class="ms-1"> Back to Inbox</span></a> <span class="ms-5 fs-5 text-capitalize">subject:<b class="ms-2" >{{ $contactread->subject }}</b></span>
                             </h4>
                           </div>
                           <hr>
