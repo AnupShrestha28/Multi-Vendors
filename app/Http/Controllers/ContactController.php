@@ -17,13 +17,14 @@ class ContactController extends Controller
 
     public function contactInbox()
     {
-        $contact = Contact::get();
+        $contact = Contact::latest()->get();
         return view('frontend.contact.contactinbox', compact('contact'));
     }
 
     public function contactRead($id)
     {
         $contactread = Contact::find($id);
+
         $contactread->update([
             'readstatus' => 1,
         ]);

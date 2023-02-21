@@ -58,10 +58,19 @@
 
                                     <a id="deleteChecked"><i class="fa fa-trash fs-5"></i><span class="ms-2 fs-6">Delete</span> </a>
 
-                                  </div>
                                 </div>
-                              </div>
-                            </th>
+                            </div>
+                        </div>
+                    </th>
+                    <th>
+
+                        <select  name="" id="" class="form-control  " style="width: 70%">
+                                <option value="" selected disabled>---Select a priority----</option>
+                            <option >High</option>
+                            <option >Medium</option>
+                            <option >Low</option>
+                        </select>
+                    </th>
                             <th class="hidden-xs" colspan="2">
                               <div class="pull-right">
                                 <div class="email-btn-group m-l-15">
@@ -86,13 +95,15 @@
                                   </label>
                                 </th>
                                 <th class="hidden-xs">Name</th>
+
                                 <th class="max-texts">
 
                                     <span style="text-overflow:ellipsis">Priority</span>
                                     <span style="margin-left:5rem">Subject</span>
                                 </th>
                                     <td></td>
-                                <th class="text-right d-flex" style="align-items: center;justify-content:end" > Date</th>
+                                    <td></td>
+                                    <th class="text-right d-flex" style="align-items: center;justify-content:end" > Date</th>
                               </tr>
                             @foreach($contact as $item)
                           <tr class="unread fs-6">
@@ -127,6 +138,7 @@
 
                                     @if($item->readstatus==0)<strong class="ms-3">{{ $item->subject }}</strong>@else <span class="ms-3">{{ $item->subject }}</span> @endif</a>
                             </td>
+                                <td></td>
                                 <td></td>
                             <td class="text-right d-flex" style="align-items: center;justify-content:end" >@if($item->readstatus!=0) {{ $item->created_at }} @else  <strong> {{ $item->created_at }}</strong> @endif</td>
                           </tr>
