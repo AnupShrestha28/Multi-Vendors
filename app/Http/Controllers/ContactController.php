@@ -17,8 +17,9 @@ class ContactController extends Controller
 
     public function contactInbox()
     {
-        $contact = Contact::latest()->get();
-        return view('frontend.contact.contactinbox', compact('contact'));
+        $contact = Contact::latest()->simplePaginate(2);
+        $contacts = Contact::get();
+        return view('frontend.contact.contactinbox', compact('contact', 'contacts'));
     }
 
     public function contactRead($id)

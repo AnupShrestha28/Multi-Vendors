@@ -4,6 +4,17 @@
 <link rel="stylesheet" href="{{ asset('frontend/contactassets/css/components.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/contactassets/css/custom.css') }}">
 
+<style>
+    .bg-white{
+        color: unset ;
+    }
+
+    .disabled{
+        color: lightgray !important;
+        pointer-events: none;
+    }
+</style>
+
 <div class="page-content">
     <!--breadcrumb-->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -63,25 +74,31 @@
                         </div>
                     </th>
                     <th>
+{{--
+                        <select  name="" id="prioritySelection" class="form-control  " style="width: 70%">
+                                <option selected disabled>---Select a priority----</option>
+                            <option value="High">High</option>
+                            <option value="Medium" >Medium</option>
+                            <option value="Low" >Low</option>
+                        </select>  --}}
 
-                        <select  name="" id="" class="form-control  " style="width: 70%">
-                                <option value="" selected disabled>---Select a priority----</option>
-                            <option >High</option>
-                            <option >Medium</option>
-                            <option >Low</option>
-                        </select>
+
                     </th>
                             <th class="hidden-xs" colspan="2">
                               <div class="pull-right">
                                 <div class="email-btn-group m-l-15">
-                                  <a href="#" class="col-dark-gray waves-effect m-r-20" title="previous"
+
+                                  <a href="{{  $contact->previousPageUrl() }}"  class="@if($contact->onFirstPage()) disabled @endif col-dark-gray waves-effect m-r-20" title="Previous Page"
                                     data-toggle="tooltip">
                                     <i class="fa fa-arrow-left"></i>
                                   </a>
-                                  <a href="#" class="col-dark-gray waves-effect m-r-20" title="next"
+
+
+                                  <a href="{{ $contact->nextPageUrl() }}" class=" @if(!$contact->hasMorePages()) disabled @endif col-dark-gray waves-effect m-r-20" title="Next Page"
                                     data-toggle="tooltip">
                                     <i class="fa fa-arrow-right"></i>
                                   </a>
+
                                 </div>
                               </div>
                             </th>
@@ -105,6 +122,8 @@
                                     <td></td>
                                     <th class="text-right d-flex" style="align-items: center;justify-content:end" > Date</th>
                               </tr>
+
+
                             @foreach($contact as $item)
                           <tr class="unread fs-6">
                             <td class="tbl-checkbox" id="checkbox">
@@ -148,7 +167,16 @@
                     </div>
                     <div class="row">
                       <div class="col-sm-7 ">
-                        <p class="p-15">Showing  Result : {{ $contact->count() }} </p>
+                        @if ($contact->links()->paginator->hasPages())
+
+                        <p  class="p-15 ms-3" >{{ $contact->links() }}</p>
+                        <p class="p-15">Showing {{ $contact->firstItem() }} to {{ $contact->lastItem() }}
+                            of  {{$contacts->count()}} entries
+                        </p>
+                        @endif
+
+
+
                       </div>
                     </div>
                   </div>
@@ -167,6 +195,12 @@
   <script src="{{ asset('frontend/contactassets/js/custom.js') }}"></script>
   <script>
     $(document).ready(function() {
+
+            //$("#prioritySelection").change (function () {
+             //   var selectedCountry = $(this).children("option:selected").val();
+           // });
+
+
         $('#checkAll').click(function() {
             if ($(this).is(":checked")) {
                 $('.check').prop("checked", true);
