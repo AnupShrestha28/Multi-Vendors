@@ -321,8 +321,7 @@
                                 </li>
                                 @endforeach
                                 <li>
-                                    <a href="page-contact.html">Contact</a>
-                                </li>
+                                    <a href="{{route('customer.contact')}}">Contact</a>                                </li>
                             </ul>
                         </nav>
                     </div>
