@@ -82,7 +82,6 @@ class StripeController extends Controller
     $carts = Cart::content();
     foreach($carts as $cart){
         OrderItem::insert([
-            'user_id' => Auth::id(),
             'order_id' => $order_id,
             'product_id' => $cart->id,
             'vendor_id' => $cart->options->vendor,
@@ -157,7 +156,6 @@ class StripeController extends Controller
     $carts = Cart::content();
     foreach($carts as $cart){
         OrderItem::insert([
-            'user_id' => Auth::id(),
             'order_id' => $order_id,
             'product_id' => $cart->id,
             'vendor_id' => $cart->options->vendor,
