@@ -23,6 +23,8 @@ use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\Backend\VendorOrderController;
 use App\Http\Controllers\Backend\ReturnController;
+use App\Http\Controllers\Backend\ReportController;
+use App\Http\Controllers\Backend\ActiveUserController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\SocialController;
@@ -397,6 +399,34 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('return/request/approved/{order_id}', 'ReturnRequestApproved')->name('return.request.approved');
 
         Route::get('complete/return/request', 'CompleteReturnRequest')->name('complete.return.request');
+    });
+
+    // Report All Route
+    Route::controller(ReportController::class)->group(function () {
+
+        Route::get('/report/view', 'ReportView')->name('report.view');
+
+        Route::post('/search/by/date', 'SearchByDate')->name('search-by-date');
+
+        Route::post('/search/by/month', 'SearchByMonth')->name('search-by-month');
+
+        Route::post('/search/by/year', 'SearchByYear')->name('search-by-year');
+
+        Route::get('/order/by/user', 'OrderByUser')->name('order.by.user');
+
+        Route::post('/search/by/user', 'SearchByUser')->name('search-by-user');
+    });
+
+    // Active user and vendor All Route
+    Route::controller(ActiveUserController::class)->group(function () {
+
+        Route::get('/all/user', 'AllUser')->name('all-user');
+
+        Route::get('delete/user/{id}', 'DeleteUser')->name('delete.user');
+
+        Route::get('/all/vendor', 'AllVendor')->name('all-vendor');
+
+        Route::get('delete/vendor/{id}', 'DeleteVendor')->name('delete.vendor');
     });
 }); // Admin end middleware
 
