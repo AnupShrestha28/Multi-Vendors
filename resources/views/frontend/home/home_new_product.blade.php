@@ -166,7 +166,7 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
                                     <span class="new">No Discount</span>
 
                                     @else
-                                    <span class="hot">{{ round($discount) }}%</span>
+                                    <span class="hot">{{ round($discount) }}% Off</span>
 
                                     @endif
                                     

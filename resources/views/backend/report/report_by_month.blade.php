@@ -1,16 +1,16 @@
-@extends('vendor.vendor_dashboard')
-@section('vendor')
+@extends('admin.admin_dashboard')
+@section('admin')
 
 <div class="page-content">
 				<!--breadcrumb-->
 				<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-					<div class="breadcrumb-title pe-3">All Vendor Pending Order</div>
+					<div class="breadcrumb-title pe-3">All Order By Month Report</div>
 					<div class="ps-3">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb mb-0 p-0">
 								<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
 								</li>
-								<li class="breadcrumb-item active" aria-current="page">Vendor Pending Order</li>
+								<li class="breadcrumb-item active" aria-current="page">All Order By Month Report</li>
 							</ol>
 						</nav>
 					</div>
@@ -20,6 +20,7 @@
 					</div>
 				</div>
 				<!--end breadcrumb-->
+                <h3>Search By Month and Year : {{ $month }} - {{ $year }}</h3>
 				<hr/>
 				<div class="card">
 					<div class="card-body">
@@ -38,16 +39,18 @@
 									</tr>
 								</thead>
 								<tbody>
-                                    @foreach($orderitem as $key => $item)
+                                    @foreach($orders as $key => $item)
 									<tr>
 										<td>{{$key+1 }}</td>
-										<td>{{$item['order']['order_date']}}</td>
-                                        <td>{{$item['order']['invoice_no']}}</td>
-                                        <td>Rs.{{$item['order']['amount']}}</td>
-                                        <td>{{$item['order']['payment_method']}}</td>
-                                        <td> <span class="badge rounded-pill bg-success">{{$item['order']['status']}}</span></td>
+										<td>{{$item->order_date}}</td>
+                                        <td>{{$item->invoice_no}}</td>
+                                        <td>Rs.{{$item->amount}}</td>
+                                        <td>{{$item->payment_method}}</td>
+                                        <td> <span class="badge rounded-pill bg-success">{{$item->status}}</span></td>
 										<td>
-                                            <a href="{{ route('vendor.order.details',$item->order->id) }}" class="btn btn-info" title="Details"><i class="fa fa-eye"></i></a>
+                                            <a href="{{ route('admin.order.details',$item->id)}}" class="btn btn-info" title="Details"><i class="fa fa-eye"></i></a>
+
+											<a href="{{ route('admin.invoice.download',$item->id)}}" class="btn btn-danger" title="Invoice PDF"><i class="fa fa-download"></i></a>
                                         </td>
 									
 									</tr>
