@@ -94,7 +94,8 @@ $featured = App\Models\Product::where('featured',1)->orderBy('id','DESC')->limit
                                             </div>
                                             
                                         </div>
-                                        <a href="shop-cart.html" class="btn w-100 hover-up"><i class="fi-rs-shopping-cart mr-5"></i>Add To Cart</a>
+                                        <a onclick="productView(this.id)"  id="{{ $product->id }}" data-bs-toggle="modal" data-bs-target="#quickViewModal" class="btn w-100 hover-up"><i class="fi-rs-shopping-cart mr-5"></i>Add</a>
+
                                     </div>
                                 </div>
                                 <!--End product Wrap-->

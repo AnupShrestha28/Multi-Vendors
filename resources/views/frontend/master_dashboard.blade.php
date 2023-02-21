@@ -200,7 +200,7 @@
             var vendor = $('#pvendor_id').text();
             var color = $('#color option:selected').text();
             var size = $('#size option:selected').text();
-            var quantity = $('#qty').val();
+            var quantity = $('#qty').val(); 
 
             $.ajax({
                 type: "POST",
