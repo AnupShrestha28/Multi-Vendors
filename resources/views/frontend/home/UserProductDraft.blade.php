@@ -117,14 +117,13 @@ $lists=App\Models\UserDraft::get();
 
 <section id="Product-Drafting">
 
-    <div id="user-draft-product">
+    <div id="user-draft-product" style="transform: translateY()">
         <div class="user-draft-product-heading">
-            <h1 style="text-align: center"><br><br>Product Drafting</h1>
+            <h1 style="text-align: center"><br><br>Recommended Product</h1>
         </div>
 
 
     </div>
-    <div class="topline draft-line">
 
     </div>
     <div class="content-box-lg drafting">
@@ -194,7 +193,6 @@ $lists=App\Models\UserDraft::get();
         </div>
     </div>
 
-    <div class="bottomline draft-line"></div>
 
 
 </section>

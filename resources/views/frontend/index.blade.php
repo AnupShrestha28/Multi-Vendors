@@ -115,7 +115,7 @@
 
                                     @endif
                                     <div class="add-cart">
-                                        <a class="add"  data-bs-toggle="modal" data-bs-target="#quickViewModal" onclick="productView(this.id)"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                        <a class="add"  data-bs-toggle="modal" data-bs-target="#quickViewModal" id="{{ $product->id }}" onclick="productView(this.id)"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                         
                                     </div>
                                 </div>

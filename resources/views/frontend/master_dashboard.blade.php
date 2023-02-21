@@ -18,8 +18,10 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/animate.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/sweetalert.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/owl.theme.default.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/owl.carousel.min.css') }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -85,6 +87,8 @@
     <script src="{{ asset('frontend/assets/js/sweetalert.min.js') }}"></script>
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="{{ asset('frontend/assets/js/owl.carousel.min.js') }}"></script>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
@@ -960,6 +964,30 @@
         })
     }
     // Cart remove end
+        </script>
+         <script>
+            $(function () {
+                $("#photoss").owlCarousel({
+                    items: 6,
+                    autoplay: false,
+                    smartSpeed: 600,
+                    loop: false,
+                    autoplayHoverPause: true,
+                    nav: true,
+                    dots: false,
+                    navText: ['<i class="fa fa-angle-left left"></i>',
+                        '<i class="fa fa-angle-right right"></i>'
+                    ],
+                    responsive: {
+                        0: {
+                            items: 4
+                        },
+                        480: {
+                            items: 6
+                        },
+                    }
+                });
+            });
         </script>
 
 

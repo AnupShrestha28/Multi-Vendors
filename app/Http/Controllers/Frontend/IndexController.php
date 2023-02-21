@@ -11,6 +11,11 @@ use App\Models\Brand;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Company;
+use App\Models\OrderItem;
+use App\Models\UserDraft;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB as FacadesDB;
+
 
 class IndexController extends Controller
 {
@@ -33,6 +38,33 @@ class IndexController extends Controller
         $new = Product::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
 
         $special_deals = Product::where('special_deals', 1)->orderBy('id', 'DESC')->limit(3)->get();
+        $lists = [];
+        if (Auth::check()) {
+
+            $product_count = OrderItem::select('product_id', FacadesDB::raw('count(product_id) AS total_count'))->where('user_id', auth()->user()->id)->groupBy('product_id')->get();
+
+
+            foreach ($product_count as $count) {
+                if ($count->total_count > 2) {
+                    //dd('yes');
+                    $productid = $count->product_id;
+                    $lists[] = ['product_id' => $count->product_id];
+                }
+            }
+            if (!empty($lists)) {
+                foreach ($lists as $list) {
+                    $existingproduct = UserDraft::where('product_id', $list['product_id'])->first();
+                    if (!$existingproduct) {
+                        UserDraft::create([
+                            'product_id' => $list['product_id'],
+                            'user_id' => auth()->user()->id
+                        ]);
+                    }
+                }
+            }
+        }
+
+
 
         return view('frontend.index', compact('skip_category_0', 'skip_product_0', 'skip_category_2', 'skip_product_2', 'skip_category_6', 'skip_product_6', 'hot_deals', 'special_offer', 'new', 'special_deals'));
     } // end method
