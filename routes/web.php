@@ -31,6 +31,8 @@ use App\Http\Controllers\SocialController;
 use App\Http\Controllers\Auth\OtpController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\UserDraftController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -362,7 +364,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/delete/state/{id}', 'DeleteState')->name('delete.state');
 
         Route::get('/district/ajax/{division_id}', 'GetDistrict');
-
     });
 
     // Admin Order All Route
@@ -384,7 +385,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/processing/delivered/{order_id}', 'ProcessToDelivered')->name('processing-delivered');
 
         Route::get('/admin/invoice/download/{order_id}', 'AdminInvoiceDownload')->name('admin.invoice.download');
-
     });
 
     // Return order All Routes
@@ -424,7 +424,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
         Route::get('delete/vendor/{id}', 'DeleteVendor')->name('delete.vendor');
     });
-
 }); // Admin end middleware
 
 // Frontend Product details all route
@@ -510,42 +509,40 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     });
 
     // checkout All Route
-    Route::controller(CheckoutController::class)->group(function(){
-
-    // wishlist All Route
     Route::controller(CheckoutController::class)->group(function () {
 
-        Route::get('/district-get/ajax/{division_id}', 'DistrictGetAjax');
+        // wishlist All Route
+        Route::controller(CheckoutController::class)->group(function () {
 
-        Route::get('/state-get/ajax/{district_id}', 'StateGetAjax');
+            Route::get('/district-get/ajax/{division_id}', 'DistrictGetAjax');
 
-        Route::post('/checkout/store', 'CheckoutStore')->name('checkout.store');
+            Route::get('/state-get/ajax/{district_id}', 'StateGetAjax');
+
+            Route::post('/checkout/store', 'CheckoutStore')->name('checkout.store');
+        });
+
+        // stripe All Route
+        Route::controller(StripeController::class)->group(function () {
+            Route::post('/stripe/order', 'StripeOrder')->name('stripe.order');
+
+            Route::post('/cash/order', 'CashOrder')->name('cash.order');
+        });
+        Route::controller(AllUserController::class)->group(function () {
+            Route::get('/user/account/page', 'UserAccount')->name('user.account.page');
+
+            Route::get('/user/change/password', 'UserChangePassword')->name('user.change.password');
+
+            Route::get('/user/order/page', 'UserOrderPage')->name('user.order.page');
+
+            Route::get('/user/order_details/{order_id}', 'UserOrderDetails');
+
+            Route::get('/user/invoice_download/{order_id}', 'UserOrderInvoice');
+
+            Route::post('/return/order/{order_id}', 'ReturnOrder')->name('return.order');
+
+            Route::get('/return/order/page', 'ReturnOrderPage')->name('return.order.page');
+        });
     });
-
-    // stripe All Route
-    Route::controller(StripeController::class)->group(function () {
-        Route::post('/stripe/order', 'StripeOrder')->name('stripe.order');
-
-        Route::post('/cash/order', 'CashOrder')->name('cash.order');
-    });
-    Route::controller(AllUserController::class)->group(function () {
-        Route::get('/user/account/page', 'UserAccount')->name('user.account.page');
-
-        Route::get('/user/change/password', 'UserChangePassword')->name('user.change.password');
-
-        Route::get('/user/order/page', 'UserOrderPage')->name('user.order.page');
-
-        Route::get('/user/order_details/{order_id}', 'UserOrderDetails');
-
-        Route::get('/user/invoice_download/{order_id}', 'UserOrderInvoice');
-
-        Route::post('/return/order/{order_id}', 'ReturnOrder')->name('return.order');
-
-        Route::get('/return/order/page', 'ReturnOrderPage')->name('return.order.page');
-
-    });
-    });
-
 }); // end group user middleware
 
 
@@ -590,3 +587,14 @@ Route::controller(SubscriptionController::class)->group(function () {
     Route::post('/add-subscriber-email', 'subscription');
 });
 
+Route::controller(UserDraftController::class)->group(function () {
+    Route::get('/delete/draft/{id}', 'removeFromDraft')->name('remove.draft');
+});
+
+Route::controller(ContactController::class)->group(function () {
+    Route::get('/customer/contact', 'contactPage')->name('customer.contact');
+    Route::get('/contact/inbox', 'contactInbox')->name('contact.inbox');
+    Route::get('/contact/read/{id}', 'contactRead')->name('contact.read');
+    Route::post('/customer/contactsend', 'contactMessageSend')->name('contact.messagesend');
+    Route::post('/contact/delete', 'deleteSelected')->name('contact.delete');
+});
