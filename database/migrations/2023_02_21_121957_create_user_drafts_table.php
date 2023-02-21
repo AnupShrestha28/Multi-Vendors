@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('user_drafts', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('user_id');
+            $table->tinyInteger('isdeleted')->nullable()->default(0);
             $table->timestamps();
         });
     }

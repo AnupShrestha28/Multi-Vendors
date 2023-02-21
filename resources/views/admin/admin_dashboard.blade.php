@@ -5,6 +5,7 @@
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{csrf_token()}}">
 	<!--favicon-->
 	<link rel="icon" href="{{ asset('adminbackend/assets/images/favicon-32x32.png')}}" type="image/png" />
 
@@ -57,11 +58,11 @@
 		<!--end overlay-->
 		<!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
 		<!--End Back To Top Button-->
-		
+
         @include('admin.body.footer')
 	</div>
 	<!--end wrapper-->
-	
+
 	<!-- Bootstrap JS -->
 	<script src="{{ asset('adminbackend/assets/js/bootstrap.bundle.min.js')}}"></script>
 	<!--plugins-->
@@ -83,7 +84,7 @@
 	  </script>
 	  <script src="{{ asset('adminbackend/assets/js/index.js')}}"></script>
 
-	  <script src="{{ asset('adminbackend/assets/js/validate.min.js')}}"></script>  
+	  <script src="{{ asset('adminbackend/assets/js/validate.min.js')}}"></script>
 
 	  <script src="{{ asset('adminbackend/assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
 	  <script>
@@ -103,20 +104,20 @@
 		case 'info':
 		toastr.info(" {{ Session::get('message') }} ");
 		break;
-	
+
 		case 'success':
 		toastr.success(" {{ Session::get('message') }} ");
 		break;
-	
+
 		case 'warning':
 		toastr.warning(" {{ Session::get('message') }} ");
 		break;
-	
+
 		case 'error':
 		toastr.error(" {{ Session::get('message') }} ");
-		break; 
+		break;
 	 }
-	 @endif 
+	 @endif
 	</script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>

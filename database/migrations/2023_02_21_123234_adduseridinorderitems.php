@@ -13,16 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('contacts', function (Blueprint $table) {
-            $table->id();
+        Schema::table('order_items', function (Blueprint $table) {
+            //
             $table->unsignedBigInteger('user_id');
-
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('subject');
-            $table->string('priority');
-            $table->longText('message');
-            $table->tinyInteger('readstatus')->default(0);
-            $table->timestamps();
         });
     }
 
@@ -33,6 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contacts');
+        Schema::table('order_items', function (Blueprint $table) {
+            //
+            $table->dropColumn('user_id');
+        });
     }
 };
