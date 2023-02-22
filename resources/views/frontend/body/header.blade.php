@@ -116,7 +116,7 @@
 
 
                             <div class="header-action-icon-2">
-                                <a href="shop-wishlist.html">
+                                <a href="{{ route('wishlist') }}">
                                     <img class="svgInject" alt="Nest" src="{{ asset('frontend/assets/imgs/theme/icons/icon-heart.svg') }}" />
                                     <span class="pro-count blue" id="wishQty">0</span>
                                 </a>
@@ -128,7 +128,7 @@
 
 
                             <div class="header-action-icon-2">
-                                <a class="mini-cart-icon" href="shop-cart.html">
+                                <a class="mini-cart-icon" href="{{ route('mycart') }}">
                                     <img alt="Nest" src="{{ asset('frontend/assets/imgs/theme/icons/icon-cart.svg') }}" />
                                     <span class="pro-count blue" id="cartQty">0</span>
                                 </a>
@@ -151,8 +151,8 @@
                                             <h4>Total <span id="cartSubTotal">Rs.</span></h4>
                                         </div>
                                         <div class="shopping-cart-button">
-                                            <a href="shop-cart.html" class="outline">View cart</a>
-                                            <a href="shop-checkout.html">Checkout</a>
+                                            <a href="{{ route('mycart') }}" class="outline">View cart</a>
+                                            <a href="{{ route('checkout') }}">Checkout</a>
                                         </div>
                                     </div>
                                 </div>
@@ -252,14 +252,14 @@
                                 <ul>
                                     @foreach($categories as $item)
                                     <li>
-                                        <a href="shop-grid-right.html"> <img src="{{ asset( $item->category_image) }}" alt="" />{{$item->category_name}}</a>
+                                        <a href="{{ url('product/category/'.$item->id.'/'.$item->category_slug) }}"> <img src="{{ asset( $item->category_image) }}" alt="" />{{$item->category_name}}</a>
                                     </li>
                                    @endforeach
                                 </ul>
                                 <ul class="end">
                                     @foreach($categories as $item)
                                     <li>
-                                        <a href="shop-grid-right.html"> <img src="{{ asset( $item->category_image) }}" alt="" />{{$item->category_name}}</a>
+                                        <a href="{{ url('product/category/'.$item->id.'/'.$item->category_slug) }}"> <img src="{{ asset( $item->category_image) }}" alt="" />{{$item->category_name}}</a>
                                     </li>
                                    @endforeach
 
@@ -321,8 +321,12 @@
                                 </li>
                                 @endforeach
                                 <li>
+
+                                    <a href="{{route('customer.contact')}}">Contact</a>                                </li>
+
                                     <a href="{{ route('home.blog') }}">Blog</a>
                                 </li>
+
                             </ul>
                         </nav>
                     </div>

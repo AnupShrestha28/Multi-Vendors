@@ -171,6 +171,14 @@
 
             </ul>
         </li>
+        <li>
+            <a href="{{ route('contact.inbox') }}">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">Contact Inbox</div>
+            </a>
+
+        </li>
 
 
 
@@ -261,6 +269,7 @@
             </ul>
         </li>
 
+
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="bx bx-category"></i>
@@ -279,6 +288,7 @@
 
 
         
+
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"> <i class="bx bx-donate-blood"></i>

@@ -2,6 +2,7 @@
 @section('main')
 
 @include('frontend.home.home_slider')
+@include('frontend.home.UserProductDraft')
 
 <!--End hero slider-->
 @include('frontend.home.home_features_category')
@@ -25,7 +26,7 @@
     <div class="container">
         <div class="section-title style-2 wow animate__animated animate__fadeIn">
             <h3>{{ $skip_category_0->category_name }} Category</h3>
-           
+
         </div>
         <!--End nav-tabs-->
         <div class="tab-content" id="myTabContent">
@@ -70,7 +71,7 @@
                                     <span class="hot">{{ round($discount) }}% Off</span>
 
                                     @endif
-                                    
+
                                 </div>
                             </div>
                             <div class="product-content-wrap">
@@ -94,7 +95,7 @@
 
                                     @endif
 
-                                    
+
 
 
                                 </div>
@@ -114,7 +115,8 @@
 
                                     @endif
                                     <div class="add-cart">
-                                        <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                        <a class="add"  data-bs-toggle="modal" data-bs-target="#quickViewModal" id="{{ $product->id }}" onclick="productView(this.id)"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -122,12 +124,12 @@
                     </div>
                     <!--end product card-->
                     @endforeach
-                   
+
                 </div>
                 <!--End product-grid-4-->
             </div>
-           
-           
+
+
         </div>
         <!--End tab-content-->
     </div>
@@ -143,7 +145,7 @@
     <div class="container">
         <div class="section-title style-2 wow animate__animated animate__fadeIn">
             <h3>{{ $skip_category_2->category_name }} Category</h3>
-           
+
         </div>
         <!--End nav-tabs-->
         <div class="tab-content" id="myTabContent">
@@ -188,7 +190,7 @@
                                     <span class="hot">{{ round($discount) }}% Off</span>
 
                                     @endif
-                                    
+
                                 </div>
                             </div>
                             <div class="product-content-wrap">
@@ -212,7 +214,7 @@
 
                                     @endif
 
-                                    
+
 
 
                                 </div>
@@ -240,12 +242,12 @@
                     </div>
                     <!--end product card-->
                     @endforeach
-                   
+
                 </div>
                 <!--End product-grid-4-->
             </div>
-           
-           
+
+
         </div>
         <!--End tab-content-->
     </div>
@@ -261,7 +263,7 @@
     <div class="container">
         <div class="section-title style-2 wow animate__animated animate__fadeIn">
             <h3>{{ $skip_category_6->category_name }} Category</h3>
-           
+
         </div>
         <!--End nav-tabs-->
         <div class="tab-content" id="myTabContent">
@@ -306,7 +308,7 @@
                                     <span class="hot">{{ round($discount) }}% Off</span>
 
                                     @endif
-                                    
+
                                 </div>
                             </div>
                             <div class="product-content-wrap">
@@ -330,7 +332,7 @@
 
                                     @endif
 
-                                    
+
 
 
                                 </div>
@@ -358,12 +360,12 @@
                     </div>
                     <!--end product card-->
                     @endforeach
-                   
+
                 </div>
                 <!--End product-grid-4-->
             </div>
-           
-           
+
+
         </div>
         <!--End tab-content-->
     </div>
@@ -385,11 +387,11 @@
 
                     <article class="row align-items-center hover-up">
                         <figure class="col-md-4 mb-0">
-                            <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"><img src="{{ asset($item->product_thambnail) }}" alt="" /></a>
+                            <a href="{{ url('product/details/'.$item->id.'/'.$item->product_slug) }}"><img src="{{ asset($item->product_thambnail) }}" alt="" /></a>
                         </figure>
                         <div class="col-md-8 mb-0">
                             <h6>
-                                <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}">{{ $item->product_name }}</a>
+                                <a href="{{ url('product/details/'.$item->id.'/'.$item->product_slug) }}">{{ $item->product_name }}</a>
                             </h6>
                             <div class="product-rate-cover">
                                 <div class="product-rate d-inline-block">
@@ -423,11 +425,11 @@
 
                     <article class="row align-items-center hover-up">
                         <figure class="col-md-4 mb-0">
-                            <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"><img src="{{ asset($item->product_thambnail) }}" alt="" /></a>
+                            <a href="{{ url('product/details/'.$item->id.'/'.$item->product_slug) }}"><img src="{{ asset($item->product_thambnail) }}" alt="" /></a>
                         </figure>
                         <div class="col-md-8 mb-0">
                             <h6>
-                                <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}">{{ $item->product_name }}</a>
+                                <a href="{{ url('product/details/'.$item->id.'/'.$item->product_slug) }}">{{ $item->product_name }}</a>
                             </h6>
                             <div class="product-rate-cover">
                                 <div class="product-rate d-inline-block">
@@ -463,11 +465,11 @@
 
                     <article class="row align-items-center hover-up">
                         <figure class="col-md-4 mb-0">
-                            <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"><img src="{{ asset($item->product_thambnail) }}" alt="" /></a>
+                            <a href="{{ url('product/details/'.$item->id.'/'.$item->product_slug) }}"><img src="{{ asset($item->product_thambnail) }}" alt="" /></a>
                         </figure>
                         <div class="col-md-8 mb-0">
                             <h6>
-                                <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}">{{ $item->product_name }}</a>
+                                <a href="{{ url('product/details/'.$item->id.'/'.$item->product_slug) }}">{{ $item->product_name }}</a>
                             </h6>
                             <div class="product-rate-cover">
                                 <div class="product-rate d-inline-block">
@@ -491,7 +493,7 @@
                     </article>
                     @endforeach
 
-                    
+
                 </div>
             </div>
             <div class="col-xl-3 col-lg-4 col-md-6 mb-sm-5 mb-md-0 d-none d-xl-block wow animate__animated animate__fadeInUp" data-wow-delay=".3s">
@@ -501,11 +503,11 @@
 
                     <article class="row align-items-center hover-up">
                         <figure class="col-md-4 mb-0">
-                            <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"><img src="{{ asset($item->product_thambnail) }}" alt="" /></a>
-                        </figure>  
+                            <a href="{{ url('product/details/'.$item->id.'/'.$item->product_slug) }}"><img src="{{ asset($item->product_thambnail) }}" alt="" /></a>
+                        </figure>
                         <div class="col-md-8 mb-0">
                             <h6>
-                                <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}">{{ $item->product_name }}</a>
+                                <a href="{{ url('product/details/'.$item->id.'/'.$item->product_slug) }}">{{ $item->product_name }}</a>
                             </h6>
                             <div class="product-rate-cover">
                                 <div class="product-rate d-inline-block">
@@ -530,7 +532,7 @@
                     </article>
                     @endforeach
 
-                
+
                 </div>
             </div>
         </div>

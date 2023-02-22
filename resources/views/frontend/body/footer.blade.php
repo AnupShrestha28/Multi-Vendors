@@ -6,20 +6,19 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="position-relative newsletter-inner">
+                    <div class="position-relative newsletter-inner d-flex justify-center">
                         <div class="newsletter-content">
-                            <h2 class="mb-20">
-                                Stay home & get your daily <br />
-                                needs from our shop
-                            </h2>
-                            <p class="mb-45">Start Your Daily Shopping with <span class="text-brand">@if(!empty($company->cname)) {{ $company->cname }} @else Nest Mart @endif</span></p>
-                            <form id="subscriber_form" class="form-subcriber d-flex" class="loader-form" >
+                            <h1  class="mb-20 fs-1 d-flex justify-center">
+                                Please Subscribe Now<br />
+                            </h1>
+                            <p class="mb-45 text-center">To get a free and amazing offers and other cool things stay with us and please subscribe us<span class="text-brand"></span></p>
+                            <form id="subscriber_form" class="form-subcriber d-flex justify-center" class="loader-form" style="max-width: 750px !important" >
 
                                 <input type="text" id="subscriber_email" name="subscriber_email" placeholder="Enter your email address" />
                                 <button class="btn btn-loader" type="submit"><span class="btn-text">Subscribe</span><span class="loading-ring"></span></button>
                             </form>
                         </div>
-                        <img src="{{ asset('frontend/assets/imgs/banner/banner-9.png') }}" alt="newsletter" />
+                        {{--  <img src="{{ asset('frontend/assets/imgs/banner/banner-9.png') }}" alt="newsletter" />  --}}
                     </div>
                 </div>
             </div>
@@ -201,6 +200,8 @@
         {
             $('.loading-ring').css('visibility', 'hidden');
             $('.btn-text').css('color', 'white');
+            $('#subscriber_email').val("");
+
         }
 
     $('#subscriber_form').submit(function(e){

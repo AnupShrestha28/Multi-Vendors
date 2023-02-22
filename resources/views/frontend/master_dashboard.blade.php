@@ -17,8 +17,11 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/animate.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/sweetalert.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/owl.theme.default.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/owl.carousel.min.css') }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -76,6 +79,7 @@
     <script src="{{ asset('frontend/assets/js/plugins/jquery.vticker-min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/plugins/jquery.theia.sticky.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/plugins/jquery.elevatezoom.js') }}"></script>
+    <script src="{{ asset('adminbackend/assets/js/validate.min.js')}}"></script>
     <!-- Template  JS -->
     <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
     <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
@@ -83,6 +87,8 @@
     <script src="{{ asset('frontend/assets/js/sweetalert.min.js') }}"></script>
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="{{ asset('frontend/assets/js/owl.carousel.min.js') }}"></script>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
@@ -93,20 +99,20 @@
 		case 'info':
 		toastr.info(" {{ Session::get('message') }} ");
 		break;
-	
+
 		case 'success':
 		toastr.success(" {{ Session::get('message') }} ");
 		break;
-	
+
 		case 'warning':
 		toastr.warning(" {{ Session::get('message') }} ");
 		break;
-	
+
 		case 'error':
 		toastr.error(" {{ Session::get('message') }} ");
-		break; 
+		break;
 	 }
-	 @endif 
+	 @endif
 	</script>
 
     <script type="text/javascript">
@@ -137,7 +143,7 @@
                     $('#qty').val(1);
 
                     //  Product Price
-                    if(data.product.discount_price == null){    
+                    if(data.product.discount_price == null){
                         $('#pprice').text('');
                         $('#oldprice').text('');
                         $('#pprice').text(data.product.selling_price);
@@ -198,7 +204,7 @@
             var vendor = $('#pvendor_id').text();
             var color = $('#color option:selected').text();
             var size = $('#size option:selected').text();
-            var quantity = $('#qty').val();
+            var quantity = $('#qty').val(); 
 
             $.ajax({
                 type: "POST",
@@ -213,7 +219,7 @@
                     $('#closeModal').click();
                     // console.log(data)
 
-                    //  Start message 
+                    //  Start message
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
@@ -230,7 +236,7 @@
                         Toast.fire({
                         type: 'error',
                         title: data.error,
-                    }) 
+                    })
                     }
                     // end message
                 }
@@ -263,7 +269,7 @@
                     miniCart();
                     // console.log(data)
 
-                    //  Start message 
+                    //  Start message
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
@@ -280,7 +286,7 @@
                         Toast.fire({
                         type: 'error',
                         title: data.error,
-                    }) 
+                    })
                     }
                     // end message
                 }
@@ -290,7 +296,7 @@
         }
 
         // end Details Page Add to cart Product
-        
+
 
     </script>
 
@@ -306,7 +312,7 @@
                     $('span[id="cartSubTotal"]').text(response.cartTotal);
 
                     $('#cartQty').text(response.cartQty);
-                    
+
                     var miniCart = ""
                     $.each(response.carts, function(key, value){
                         miniCart += `
@@ -323,7 +329,7 @@
                                                 <a type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)"><i class="fi-rs-cross-small"></i></a>
                                             </div>
                                         </li>
-                                       
+
                                     </ul>
                                     <hr>
                                     <br>
@@ -349,7 +355,7 @@
                     cart();
                     miniCart();
                     couponCalculation();
-                     //  Start message 
+                     //  Start message
                      const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
@@ -366,7 +372,7 @@
                         Toast.fire({
                         type: 'error',
                         title: data.error,
-                    }) 
+                    })
                     }
                     // end message
 
@@ -385,11 +391,11 @@
         $.ajax({
             type: "POST",
             dataType: 'json',
-            url: "/add-to-wishlist/"+product_id, 
+            url: "/add-to-wishlist/"+product_id,
 
             success: function(data){
                 wishlist();
-                 //  Start message 
+                 //  Start message
                  const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
@@ -407,7 +413,7 @@
                         type: 'error',
                         icon: 'error',
                         title: data.error,
-                    }) 
+                    })
                     }
                     // end message
             }
@@ -426,13 +432,13 @@
             $.ajax({
                 type: "GET",
                 dataType: 'json',
-                url: "/get-wishlist-product/", 
-    
+                url: "/get-wishlist-product/",
+
                 success: function(response){
 
-                    $('#wishQty').text(response.wishQty);   
+                    $('#wishQty').text(response.wishQty);
 
-                    var rows = "" 
+                    var rows = ""
                     $.each(response.wishlist, function(key, value){
                         rows += `
                         <tr class="pt-30">
@@ -457,12 +463,12 @@
 
                                 ${value.product.product_qty > 0 ? `<span class="stock-status in-stock mb-0"> In Stock </span>` : `<span class="stock-status out-stock mb-0"> Out of stock </span>`  }
                             </td>
-                          
+
                             <td class="action text-center" data-title="Remove">
                                 <a type="submit" class="text-body" id="${value.id}" onclick="wishlistRemove(this.id)" ><i class="fi-rs-trash"></i></a>
                             </td>
                         </tr>
-                        
+
                         `
                     });
 
@@ -472,7 +478,7 @@
             })
         }
         wishlist();
-    // end load wishlist data 
+    // end load wishlist data
 
     // wishlist remove start
 
@@ -480,11 +486,11 @@
         $.ajax({
             type: "GET",
             dataType: 'json',
-            url: "/wishlist-remove/"+id, 
+            url: "/wishlist-remove/"+id,
 
             success:function(data){
                 wishlist();
-                 //  Start message 
+                 //  Start message
                  const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
@@ -502,7 +508,7 @@
                         type: 'error',
                         icon: 'error',
                         title: data.error,
-                    }) 
+                    })
                     }
                     // end message
             }
@@ -521,10 +527,10 @@
         $.ajax({
             type: "POST",
             dataType: 'json',
-            url: "/add-to-compare/"+product_id, 
+            url: "/add-to-compare/"+product_id,
 
             success: function(data){
-                 //  Start message 
+                 //  Start message
                  const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
@@ -542,7 +548,7 @@
                         type: 'error',
                         icon: 'error',
                         title: data.error,
-                    }) 
+                    })
                     }
                     // end message
             }
@@ -560,14 +566,14 @@
             $.ajax({
                 type: "GET",
                 dataType: 'json',
-                url: "/get-compare-product/", 
-    
+                url: "/get-compare-product/",
+
                 success: function(response){
 
-                    var rows = "" 
+                    var rows = ""
                     $.each(response, function(key, value){
                         rows += `
-                        
+
                         <tr class="pr_image">
                             <td class="text-muted font-sm fw-600 font-heading mw-200">Image</td>
                             <td class="row_img"><img src="/${value.product.product_thambnail}" style="width:300px; height:300px;" alt="compare-img" /></td>
@@ -595,9 +601,9 @@
                         <tr class="pr_stock">
                             <td class="text-muted font-sm fw-600 font-heading">Stock status</td>
                             <td class="row_stock">
-                                
+
                                 ${value.product.product_qty > 0 ? `<span class="stock-status in-stock mb-0"> In Stock </span>` : `<span class="stock-status out-stock mb-0"> Out of stock </span>`  }
-                                
+
                                 </td>
 
                         </tr>
@@ -607,7 +613,7 @@
                                 <a type="submit" class="text-muted" id="${value.id}" onclick="compareRemove(this.id)"><i class="fi-rs-trash mr-5"></i><span>Remove</span> </a>
                             </td>
                         </tr>
-                        
+
                         `
                     });
 
@@ -617,20 +623,20 @@
             })
         }
         compare();
-    // end load compare data 
+    // end load compare data
 
     // compare remove start
 
-   
+
     function compareRemove(id){
         $.ajax({
             type: "GET",
             dataType: 'json',
-            url: "/compare-remove/"+id, 
+            url: "/compare-remove/"+id,
 
             success:function(data){
                 compare();
-                 //  Start message 
+                 //  Start message
                  const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
@@ -648,7 +654,7 @@
                         type: 'error',
                         icon: 'error',
                         title: data.error,
-                    }) 
+                    })
                     }
                     // end message
             }
@@ -669,19 +675,19 @@
                 dataType: 'json',
                 success: function(response){
                     // console.log(response);
-                    
+
                     var rows = ""
 
                     $.each(response.carts, function(key, value){
                         rows += `
-                        
+
                         <tr class="pt-30">
                             <td class="custome-checkbox pl-30">
                             </td>
                             <td class="image product-thumbnail pt-40"><img src="/${value.options.image}" alt="#"></td>
                             <td class="product-des product-name">
                                 <h6 class="mb-5"><a class="product-name mb-10 text-heading" href="shop-product-right.html">${value.name}</a></h6>
-                               
+
                             </td>
                             <td class="price" data-title="Price">
                                 <h4 class="text-body">Rs.${value.price}</h4>
@@ -725,13 +731,13 @@
         $.ajax({
             type: "GET",
             dataType: 'json',
-            url: "/cart-remove/"+id, 
+            url: "/cart-remove/"+id,
 
             success:function(data){
                 cart();
                 miniCart();
                 couponCalculation();
-                 //  Start message 
+                 //  Start message
                  const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
@@ -749,7 +755,7 @@
                         type: 'error',
                         icon: 'error',
                         title: data.error,
-                    }) 
+                    })
                     }
                     // end message
             }
@@ -805,7 +811,7 @@
             type: "POST",
             dataType: 'json',
             data: {coupon_name:coupon_name},
-            url: "/coupon-apply", 
+            url: "/coupon-apply",
 
             success:function(data){
                 couponCalculation();
@@ -813,7 +819,7 @@
                     $('#couponField').hide();
                 }
 
-                 //  Start message 
+                 //  Start message
                  const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
@@ -831,7 +837,7 @@
                         type: 'error',
                         icon: 'error',
                         title: data.error,
-                    }) 
+                    })
                     }
                     // end message
             }
@@ -856,7 +862,7 @@
                                     <h4 class="text-brand text-end">Rs.${data.total}</h4>
                                 </td>
                             </tr>
-                           
+
                             <tr>
                                 <td class="cart_total_label">
                                     <h6 class="text-muted">Grand Total</h6>
@@ -865,7 +871,7 @@
                                     <h4 class="text-brand text-end">Rs.${data.total}</h4>
                                 </td>
                             </tr>
-                        
+
                         `
                     )
 
@@ -880,7 +886,7 @@
                                     <h4 class="text-brand text-end">Rs.${data.subtotal}</h4>
                                 </td>
                             </tr>
-                           
+
                             <tr>
                                 <td class="cart_total_label">
                                     <h6 class="text-muted">Coupon</h6>
@@ -908,7 +914,7 @@
                                     <h4 class="text-brand text-end">Rs.${data.total_amount}</h4>
                                 </td>
                             </tr>
-                        
+
                         `
                     )
                 }
@@ -928,12 +934,12 @@
         $.ajax({
             type: "GET",
             dataType: 'json',
-            url: "/coupon-remove", 
+            url: "/coupon-remove",
 
             success:function(data){
                 couponCalculation();
                 $('#couponField').show();
-                 //  Start message 
+                 //  Start message
                  const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
@@ -951,13 +957,37 @@
                         type: 'error',
                         icon: 'error',
                         title: data.error,
-                    }) 
+                    })
                     }
                     // end message
             }
         })
     }
     // Cart remove end
+        </script>
+         <script>
+            $(function () {
+                $("#photoss").owlCarousel({
+                    items: 6,
+                    autoplay: false,
+                    smartSpeed: 600,
+                    loop: false,
+                    autoplayHoverPause: true,
+                    nav: true,
+                    dots: false,
+                    navText: ['<i class="fa fa-angle-left left"></i>',
+                        '<i class="fa fa-angle-right right"></i>'
+                    ],
+                    responsive: {
+                        0: {
+                            items: 4
+                        },
+                        480: {
+                            items: 6
+                        },
+                    }
+                });
+            });
         </script>
 
 

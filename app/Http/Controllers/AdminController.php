@@ -239,7 +239,7 @@ class AdminController extends Controller
 
     public function sendEmailSubscriber(Request $request)
     {
-        $subscribers = Subscription::get();
+        $subscribers = Subscription::where('status', 1)->get();
         $lists = [];
         foreach ($subscribers as $key => $value) {
             $lists[] = ['email' => $value->email];
