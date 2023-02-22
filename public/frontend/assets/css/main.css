@@ -9825,12 +9825,14 @@ footer .hotline img {
 }
 
 .newsletter .newsletter-inner {
+    /*use background ne */
     background: rgba(241, 237, 237, 0.31);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(3.9px);
     -webkit-backdrop-filter: blur(3.9px);
     border: 1px solid rgba(241, 237, 237, 0.65);
+    /* background: url('../../assets/imgs/banner/img.jpg'); */
     background-size: cover;
     padding: 84px 78px;
     clear: both;
@@ -9843,9 +9845,10 @@ footer .hotline img {
 
 .newsletter .newsletter-inner img {
     position: absolute;
-    right: 50px;
-    bottom: 0;
+    right: 120px;
+    transform: translateY(-20px);
     max-width: 40%;
+    object-fit: cover;
 }
 
 .newsletter .newsletter-inner .newsletter-content p {
