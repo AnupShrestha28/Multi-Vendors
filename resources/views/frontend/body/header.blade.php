@@ -321,7 +321,12 @@
                                 </li>
                                 @endforeach
                                 <li>
+
                                     <a href="{{route('customer.contact')}}">Contact</a>                                </li>
+
+                                    <a href="{{ route('home.blog') }}">Blog</a>
+                                </li>
+
                             </ul>
                         </nav>
                     </div>
