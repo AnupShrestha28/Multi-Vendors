@@ -1,6 +1,9 @@
 @extends('frontend.master_dashboard')
 @section('main')
 
+@section('title')
+    Stripe Payment Page
+@endsection
 
 <style>
     /**

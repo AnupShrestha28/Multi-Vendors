@@ -246,8 +246,11 @@ class ProductController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);
+    } // end method
 
-
+    public function ProductStock(){
+        $products = Product::latest()->get();
+        return view('backend.product.product_stock',compact('products'));
     } // end method
 }
 

@@ -2,6 +2,11 @@
 @section('main')
 
 
+@section('title')
+    Cash On Delivery Page
+@endsection
+
+
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">

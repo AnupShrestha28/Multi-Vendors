@@ -1,6 +1,11 @@
 @extends('frontend.master_dashboard')
 @section('main')
 
+@section('title')
+    Bobonus
+@endsection
+
+
 @include('frontend.home.home_slider')
 @include('frontend.home.UserProductDraft')
 
