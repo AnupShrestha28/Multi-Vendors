@@ -2063,7 +2063,7 @@ input.qty-val {
 
 .hero-slider-1 .single-hero-slider {
     height: 538px;
-    border-radius: 30px;
+    border-radius: 7px;
     background-size: cover;
     background-position: center center;
 }
@@ -9869,7 +9869,7 @@ footer .hotline img {
 
 .newsletter .newsletter-inner .newsletter-content form button {
     border: 0;
-    border-radius: 50px;
+    border-radius: 7px;
     font-weight: 700;
 }
 
