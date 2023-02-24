@@ -17,11 +17,11 @@ $slider = App\Models\Slider::orderBy('slider_title','ASC')->limit(5)->get();
                             {{$item->slider_title}}
                         </h1>
                         <p class="mb-65">{{$item->short_title}}</p>
-                        <form class="form-subcriber d-flex">
+                        {{-- <form class="form-subcriber d-flex">
                             <input type="text"  placeholder="Enter Your email address" />
                             <button class="btn" type="submit">Subscribe</button>
                            
-                        </form>
+                        </form> --}}
                     </div>
                 </div>
                 @endforeach

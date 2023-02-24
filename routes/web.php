@@ -22,6 +22,7 @@ use App\Http\Controllers\User\CompareController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\User\AllUserController;
+use App\Http\Controllers\User\ReviewController;
 use App\Http\Controllers\Backend\VendorOrderController;
 use App\Http\Controllers\Backend\ReturnController;
 use App\Http\Controllers\Backend\ReportController;
@@ -166,6 +167,13 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
 
             Route::get('vendor/order/details/{order_id}', 'VendorOrderDetails')->name('vendor.order.details');
         });
+    });
+
+    
+      // Admin Review All Route
+      Route::controller(ReviewController::class)->group(function () {
+
+        Route::get('/vendor/all/review', 'VendorAllReview')->name('vendor.all.review');
     });
 }); // end group middleware
 
@@ -461,6 +469,18 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/delete/blog/post/{id}', 'DeleteBlogPost')->name('delete.blog.post');
     });
 
+      // Admin Review All Route
+      Route::controller(ReviewController::class)->group(function () {
+
+        Route::get('/pending/review', 'PendingReview')->name('pending.review');
+
+        Route::get('/review/approve/{id}', 'ReviewApprove')->name('review.approve');
+
+        Route::get('/publish/review', 'PublishReview')->name('publish.review');
+
+        Route::get('/review/delete/{id}', 'ReviewDelete')->name('review.delete');
+    });
+
 }); // Admin end middleware
 
 // Frontend Product details all route
@@ -531,6 +551,13 @@ Route::controller(CartController::class)->group(function () {
         Route::get('/post/details/{id}/{slug}', 'BlogDetails');
 
         Route::get('/post/category/{id}/{slug}', 'PostCategory');
+    });
+
+
+     // Review All Route
+     Route::controller(ReviewController::class)->group(function () {
+
+        Route::post('/store/review', 'StoreReview')->name('store.review');
     });
 
 

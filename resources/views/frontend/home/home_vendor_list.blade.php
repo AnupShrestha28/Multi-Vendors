@@ -27,7 +27,6 @@ $vendors = App\Models\User::where('status','active')->where('role','vendor')->or
                                 </a>
                             </div>
                             <div class="product-badges product-badges-position product-badges-mrg">
-                                <span class="hot">Mall</span>
                             </div>
                         </div>
                         <div class="vendor-content-wrap">
