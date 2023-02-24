@@ -615,6 +615,8 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
             Route::post('/cash/order', 'CashOrder')->name('cash.order');
         });
+
+        // User dashboard all route
         Route::controller(AllUserController::class)->group(function () {
             Route::get('/user/account/page', 'UserAccount')->name('user.account.page');
 
@@ -629,6 +631,12 @@ Route::middleware(['auth', 'role:user'])->group(function () {
             Route::post('/return/order/{order_id}', 'ReturnOrder')->name('return.order');
 
             Route::get('/return/order/page', 'ReturnOrderPage')->name('return.order.page');
+
+
+            // Order Tracking
+            Route::get('/user/track/order', 'UserTrackOrder')->name('user.track.order');
+
+            Route::post('/order/tracking', 'OrderTracking')->name('order.tracking');
         });
     });
 }); // end group user middleware

@@ -68,4 +68,23 @@ class AllUserController extends Controller
 
         return view('frontend.order.return_order_view',compact('orders'));
     } // end method
+
+    public function UserTrackOrder(){
+        return view('frontend.userdashboard.user_track_order');
+    } // end method
+
+    public function OrderTracking(Request $request){
+        $invoice = $request->code;
+        $track = Order::where('invoice_no',$invoice)->first();
+
+        if($track){
+            return view('frontend.tracking.track_order',compact('track'));
+        }else{
+            $notification = array(
+                'message' => 'Invalid invoice number',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        }
+    } // end method
 }
