@@ -202,7 +202,7 @@
                                 <label>{{ $item->product->product_code }} </label>
                             </td>
 
-                            @if($item->vendor_id == NULL)
+                            @if($item->color == NULL)
                             <td class="col-md-1">
                                 <label>....</label>
                             </td>
@@ -214,7 +214,7 @@
 
                             @endif
                            
-                            @if($item->vendor_id == NULL)
+                            @if($item->size == NULL)
                             <td class="col-md-1">
                                 <label>....</label>
                             </td>

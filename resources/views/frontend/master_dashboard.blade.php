@@ -93,6 +93,8 @@ $seo = App\Models\Seo::find(1);
     <!-- Template  JS -->
     <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
     <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
+    
+    <script src="{{ asset('frontend/assets/js/script.js') }}"></script>
 
     <script src="{{ asset('frontend/assets/js/sweetalert.min.js') }}"></script>
 

@@ -573,6 +573,14 @@ Route::controller(CartController::class)->group(function () {
         Route::post('/store/review', 'StoreReview')->name('store.review');
     });
 
+    // search All Route
+    Route::controller(IndexController::class)->group(function () {
+
+        Route::post('/search', 'ProductSearch')->name('product.search');
+
+        Route::post('/search-product', 'SearchProduct');
+    });
+
 
 
 // User All route
