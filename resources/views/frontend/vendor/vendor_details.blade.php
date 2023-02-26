@@ -133,7 +133,7 @@
 
                                     @endif
                                     <div class="add-cart">
-                                        <a class="add" href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"><i class="fi-rs-shopping-cart mr-5"></i>Details </a>
+                                        <a class="add" href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}">Details </a>
                                     </div>
                                 </div>
                             </div>
@@ -158,12 +158,7 @@
                             <span class="text-muted">Since {{ $vendor->vendor_join }}</span>
                         </div>
                         <h4 class="mb-5"><a href="vendor-details-1.html" class="text-heading">{{ $vendor->name }}</a></h4>
-                        <div class="product-rate-cover mb-15">
-                            <div class="product-rate d-inline-block">
-                                <div class="product-rating" style="width: 90%"></div>
-                            </div>
-                            <span class="font-small ml-5 text-muted"> (4.0)</span>
-                        </div>
+                       
                         <div class="vendor-des mb-30">
                             <p class="font-sm text-heading">{{ $vendor->vendor_short_info }}</p>
                         </div>
