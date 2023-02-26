@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\VendorProductController;
@@ -485,7 +486,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     });
 
 
-     // Admin Review All Route
+     // SEO All Route
      Route::controller(SiteSettingController::class)->group(function () {
 
         Route::get('/seo/setting', 'SeoSetting')->name('seo.setting');
@@ -494,6 +495,38 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     });
 
+         // Permissions All Route
+         Route::controller(RoleController::class)->group(function () {
+
+            Route::get('/all/permission', 'AllPermission')->name('all.permission');
+    
+            Route::get('/add/permission', 'AddPermission')->name('add.permission');
+
+            Route::post('/store/permission', 'StorePermission')->name('store.permission');
+
+            Route::get('/edit/permission/{id}', 'EditPermission')->name('edit.permission');
+
+            Route::post('/update/permission', 'UpdatePermission')->name('update.permission');
+
+            Route::get('/delete/permission/{id}', 'DeletePermission')->name('delete.permission');
+        });
+
+
+          // Role All Route
+          Route::controller(RoleController::class)->group(function () {
+
+            Route::get('/all/roles', 'AllRoles')->name('all.roles');
+    
+            Route::get('/add/roles', 'AddRoles')->name('add.roles');
+
+            Route::post('/store/roles', 'StoreRoles')->name('store.roles');
+
+            Route::get('/edit/roles/{id}', 'EditRoles')->name('edit.roles');
+
+            Route::post('/update/roles', 'UpdateRoles')->name('update.roles');
+
+            Route::get('/delete/roles/{id}', 'DeleteRoles')->name('delete.roles');
+        });
 }); // Admin end middleware
 
 // Frontend Product details all route
