@@ -540,6 +540,22 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
             Route::get('/admin/delete/roles/{id}', 'AdminRolesDelete')->name('admin.delete.roles');
         });
+
+        // Admin User All Route
+        Route::controller(AdminController::class)->group(function () {
+
+            Route::get('/all/admin', 'AllAdmin')->name('all.admin');
+
+            Route::get('/add/admin', 'AddAdmin')->name('add.admin');
+
+            Route::post('/admin/store/user', 'AdminUserStore')->name('admin.user.store');
+
+            Route::get('/edit/admin/role/{id}', 'EditAdminRole')->name('edit.admin.role');
+
+            Route::post('/admin/user/update/{id}', 'AdminUserUpdate')->name('admin.user.update');
+
+            Route::get('/delete/admin/role/{id}', 'DeleteAdminRole')->name('delete.admin.role');
+        });
 }); // Admin end middleware
 
 // Frontend Product details all route
