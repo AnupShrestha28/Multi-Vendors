@@ -61,6 +61,9 @@
                                 <option value="ads" {{ $permission->group_name == 'ads' ? 'selected':'' }}>Ads</option>
                                 <option value="coupon" {{ $permission->group_name == 'coupon' ? 'selected':'' }}>Coupon</option>
                                 <option value="area" {{ $permission->group_name == 'area' ? 'selected':'' }}>Area</option>
+                                <option value="manage" {{ $permission->group_name == 'manage' ? 'selected':''}}>Manage Website Details</option>
+                                <option value="subscribers" {{ $permission->group_name == 'subscribers' ? 'selected':''}}>Subscribers</option>
+                                <option value="contact" {{ $permission->group_name == 'contact' ? 'selected':''}}>Contact Inbox</option>
                                 <option value="vendor" {{ $permission->group_name == 'vendor' ? 'selected':'' }}>Vendor</option>
                                 <option value="order" {{ $permission->group_name == 'order' ? 'selected':'' }}>Order</option>
                                 <option value="return" {{ $permission->group_name == 'return' ? 'selected':'' }}>Return</option>

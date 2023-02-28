@@ -59,6 +59,9 @@
                                 <option value="ads">Ads</option>
                                 <option value="coupon">Coupon</option>
                                 <option value="area">Area</option>
+                                <option value="manage">Manage Website Details</option>
+                                <option value="subscribers">Subscribers</option>
+                                <option value="contact">Contact Inbox</option>
                                 <option value="vendor">Vendor</option>
                                 <option value="order">Order</option>
                                 <option value="return">Return</option>
