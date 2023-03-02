@@ -326,7 +326,7 @@
         </li>
         @endif
 
-        @if(Auth::user()->can('review.manage'))
+        @if(Auth::user()->can('review.menu'))
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="bx bx-category"></i>

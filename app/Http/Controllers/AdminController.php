@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Mail;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Image;
-
+use App\Notifications\VendorApproveNotification;
+use Illuminate\Support\Facades\Notification;
 
 
 use function PHPUnit\Framework\fileExists;
@@ -132,6 +133,10 @@ class AdminController extends Controller
             'message' => 'Vendor Activated Successfully',
             'alert-type' => 'success'
         );
+
+        $vuser = User::where('role','vendor')->get();
+
+        Notification::send($vuser, new VendorApproveNotification($request));
 
         return redirect()->route('active.vendor')->with($notification);
     } // end method

@@ -27,7 +27,8 @@
                             <th class="custome-checkbox start pl-30">
                               
                             </th>
-                            <th scope="col" colspan="2">Product</th>
+                            <th scope="col">Product Image</th>
+                            <th scope="col">Product Name</th>
                             <th scope="col">Price</th>
                             <th scope="col">Stock Status</th>
                             <th scope="col" class="end">Remove</th>

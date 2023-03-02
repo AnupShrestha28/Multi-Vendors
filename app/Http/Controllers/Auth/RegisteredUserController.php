@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\RegisterUserNotification;
 
 
 class RegisteredUserController extends Controller
@@ -59,6 +61,9 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
+        $nuser = User::where('role','admin')->get();
+
+        Notification::send($nuser, new RegisterUserNotification($request));
 
         return redirect(RouteServiceProvider::HOME);
     }
