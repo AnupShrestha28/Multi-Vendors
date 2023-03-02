@@ -13,6 +13,9 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderMail;
+use App\Models\User;
+use App\Notifications\OrderComplete;
+use Illuminate\Support\Facades\Notification;
 
 
 class StripeController extends Controller
@@ -107,6 +110,9 @@ class StripeController extends Controller
     } // end method
 
     public function CashOrder(Request $request){
+
+        $user = User::where('role','admin')->get();
+
         if(Session::has('coupon')){
             $total_amount = Session::get('coupon')['total_amount'];
         }else{
@@ -177,6 +183,8 @@ class StripeController extends Controller
             'message' => 'Your order placed successfully',
             'alert-type' => 'success'
         );
+
+        Notification::send($user, new OrderComplete($request->name));
 
         return redirect()->route('dashboard')->with($notification);
     } // end method

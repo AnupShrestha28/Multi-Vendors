@@ -31,7 +31,8 @@
                             <th class="custome-checkbox start pl-30">
                                
                             </th>
-                            <th scope="col" colspan="2">Product</th>
+                            <th scope="col">Product Image</th>
+                            <th scope="col">Product Name</th>
                             <th scope="col">Price</th>
                             <th scope="col">Color</th>
                             <th scope="col">Size</th>

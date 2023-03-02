@@ -120,7 +120,7 @@
                 </div>
             </td>
             <td>
-                <h6 class="text-muted pl-20 pr-20">{{ $item->qty }}</h6>
+                <h6 class="text-muted pl-20 pr-20">x {{ $item->qty }}</h6>
             </td>
             <td>
                 <h4 class="text-brand">{{ $item->price }}</h4>
