@@ -71,11 +71,49 @@ class ContactController extends Controller
 
     public function addQuickReply(Request $request)
     {
+        QuickReply::create([
+            'quickreplytext' => $request->quickreplytext
+        ]);
+
+        $notification = array(
+            'alert_type' => 'success',
+            'message' => 'Quick Reply Added Successfully'
+        );
+        return back()->with($notification);
     }
 
     public function manageQuickReply()
     {
         $quickreply = QuickReply::get();
         return view('frontend.contact.managequickreply', compact('quickreply'));
+    }
+
+    public function editQuickReply($id)
+    {
+        $quickreply = QuickReply::findOrFail($id);
+        return view('frontend.contact.editQuickReply', compact('quickreply'));
+    }
+
+    public function updateQuickReply(Request $request)
+    {
+        QuickReply::findOrFail($request->id)->update([
+            'quickreplytext' => $request->quickreplytext
+        ]);
+
+        $notification = array(
+            'alert_type' => 'success',
+            'message' => 'Quick Reply Edited Successfully'
+        );
+        return back()->with($notification);
+    }
+
+    public function deleteQuickReply($id)
+    {
+        QuickReply::destroy($id);
+        $notification = array(
+            'alert_type' => 'success',
+            'message' => 'Quick Reply Deleted Successfully'
+        );
+        return back()->with($notification);
     }
 }

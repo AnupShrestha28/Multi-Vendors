@@ -202,11 +202,18 @@
 
         @if(Auth::user()->can('contact.inbox.menu'))
         <li>
-            <a href="{{ route('contact.inbox') }}">
+            <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="bx bx-category"></i>
                 </div>
-                <div class="menu-title">Contact Inbox</div>
+                <div class="menu-title">Contact</div>
             </a>
+            <ul>
+                <li> <a href="{{ route('contact.inbox')}}"><i class="bx bx-right-arrow-alt"></i>Contact Inbox</a>
+                </li>
+                <li> <a href="{{ route('manage.quickreply')}}"><i class="bx bx-right-arrow-alt"></i>Manage Quick Reply</a>
+                </li>
+
+            </ul>
         </li>
         @endif
 
@@ -374,7 +381,7 @@
         </li>
         @endif
 
-        
+
 
         <li>
             <a class="has-arrow" href="javascript:;">
@@ -410,7 +417,7 @@
 
                 <li> <a href="{{ route('all.roles.permission') }}"><i class="bx bx-right-arrow-alt"></i>All Roles in Permission</a>
                 </li>
-                
+
             </ul>
         </li>
         @endif
@@ -427,7 +434,7 @@
                 </li>
                 <li> <a href="{{ route('add.admin') }}"><i class="bx bx-right-arrow-alt"></i>Add Admin</a>
                 </li>
-                
+
             </ul>
         </li>
         @endif
