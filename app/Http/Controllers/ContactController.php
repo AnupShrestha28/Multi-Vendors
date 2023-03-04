@@ -76,11 +76,18 @@ class ContactController extends Controller
         ]);
 
         $notification = array(
-            'alert_type' => 'success',
+            'alert-type' => 'success',
             'message' => 'Quick Reply Added Successfully'
         );
         return back()->with($notification);
     }
+
+
+    public function addQuickReplyView()
+    {
+        return view('frontend.contact.addquickreply');
+    }
+
 
     public function manageQuickReply()
     {
@@ -101,7 +108,7 @@ class ContactController extends Controller
         ]);
 
         $notification = array(
-            'alert_type' => 'success',
+            'alert-type' => 'success',
             'message' => 'Quick Reply Edited Successfully'
         );
         return back()->with($notification);
@@ -111,7 +118,7 @@ class ContactController extends Controller
     {
         QuickReply::destroy($id);
         $notification = array(
-            'alert_type' => 'success',
+            'alert-type' => 'success',
             'message' => 'Quick Reply Deleted Successfully'
         );
         return back()->with($notification);

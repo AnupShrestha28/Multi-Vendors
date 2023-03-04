@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('contacts', function (Blueprint $table) {
-            //
-            $table->string('ticketid')->after('user_id');
+        Schema::create('contact_replies', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('contact_id');
+            $table->longText('reply_text');
+            $table->tinyInteger('reply_status')->default(0);
+            $table->timestamps();
         });
     }
 
@@ -26,10 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('contacts', function (Blueprint $table) {
-            //
-
-            $table->dropColumn('ticketid');
-        });
+        Schema::dropIfExists('contact_replies');
     }
 };
