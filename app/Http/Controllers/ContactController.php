@@ -34,8 +34,11 @@ class ContactController extends Controller
 
     public function contactMessageSend(Request $request)
     {
+
         if (Auth::check()) {
+
             Contact::create([
+                'ticketid' => '#' . rand(123456, 99999999),
                 'user_id' => auth()->user()->id,
                 'subject' => $request->subject,
                 'priority' => $request->priority,

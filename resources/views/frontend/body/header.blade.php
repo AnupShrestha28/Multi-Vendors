@@ -82,7 +82,7 @@
                             <input onfocus="search_result_show()" onblur="search_result_hide()" name="search" id="search" placeholder="Search for items..." />
 
                             <div id="searchProducts"></div>
-                           
+
                         </form>
                     </div>
 
@@ -184,6 +184,10 @@
                                         </li>
                                         <li>
                                             <a href="{{ route('dashboard') }}"><i class="fi fi-rs-location-alt mr-10"></i>Order Tracking</a>
+                                        </li>
+
+                                        <li>
+                                            <a href=""><i class="fa fa-ticket mr-10"></i>Support Ticket</a>
                                         </li>
                                         <li>
                                             <a href="{{ route('dashboard') }}"><i class="fi fi-rs-label mr-10"></i>My Voucher</a>
