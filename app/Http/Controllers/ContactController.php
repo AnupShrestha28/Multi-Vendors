@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\QuickReply;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -66,5 +67,15 @@ class ContactController extends Controller
         Contact::whereIn('id', $request->get('selected'))->delete();
 
         return response("Selected messages deleted successfully.", 200);
+    }
+
+    public function addQuickReply(Request $request)
+    {
+    }
+
+    public function manageQuickReply()
+    {
+        $quickreply = QuickReply::get();
+        return view('frontend.contact.managequickreply', compact('quickreply'));
     }
 }
