@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\sendMailAllSubscriber;
 use App\Models\Contact;
 use App\Models\QuickReply;
 use App\Models\ContactReply;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -138,12 +140,21 @@ class ContactController extends Controller
                 'contact_id' => $data['contactid'],
                 'reply_text' => $data['quickreplytext']
             ]);
+            $useremail = Contact::where('id', $data['contactid'])->first();
+
+            Mail::to($useremail->user->email)->send(new sendMailAllSubscriber('Reply To TicketID ' . $useremail->ticketid, $data['quickreplytext']));
+
             return 'sent';
         }
         ContactReply::create([
             'contact_id' => $request->contactid,
             'reply_text' => $request->replyText
         ]);
+        $useremail = Contact::where('id', $request->contactid)->first();
+
+        Mail::to($useremail->user->email)->send(new sendMailAllSubscriber('Reply To TicketID ' . $useremail->ticketid, $request->replyText));
+
+
 
         $notification = array(
             'message' => 'Reply Sent Successfully',

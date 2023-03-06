@@ -185,7 +185,7 @@
 
 function replySend(a){
     var quickreplytext=a.getAttribute('value');
-   
+
     var contactid= $('#contact_id').val();
 
         $.ajax({
@@ -195,9 +195,9 @@ function replySend(a){
             contactid:contactid,quickreplytext:quickreplytext,_token: '{{csrf_token()}}'
         },
            success:function(response){
-    
+
             if(response=='sent')
-            
+
             toastr.success('Quick Reply sent successfully')
             const myTimeout = setTimeout(location.reload(), 4000);
 
@@ -206,7 +206,7 @@ function replySend(a){
               toastr.error('error');
            }
         });
-  
+
 }
 
   </script>
