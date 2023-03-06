@@ -127,14 +127,25 @@ class ContactController extends Controller
 
     public function replySend(Request $request)
     {
+
+        if ($request->ajax()) {
+
+            $data = $request->all();
+
+            ContactReply::create([
+                'contact_id' => $data['contactid'],
+                'reply_text' => $data['quickreplytext']
+            ]);
+            return 'sent';
+        }
         ContactReply::create([
             'contact_id' => $request->contactid,
             'reply_text' => $request->replyText
         ]);
 
         $notification = array(
-            'alert-type' => 'success',
-            'message' => 'Reply Sent Successfully'
+            'message' => 'Reply Sent Successfully',
+            'alert-type' => 'success'
         );
         return back()->with($notification);
     }

@@ -768,5 +768,5 @@ Route::controller(ContactController::class)->group(function () {
     Route::get('edit/quickreply/{id}', 'editQuickReply')->name('edit.quickreply');
     Route::post('update/quickreply', 'updateQuickReply')->name('update.quickreply');
     Route::get('delete/quickreply/{id}', 'deleteQuickReply')->name('delete.quickreply');
-    Route::post('contact/reply/send','replySend')->name('contact.replySend');
+    Route::post('/contact/reply/send', 'replySend')->name('contact.replySend');
 });

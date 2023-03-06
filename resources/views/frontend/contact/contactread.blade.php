@@ -1,5 +1,6 @@
 @extends('admin.admin_dashboard')
 @section('admin')
+<link rel="stylesheet" href="asset('frontend/contactassets/css/app.min.css')">
 <link rel="stylesheet" href="{{ asset('frontend/contactassets/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/contactassets/css/components.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/contactassets/css/custom.css') }}">
@@ -66,25 +67,43 @@
                         <div class="view-mail p-t-20">
                           <p>{{ $contactread->message }}</p>
 
+
                         </div>
-                        <h6 id="replyLabel"></h6>
-         
+                        @php
+                            $allreplies= App\Models\ContactReply::where('contact_id',$contactread->id)->get();
+                        @endphp
+
+                        @if(!empty($allreplies))
+                        <div>
+                            <h5 class="text-center">All Replies</h5>
+
+                            @foreach($allreplies as $reply)
+                            <div class="mt-4 mb-4s">
+                                <span>Replied At: {{ $reply->created_at }}</span>
+                                <div class="mt-2" style="font-size: 1rem">{{$reply->reply_text}}</div>
+                            </div>
+                            @endforeach
+                        </div>
+                        @endif
+                        <h6 id="replyLabel" class="mt-4"></h6>
+
                             <form action="{{route('contact.replySend')}}" method="post">
                                 @csrf
-                                <input type="hidden" name="contactid" value="{{ $contactread->id }}">
+                                <input type="hidden" name="contactid"  value="{{ $contactread->id }}">
                                 <div class="replyBox m-t-20" >
                                     <p class="p-b-20">click here to
                                         <a id="reply" style="color:#6777ef;font-weight:500;cursor: pointer;">Reply</a> or
-                                        <a id="quickreply" style="color:#6777ef;font-weight:500;cursor: pointer;">Quick Reply</a>
-                                    </p>
+
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
+                                            Quick Reply</button>                                    </p>
                               </div>
 
                               <input type="hidden" name="replyText" id="replyText">
-                        <div>   
+                        <div>
                             <button  type="submit" id="replySend" class="btn btn-primary mt-2" style="display:none">Send</button>
                         </div>
                     </form>
-                        
+
 
                       </section>
                     </div>
@@ -99,18 +118,58 @@
 
     </div>
   </div>
+<input type="hidden" id="contact_id" value="{{ $contactread->id }}">
+
+  <div id="modal-reply" class="modal fade  bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="myLargeModalLabel">All Quick Reply</h5>
+
+        </div>
+        <div class="modal-body " >
+            @php
+                $allquickreplies= App\Models\QuickReply::get();
+
+            @endphp
+                    @if($allquickreplies->isEmpty())
+                    <h6>No Quick Replies..Click to add some quick replies <a href="{{ route('manage.quickreply') }}">Add</a></h6>
+                    @else
+                    <div class="d-flex" style="flex-direction: column;gap:10px">
+
+                        @foreach ($allquickreplies as $quickreply )
+                        <button onclick="replySend(this)" class="btn btn-primary" style="display:block;overflow:hidden;text-overflow: ellipsis" value="{{ $quickreply->quickreplytext }}">
+                            {{ $quickreply->quickreplytext }}
+                        </button>
+                        @endforeach
+                    </div>
+
+                    <div class="modal-footer">
+                        Click <a href="{{ route('manage.quickreply') }}">here</a> to add more quick replies
+                    </div>
+
+            @endif
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
   <script src="{{ asset('frontend/contactassets/js/app.min.js') }}"></script>
   <script src="{{ asset('frontend/contactassets/js/scripts.js') }}"></script>
-
   <script src="{{ asset('frontend/contactassets/js/custom.js') }}"></script>
 
   <script>
 
-     
+
             $('#reply').click(function(){
                 $('.replyBox').html('');
                     $('#replyLabel').text('Replying to Message');
-                $('.replyBox').attr('contenteditable','true'); 
+                $('.replyBox').attr('contenteditable','true');
                 $('.replyBox').css('height','220px');
                 $('#replySend').css('display','block');
             });
@@ -120,9 +179,33 @@
                $('#replyText').val(textbox);
 
             })
-          
-        
 
+
+function replySend(a){
+    var quickreplytext=a.getAttribute('value');
+   
+    var contactid= $('#contact_id').val();
+
+        $.ajax({
+           url:'/contact/reply/send',
+           type:'POST',
+           data: {
+            contactid:contactid,quickreplytext:quickreplytext,_token: '{{csrf_token()}}'
+        },
+           success:function(response){
+    
+            if(response=='sent')
+            
+            toastr.success('Quick Reply sent successfully')
+            const myTimeout = setTimeout(location.reload(), 4000);
+
+           },
+           error:function(){
+              toastr.error('error');
+           }
+        });
+  
+}
 
   </script>
 @endsection
