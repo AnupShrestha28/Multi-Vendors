@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use App\Models\QuickReply;
+use App\Models\ContactReply;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -122,5 +123,19 @@ class ContactController extends Controller
         QuickReply::destroy($id);
 
         return view('frontend.contact.managequickreply', compact('quickreply'));
+    }
+
+    public function replySend(Request $request)
+    {
+        ContactReply::create([
+            'contact_id' => $request->contactid,
+            'reply_text' => $request->replyText
+        ]);
+
+        $notification = array(
+            'alert-type' => 'success',
+            'message' => 'Reply Sent Successfully'
+        );
+        return back()->with($notification);
     }
 }

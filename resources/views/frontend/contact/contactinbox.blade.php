@@ -24,7 +24,7 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Contact Inbox</li>
+                    <li class="breadcrumb-item active" aria-current="page">Contact Inbox </li>
                 </ol>
             </nav>
         </div>
@@ -70,6 +70,8 @@
                                     <a id="deleteChecked"><i class="fa fa-trash fs-5"></i><span class="ms-2 fs-6">Delete</span> </a>
 
                                 </div>
+
+                            
                             </div>
                         </div>
                     </th>
@@ -84,6 +86,10 @@
 
 
                     </th>
+                        @php
+                            $unreadcount= App\Models\Contact::where('readstatus',0)->count();
+                        @endphp
+                    @if($unreadcount)<th style="color:red"><span class="mr-1">({{ $unreadcount }})</span>Unread Messages</th>@endif
                             <th class="hidden-xs" colspan="2">
                               <div class="pull-right">
                                 <div class="email-btn-group m-l-15">
@@ -111,6 +117,7 @@
                                         Select
                                   </label>
                                 </th>
+                                <th>Ticket ID</th>
                                 <th class="hidden-xs">Name</th>
 
                                 <th class="max-texts">
@@ -132,6 +139,7 @@
                                 <span class="form-check-sign"></span>
                               </label>
                             </td>
+                            <td>@if($item->readstatus!=0){{  $item->ticketid}} @else <strong >{{ $item->ticketid }}</strong> @endif</td>
                             <td class="hidden-xs ">@if($item->readstatus!=0){{  $item->user->name}} @else <strong >{{ $item->user->name }}</strong> @endif</td>
                             <td class="max-texts">
                               <a href="{{ route('contact.read',$item->id) }}">

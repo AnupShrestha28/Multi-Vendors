@@ -3,6 +3,8 @@
 <link rel="stylesheet" href="{{ asset('frontend/contactassets/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/contactassets/css/components.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/contactassets/css/custom.css') }}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
 
 <div class="page-content">
     <!--breadcrumb-->
@@ -65,13 +67,25 @@
                           <p>{{ $contactread->message }}</p>
 
                         </div>
+                        <h6 id="replyLabel"></h6>
+         
+                            <form action="{{route('contact.replySend')}}" method="post">
+                                @csrf
+                                <input type="hidden" name="contactid" value="{{ $contactread->id }}">
+                                <div class="replyBox m-t-20" >
+                                    <p class="p-b-20">click here to
+                                        <a id="reply" style="color:#6777ef;font-weight:500;cursor: pointer;">Reply</a> or
+                                        <a id="quickreply" style="color:#6777ef;font-weight:500;cursor: pointer;">Quick Reply</a>
+                                    </p>
+                              </div>
 
-                        <div class="replyBox m-t-20">
-                          <p class="p-b-20">click here to
-                            <a href="#">Reply</a> or
-                            <a href="#">Forward</a>
-                          </p>
+                              <input type="hidden" name="replyText" id="replyText">
+                        <div>   
+                            <button  type="submit" id="replySend" class="btn btn-primary mt-2" style="display:none">Send</button>
                         </div>
+                    </form>
+                        
+
                       </section>
                     </div>
                   </div>
@@ -89,4 +103,26 @@
   <script src="{{ asset('frontend/contactassets/js/scripts.js') }}"></script>
 
   <script src="{{ asset('frontend/contactassets/js/custom.js') }}"></script>
+
+  <script>
+
+     
+            $('#reply').click(function(){
+                $('.replyBox').html('');
+                    $('#replyLabel').text('Replying to Message');
+                $('.replyBox').attr('contenteditable','true'); 
+                $('.replyBox').css('height','220px');
+                $('#replySend').css('display','block');
+            });
+
+            $('.replyBox').keydown(function(){
+               var textbox= $('.replyBox').text();
+               $('#replyText').val(textbox);
+
+            })
+          
+        
+
+
+  </script>
 @endsection
