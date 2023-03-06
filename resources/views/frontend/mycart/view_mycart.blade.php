@@ -29,7 +29,7 @@
                     <thead>
                         <tr class="main-heading">
                             <th class="custome-checkbox start pl-30">
-                               
+
                             </th>
                             <th scope="col">Product Image</th>
                             <th scope="col">Product Name</th>
@@ -47,7 +47,7 @@
                     </tbody>
                 </table>
             </div>
-           
+
 
             <div class="row mt-50">
                 <div class="col-lg-5">
@@ -74,25 +74,31 @@
 
                 <div class="col-lg-7">
                      <div class="divider-2 mb-30"></div>
-             
+
 
                     <div class="border p-md-4 cart-totals ml-30">
                 <div class="table-responsive">
                     <table class="table no-border">
                         <tbody id="couponCalField">
-                           
+
                         </tbody>
                     </table>
                 </div>
+                @if(auth()->user()->phone_verified)
                 <a href="{{ route('checkout')}}" class="btn mb-20 w-100">Proceed To CheckOut<i class="fi-rs-sign-out ml-15"></i></a>
+                @else
+                <div role="alert" class="alert alert-info">
+                    Please verify your phone to checkout..click <a class="btn btn-primary py-0 px-2" href="{{ url('/user/account/page') }}">here</a> to redirect
+                </div>
+                @endif
             </div>
                 </div>
 
 
-            
+
             </div>
         </div>
-         
+
     </div>
 </div>
 
