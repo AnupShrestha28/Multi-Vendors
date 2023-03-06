@@ -162,10 +162,6 @@ class AdminController extends Controller
         return redirect()->route('inactive.vendor')->with($notification);
     }
 
-
-
-
-
     public function websitedetails()
     {
         $company = Company::first();

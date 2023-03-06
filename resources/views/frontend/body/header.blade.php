@@ -66,19 +66,7 @@
                         <form action="{{ route('product.search') }}" method="post">
                             @csrf
 
-                            <select class="select-active">
-                                <option>All Categories</option>
-                                <option>Milks and Dairies</option>
-                                <option>Wines & Alcohol</option>
-                                <option>Clothing & Beauty</option>
-                                <option>Pet Foods & Toy</option>
-                                <option>Fast food</option>
-                                <option>Baking material</option>
-                                <option>Vegetables</option>
-                                <option>Fresh Seafood</option>
-                                <option>Noodles & Rice</option>
-                                <option>Ice cream</option>
-                            </select>
+                            
                             <input onfocus="search_result_show()" onblur="search_result_hide()" name="search" id="search" placeholder="Search for items..." />
 
                             <div id="searchProducts"></div>
@@ -183,7 +171,7 @@
                                             <a href="{{ route('dashboard') }}"><i class="fi fi-rs-user mr-10"></i>My Account</a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('dashboard') }}"><i class="fi fi-rs-location-alt mr-10"></i>Order Tracking</a>
+                                            <a href="{{ url('user/order/page') }}"><i class="fi fi-rs-location-alt mr-10"></i>My Orders</a>
                                         </li>
 
                                         <li>
@@ -196,7 +184,7 @@
                                             <a href="{{ route('dashboard') }}"><i class="fi fi-rs-heart mr-10"></i>My Wishlist</a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('dashboard') }}"><i class="fi fi-rs-settings-sliders mr-10"></i>Setting</a>
+                                            <a href="{{ url('user/account/page') }}"><i class="fi fi-rs-settings-sliders mr-10"></i>Account Details</a>
                                         </li>
                                         <li>
                                             <a href="{{ route('user.logout') }}"><i class="fi fi-rs-sign-out mr-10"></i>Sign out</a>
@@ -219,7 +207,6 @@
 
 
 
-
                             </div>
                         </div>
                     </div>
@@ -235,8 +222,6 @@
     @php
 
     $categories = App\Models\Category::orderBy('category_name','ASC')->get();
-
-
 
     @endphp
 

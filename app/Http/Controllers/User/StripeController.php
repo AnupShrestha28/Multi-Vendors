@@ -22,6 +22,8 @@ class StripeController extends Controller
 {
     public function StripeOrder(Request $request){
 
+        $user = User::where('role','admin')->get();
+
         if(Session::has('coupon')){
             $total_amount = Session::get('coupon')['total_amount'];
         }else{
@@ -105,6 +107,8 @@ class StripeController extends Controller
             'message' => 'Your order placed successfully',
             'alert-type' => 'success'
         );
+
+        Notification::send($user, new OrderComplete($request->name));
 
         return redirect()->route('dashboard')->with($notification);
     } // end method
