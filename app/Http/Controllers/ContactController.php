@@ -106,6 +106,8 @@ class ContactController extends Controller
 
     public function updateQuickReply(Request $request)
     {
+        $quickreply = QuickReply::get();
+
         QuickReply::findOrFail($request->id)->update([
             'quickreplytext' => $request->quickreplytext
         ]);
@@ -114,7 +116,7 @@ class ContactController extends Controller
             'alert-type' => 'success',
             'message' => 'Quick Reply Edited Successfully'
         );
-        return view('frontend.contact.managequickreply')->with($notification);
+        return view('frontend.contact.managequickreply', compact('quickreply'))->with($notification);
     }
 
     public function deleteQuickReply($id)

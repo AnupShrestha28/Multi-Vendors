@@ -39,7 +39,7 @@
                                     @foreach($quickreply as $key => $item)
 									<tr>
 										<td>{{$key+1 }}</td>
-										<td>{{$item->quickreplytext}}</td>
+										<td >{{$item->quickreplytext}}</td>
 										<td>
                                             <a href="{{ route('edit.quickreply',$item->id)}}" class="btn btn-info">Edit</a>
 

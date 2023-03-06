@@ -39,7 +39,7 @@
                                     <h6 class="mb-0">Quick Reply Text</h6>
                                 </div>
                                 <div class="form-group col-sm-9 text-secondary">
-                                    <input type="text" name="quickreplytext" id="quickreplytext" class="form-control" maxlength="255" value="{{ $quickreply->quickreplytext }}" />
+                                    <textarea  name="quickreplytext" id="quickreplytext" class="form-control" rows="10" maxlength="255">{{ $quickreply->quickreplytext }}</textarea>
                                     <span id="max-text" class="text-right">Max 255 Character (<span id="textcount">0</span>/255)</span>
 
                                    
@@ -51,7 +51,7 @@
                             <div class="row">
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="submit" class="btn btn-primary px-4" value="Add Quick Reply" />
+                                    <input type="submit" class="btn btn-primary px-4" value="Edit Quick Reply" />
                                 </div>
                             </div>
                         </div>
@@ -66,6 +66,8 @@
     </div>
 <script type="text/javascript">
     $(document).ready(function(){
+        var textlength= $('#quickreplytext').val().length;
+        $('#textcount').text(textlength);
         $('#myForm').validate({
             rules:{
                 quickreplytext:{
@@ -93,7 +95,7 @@
 
 
         var minLength = 0;
-        $('$quickreplytext').keyup(function() {
+        $('#quickreplytext').keydown(function() {
           var textlen = minLength + $(this).val().length;
           $('#textcount').text(textlen);
         });

@@ -67,7 +67,7 @@
                                   <div class="email-btn-group m-l-15">
 
 
-                                    <a id="deleteChecked"><i class="fa fa-trash fs-5"></i><span class="ms-2 fs-6">Delete</span> </a>
+                                    <a id="deleteChecked"><i class="fa fa-trash fs-5"></i><span class="ms-2 fs-6" style="cursor:pointer">Delete</span> </a>
 
                                 </div>
 
@@ -128,7 +128,7 @@
                                 </th>
                                     <td></td>
                                     <td></td>
-                                    <th class="text-right d-flex" style="align-items: center;justify-content:end" > Date</th>
+                                    <th class="text-right d-flex " style="align-items: center;justify-content:end" > Date</th>
                                     <th>Quick Reply</th>
                               </tr>
 
@@ -333,7 +333,7 @@
           });
         }
         else{
-            toastr.info("Please select at least one item to delete");
+            toastr.info('Please select at least one item to delete');
         }
         });
     });
