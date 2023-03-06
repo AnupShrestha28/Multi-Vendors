@@ -18,7 +18,7 @@ class ContactController extends Controller
 
     public function contactInbox()
     {
-        $contact = Contact::latest()->simplePaginate(2);
+        $contact = Contact::latest()->simplePaginate(15);
         $contacts = Contact::get();
         return view('frontend.contact.contactinbox', compact('contact', 'contacts'));
     }
@@ -47,8 +47,8 @@ class ContactController extends Controller
             ]);
 
             $notification = array(
-                'message' => 'Message Sent Successfully',
-                'alert-type' => 'success'
+                'alert-type' => 'success',
+                'message' => 'Message Sent Successfully'
             );
 
             return back()->with($notification);
@@ -79,7 +79,9 @@ class ContactController extends Controller
             'alert-type' => 'success',
             'message' => 'Quick Reply Added Successfully'
         );
-        return back()->with($notification);
+
+        $quickreply = QuickReply::get();
+        return view('frontend.contact.managequickreply', compact('quickreply'))->with($notification);
     }
 
 
@@ -111,16 +113,14 @@ class ContactController extends Controller
             'alert-type' => 'success',
             'message' => 'Quick Reply Edited Successfully'
         );
-        return back()->with($notification);
+        return view('frontend.contact.managequickreply')->with($notification);
     }
 
     public function deleteQuickReply($id)
     {
+        $quickreply = QuickReply::get();
         QuickReply::destroy($id);
-        $notification = array(
-            'alert-type' => 'success',
-            'message' => 'Quick Reply Deleted Successfully'
-        );
-        return back()->with($notification);
+
+        return view('frontend.contact.managequickreply', compact('quickreply'));
     }
 }

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('quick_replies', function (Blueprint $table) {
             $table->id();
-            $table->longText('quickreplytext')->nullable();
+            $table->tinyText('quickreplytext')->nullable();
             $table->timestamps();
         });
     }

@@ -50,9 +50,8 @@
 									@endforeach
 								<tfoot>
 									<tr>
-                                    <th>S.No</th>
-										<th>Category Name</th>
-										<th>Category Image</th>
+										<th>S.No</th>
+										<th>Quick Reply Text</th>
 										<th>Action</th>
 
 									</tr>

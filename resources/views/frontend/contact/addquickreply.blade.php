@@ -1,5 +1,7 @@
 @extends('admin.admin_dashboard')
 @section('admin')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
 
 <div class="page-content">
     <!--breadcrumb-->
@@ -37,7 +39,8 @@
                                     <h6 class="mb-0">Quick Reply Text</h6>
                                 </div>
                                 <div class="form-group col-sm-9 text-secondary">
-                                    <input type="text" name="quickreplytext" class="form-control" />
+                                    <textarea  name="quickreplytext" id="quickreplytext" class="form-control" rows="10" maxlength="255" ></textarea>
+                                    <span id="max-text" class="text-right">Max 255 Character (<span id="textcount">0</span>/255)</span>
                                 </div>
                             </div>
 
@@ -59,6 +62,39 @@
             </div>
         </div>
     </div>
-</div>
 
+<script type="text/javascript">
+    $(document).ready(function(){
+     
+        $('#myForm').validate({
+            rules:{
+                quickreplytext:{
+                    required : true,
+                },
+            },
+            messages:{
+                quickreplytext:{
+                    required: 'Please enter quick reply text',
+                },
+            },
+          
+            errorElement : 'span',
+            errorPlacement: function(error, element){
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight : function(element, errorClass, validClass){
+                $(element).addClass('is-invalid');
+            },
+            unhighlight : function(element, errorClass, validClass){
+                $(element).removeClass('is-invalid');
+            },
+        });
+        var minLength = 0;
+        $('#quickreplytext').keydown(function() {
+          var textlen = minLength + $(this).val().length;
+          $('#textcount').text(textlen);
+        });
+    });
+</script>
 @endsection
