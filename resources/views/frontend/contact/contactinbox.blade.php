@@ -71,7 +71,7 @@
 
                                 </div>
 
-                            
+
                             </div>
                         </div>
                     </th>
@@ -246,14 +246,14 @@
 
     function sendData(ae){
         var send= ae.getAttribute('value');
-            $('#contactid').val(send);   
+            $('#contactid').val(send);
     }
     function replySend(a){
         var quickreplytext=a.getAttribute('value');
-       
+
         var contactid= $('#contactid').val();
-        alert(contactid);
-            
+
+
             $.ajax({
                url:'/contact/reply/send',
                type:'POST',
@@ -261,18 +261,18 @@
                 contactid:contactid,quickreplytext:quickreplytext,_token: '{{csrf_token()}}'
             },
                success:function(response){
-        
+
                 if(response=='sent')
-                
+
                 toastr.success('Quick Reply sent successfully')
-               
-    
+
+
                },
                error:function(){
                   toastr.error('error');
                }
             });
-      
+
     }
     $(document).ready(function() {
 

@@ -84,7 +84,12 @@
                         </tbody>
                     </table>
                 </div>
-                @if(auth()->user()->phone_verified)
+                @if(empty(auth()->user()->phone))
+                <div role="alert" class="alert alert-info">
+                    You have not entered your phone number..click <a class="btn btn-primary py-0 px-2" href="{{ url('/user/account/page') }}">here</a> to redirect
+                </div>
+
+                @elseif(auth()->user()->phone_verified)
                 <a href="{{ route('checkout')}}" class="btn mb-20 w-100">Proceed To CheckOut<i class="fi-rs-sign-out ml-15"></i></a>
                 @else
                 <div role="alert" class="alert alert-info">
