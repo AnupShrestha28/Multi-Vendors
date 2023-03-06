@@ -73,7 +73,9 @@
                             $allreplies= App\Models\ContactReply::where('contact_id',$contactread->id)->get();
                         @endphp
 
-                        @if(!empty($allreplies))
+                        @if($allreplies->isEmpty())
+                            <h5 class="text-center">No Replies Yet</h5>
+                        @else
                         <div>
                             <h5 class="text-center">All Replies</h5>
 
