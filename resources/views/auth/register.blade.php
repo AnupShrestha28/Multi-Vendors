@@ -44,11 +44,11 @@
                                             <h1 class="mb-5">Create an Account</h1>
                                             <p class="mb-30">Already have an account? <a href="{{ route('login') }}">Login</a></p>
                                         </div>
-                                        <form method="POST" action="{{ route('register') }}" id="registerform myForm" class="loader-form">
+                                        <form method="POST" action="{{ route('register') }}" id="myForm" class="loader-form">
                                             @csrf
 
                                             <div class="form-group">
-                                                <input type="text" id="name"  name="name" placeholder="Enter name" class="text-inputbox" value="{{ old('name') }}" />
+                                                <input type="text" id="name"  name="name" placeholder="Enter full name" class="text-inputbox" value="{{ old('name') }}" />
                                                 @if ($errors->has('name'))
                                                 <span class="text-danger ">{{ $errors->first('name') }}</span>
                                             @endif
@@ -136,6 +136,7 @@
 <script src="{{ asset('frontend/assets/js/plugins/jquery.vticker-min.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/plugins/jquery.theia.sticky.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/plugins/jquery.elevatezoom.js') }}"></script>
+<script src="{{ asset('adminbackend/assets/js/validate.min.js')}}"></script>
 <!-- Template  JS -->
 <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
 <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
@@ -144,19 +145,43 @@
     $(document).ready(function(){
         $('#myForm').validate({
             rules:{
-                logins:{
+                name:{
+                    required : true,
+                },
+                email:{
+                    required : true,
+                },
+                phone:{
+                    required : true,
+                },
+                terms:{
                     required : true,
                 },
                 password:{
                     required : true,
                 },
+                password_confirmation:{
+                    required:true,
+                }
             },
             messages:{
-                logins:{
-                    required: 'Email or phone field is required',
+                name:{
+                    required: 'Name field is required',
                 },
                 password:{
                     required: 'Password field is required',
+                },
+                email:{
+                    required: 'Email field is required',
+                },
+                phone:{
+                    required: 'Phone field is required',
+                },
+                terms:{
+                    required: 'Please agree terms and conditions',
+                },
+                password_confirmation:{
+                    required:'Password confirmation field is required',
                 }
             },
             errorElement : 'span',
