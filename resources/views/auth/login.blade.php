@@ -190,10 +190,16 @@
 	 @endif
 
      $(document).ready(function(){
+        $.validator.addMethod("email_or_mobile", function(value, element) {
+            return /^\d{10,10}$/.test(value) ||
+                /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value) //email
+    }, "Please enter valid email or phone number");
         $('#myForm').validate({
             rules:{
                 logins:{
-                    required : true,
+                   email_or_mobile: true,
+                   required: true,
+
                 },
                 password:{
                     required : true,
