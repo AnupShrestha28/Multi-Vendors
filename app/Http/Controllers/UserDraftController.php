@@ -18,7 +18,7 @@ class UserDraftController extends Controller
 
 
         $notification = array(
-            'message' => 'Successfully Removed From Draft',
+            'message' => 'Successfully Removed From recommended',
             'alert-type' => 'success'
         );
         return back()->with($notification);

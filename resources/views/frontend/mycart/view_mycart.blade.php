@@ -84,7 +84,11 @@
                         </tbody>
                     </table>
                 </div>
-                @if(empty(auth()->user()->phone))
+                @if(!auth()->check())
+                <div role="alert" class="alert alert-info">
+                     Please login to checkout <a class="btn btn-primary py-0 px-2" href="{{ route('login') }}">here</a> to redirect
+                </div>
+                @elseif(empty(auth()->user()->phone))
                 <div role="alert" class="alert alert-info">
                     You have not entered your phone number..click <a class="btn btn-primary py-0 px-2" href="{{ url('/user/account/page') }}">here</a> to redirect
                 </div>

@@ -60,7 +60,7 @@
                                             @endif
                                             </div>
                                             <div class="form-group">
-                                                <input type="phone" id="phone"  name="phone" placeholder="Enter your Phone Number" class="text-inputbox" value="{{ old('phone') }}" />
+                                                <input type="text" id="phone"  name="phone" placeholder="Enter your Phone Number" class="text-inputbox" value="{{ old('phone') }}" />
                                                 @if ($errors->has('phone'))
                                                 <span class="text-danger ">{{ $errors->first('phone') }}</span>
                                             @endif
@@ -76,11 +76,11 @@
 
                                             </div>
 
-                                            <div class="login_footer form-group mb-50">
+                                            <div class="form-group mb-50">
                                                 <div class="chek-form">
                                                     <div class="custome-checkbox">
                                                         <input class="form-check-input" type="checkbox" name="terms" id="exampleCheckbox12"  />
-                                                        <label class="form-check-label" for="exampleCheckbox12"><span>I agree to terms &amp; Policy.</span></label>
+                                                        <label class="form-check-label" for="exampleCheckbox12"><label>I agree to terms &amp; Policy.</label></label>
                                                         @if ($errors->has('terms'))
                                                         <br><span class="text-danger ">{{ $errors->first('terms') }}</span>
                                                     @endif
@@ -144,6 +144,7 @@
 <script>
     $(document).ready(function(){
         $('#myForm').validate({
+            ignore: [':not(checkbox:hidden)'],
             rules:{
                 name:{
                     required : true,
@@ -153,6 +154,8 @@
                 },
                 phone:{
                     required : true,
+                    number: true,
+                    minlength: 10,
                 },
                 terms:{
                     required : true,
@@ -162,11 +165,13 @@
                 },
                 password_confirmation:{
                     required:true,
+                    equalTo: "#password",
+
                 }
             },
             messages:{
                 name:{
-                    required: 'Name field is required',
+                    required: 'Full Name field is required',
                 },
                 password:{
                     required: 'Password field is required',
@@ -176,12 +181,15 @@
                 },
                 phone:{
                     required: 'Phone field is required',
+                    number : 'Please enter valid phone number',
+                    minlength: 'Please enter 10 digits number'
                 },
                 terms:{
                     required: 'Please agree terms and conditions',
                 },
                 password_confirmation:{
                     required:'Password confirmation field is required',
+                    equalTo: "Password confirmation doesn't match",
                 }
             },
             errorElement : 'span',
@@ -191,7 +199,7 @@
                 loaderremove();
             },
             highlight : function(element, errorClass, validClass){
-                $(element).addClass('is-invalid');
+
                 loaderremove();
             },
             unhighlight : function(element, errorClass, validClass){
