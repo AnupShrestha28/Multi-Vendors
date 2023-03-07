@@ -62,7 +62,7 @@
                                         </div>
                                         @enderror
                                         @endif
-                                        <form method="POST" action="{{ route('login') }}" class="loader-form" >
+                                        <form method="POST" action="{{ route('login') }}" class="loader-form" id="myForm">
                                             @csrf
                                             <div class="form-group">
                                                 <input type="text" id="logins"  name="logins" placeholder="Enter your email or phone number" value="{{Cookie::get('useremail')}}" />
@@ -139,6 +139,7 @@
     <script src="{{ asset('frontend/assets/js/plugins/jquery.vticker-min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/plugins/jquery.theia.sticky.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/plugins/jquery.elevatezoom.js') }}"></script>
+
     <!-- Template  JS -->
     <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
     <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
@@ -147,6 +148,7 @@
 
     <script src="{{ asset('frontend/assets/js/sweetalert.min.js') }}"></script>
 
+    <script src="{{ asset('adminbackend/assets/js/validate.min.js')}}"></script>
     <script>
     @if(session()->has('status'))
     Swal.fire({
@@ -160,6 +162,12 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 	<script>
+        function loaderremove()
+        {
+            $('.loading-ring').css('visibility', 'hidden');
+            $('.btn-text').css('color', 'white');
+
+        }
 	 @if(Session::has('message'))
 	 var type = "{{ Session::get('alert-type','info') }}"
 	 switch(type){
@@ -180,6 +188,40 @@
 		break;
 	 }
 	 @endif
+
+     $(document).ready(function(){
+        $('#myForm').validate({
+            rules:{
+                logins:{
+                    required : true,
+                },
+                password:{
+                    required : true,
+                },
+            },
+            messages:{
+                logins:{
+                    required: 'Email or phone field is required',
+                },
+                password:{
+                    required: 'Password field is required',
+                }
+            },
+            errorElement : 'span',
+            errorPlacement: function(error, element){
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                loaderremove();
+            },
+            highlight : function(element, errorClass, validClass){
+                $(element).addClass('is-invalid');
+                loaderremove();
+            },
+            unhighlight : function(element, errorClass, validClass){
+                $(element).removeClass('is-invalid');
+            },
+        });
+    });
 	</script>
 
 </body>

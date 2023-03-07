@@ -44,7 +44,7 @@
                                             <h1 class="mb-5">Create an Account</h1>
                                             <p class="mb-30">Already have an account? <a href="{{ route('login') }}">Login</a></p>
                                         </div>
-                                        <form method="POST" action="{{ route('register') }}" id="registerform" class="loader-form">
+                                        <form method="POST" action="{{ route('register') }}" id="registerform myForm" class="loader-form">
                                             @csrf
 
                                             <div class="form-group">
@@ -140,7 +140,41 @@
 <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
 <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
 
-
+<script>
+    $(document).ready(function(){
+        $('#myForm').validate({
+            rules:{
+                logins:{
+                    required : true,
+                },
+                password:{
+                    required : true,
+                },
+            },
+            messages:{
+                logins:{
+                    required: 'Email or phone field is required',
+                },
+                password:{
+                    required: 'Password field is required',
+                }
+            },
+            errorElement : 'span',
+            errorPlacement: function(error, element){
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                loaderremove();
+            },
+            highlight : function(element, errorClass, validClass){
+                $(element).addClass('is-invalid');
+                loaderremove();
+            },
+            unhighlight : function(element, errorClass, validClass){
+                $(element).removeClass('is-invalid');
+            },
+        });
+    });
+</script>
 
 </body>
 
