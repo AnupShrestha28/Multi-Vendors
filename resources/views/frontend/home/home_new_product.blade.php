@@ -66,7 +66,7 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
                                     <span class="hot">{{ round($discount) }}% Off</span>
 
                                     @endif
-                                    
+
                                 </div>
                             </div>
                             <div class="product-content-wrap">
@@ -78,9 +78,9 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
                                 @php
 
                                 $reviewcount = App\Models\Review::where('product_id',$product->id)->where('status',1)->latest()->get();
-                                
+
                                                                     $average = App\Models\Review::where('product_id',$product->id)->where('status',1)->avg('rating');
-                                
+
                                                                     @endphp
 
                                 <div class="product-rate-cover">
@@ -118,7 +118,7 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
 
                                     @endif
 
-                                    
+
 
 
                                 </div>
@@ -197,7 +197,7 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
                                     <span class="hot">{{ round($discount) }}% Off</span>
 
                                     @endif
-                                    
+
                                 </div>
                             </div>
                             <div class="product-content-wrap">
@@ -221,7 +221,7 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
 
                                     @endif
 
-                                    
+
 
 
                                 </div>
@@ -241,13 +241,13 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
 
                                     @endif
                                     <div class="add-cart">
-                                        <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                        <a onclick="productView(this.id)"  id="{{ $product->id }}" data-bs-toggle="modal" data-bs-target="#quickViewModal" class="btn w-100 hover-up"><i class="fi-rs-shopping-cart mr-5"></i>Add</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!--end product card--> 
+                    <!--end product card-->
 
                     @empty
 
@@ -260,7 +260,7 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
             </div>
             <!--En tab two-->
             @endforeach
-           
+
         </div>
         <!--End tab-content-->
     </div>

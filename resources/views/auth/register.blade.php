@@ -162,6 +162,7 @@
                 },
                 password:{
                     required : true,
+                    minlength: 8,
                 },
                 password_confirmation:{
                     required:true,
@@ -175,6 +176,7 @@
                 },
                 password:{
                     required: 'Password field is required',
+                    minlength: 'Password must be at least 8 characters',
                 },
                 email:{
                     required: 'Email field is required',

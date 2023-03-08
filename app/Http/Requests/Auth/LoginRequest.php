@@ -79,13 +79,31 @@ class LoginRequest extends FormRequest
     public function authenticate()
     {
         $this->ensureIsNotRateLimited();
-
+        $getadminuser = User::where('email', $this->logins)->where('role', 'admin')->first();
+        $getvendoruser = User::where('email', $this->logins)->where('role', 'vendor')->first();
+        $getuser = User::where('email', $this->logins)->where('role', 'user')->first();
         $remember_me = $this->boolean('remember') ? true : false;
+
+        if ($getadminuser && $remember_me) {
+            Cookie::queue('adminemail', $this->logins, 2400);
+        } elseif ($getadminuser && !$remember_me) {
+            Cookie::queue('adminemail', '', -1);
+        }
+        if ($getvendoruser && $remember_me) {
+            Cookie::queue('vendoremail', $this->logins, 2400);
+        } elseif ($getvendoruser && !$remember_me) {
+            Cookie::queue('vendoremail', '', -1);
+        }
+
+
+
         if ($remember_me) {
             Cookie::queue('useremail', $this->logins, 2400);
         } else {
             Cookie::queue('useremail', '', -1);
         }
+
+
 
         $user1 = User::where('phone', $this->logins)->whereNull('phone_verified')->first();
         if ($user1) {

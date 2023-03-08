@@ -66,19 +66,21 @@
                                                 </div>
                                                 <div class="form-group">
                                                 <div class="row">
-                                                  
+
                                                 <input type="hidden" name="" value="Nepal" id="country" >
                                                 <div class="col-md-3">
                                                     <label>Zone <span class="required">*</span></label>
                                                     <select required name="zones" id="zones" style="height:64px"class="form-control">
                                                         <option value="" disabled selected>Choose Zone</option>
-                                                </select>                                         
+                                                        <option value=@if($userData->zone) "{{ $userData->zone }}" disabled selected @endif>@if($userData->zone) {{ $userData->zone }}  @endif</option>
+                                                </select>
                                                </div>
                                             <div class="col-md-3">
                                                 <label>District <span class="required">*</span></label>
 
                                             <select style="height:64px" required name="districts" id="districts" class="form-control">
                                                     <option value="" disabled selected>Choose District</option>
+                                                    <option value=@if($userData->district) "{{ $userData->district }}" disabled selected @endif>@if($userData->district) {{ $userData->district  }} @endif</option>
                                             </select>
                                         </div>
                                         <div class="col-md-6">
@@ -127,7 +129,7 @@
     window.onload = function() {
         var zonesel = document.getElementById("zones");
         var districtsel = document.getElementById("districts");
-       
+
         for (var x in stateObject) {
           zonesel.options[zonesel.options.length] = new Option(x, x);
         }
@@ -141,7 +143,7 @@
       districtsel.options[districtsel.options.length] = new Option(z[i], z[i]);
     }
   }
-        
+
       }
 
 
@@ -157,7 +159,7 @@
             reader.readAsDataURL(e.target.files['0']);
         })
     });
-  
+
 
 
 
