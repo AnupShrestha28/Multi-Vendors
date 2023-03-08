@@ -39,15 +39,21 @@
 
 
 									<div class="form-body">
+                                        @error('loginfailed')
+                                        <div class="alert alert-danger alert-dismissible mt-3" role="alert"  style="padding: .5rem .5rem ">
+                                            <span id="message" >{{ $message }}</span>
 
-                                        <form class="row g-3" method="POST" action="{{ route('login') }}">
+                                             <button type="button" style="font-size: 10px;padding: 1rem 1rem" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                        @enderror
+                                        <form class="row g-3" id="myForm" method="POST" action="{{ route('login') }}">
                                             @csrf
 
-											<div class="col-12">
+											<div class="col-12 form-group">
 												<label for="inputEmailAddress" class="form-label">Email Address</label>
 												<input type="email" name="logins" class="form-control" id="email" value="{{Cookie::get('adminemail')}}" placeholder="Email Address">
 											</div>
-											<div class="col-12">
+											<div class="col-12 form-group">
 												<label for="inputChoosePassword" class="form-label">Enter Password</label>
 												<div class="input-group" id="show_hide_password">
 													<input type="password" name="password" class="form-control" id="password"  placeholder="Enter Password">
@@ -104,6 +110,39 @@
 	</script>
 	<!--app JS-->
 	<script src="{{ asset('adminbackend/assets/js/app.js')}}"></script>
+    <script src={{ asset('adminbackend/assets/js/validate.min.js') }}></script>
+    <script>
+        $(document).ready(function(){
+
+            $('#myForm').validate({
+                rules:{
+                    logins:{
+                       email: true,
+                       required: true,
+
+                    },
+                    password:{
+                        required : true,
+                    },
+                },
+                messages:{
+                    logins:{
+                        required: 'Email field is required',
+                    },
+                    password:{
+                        required: 'Password field is required',
+                    }
+                },
+                errorElement : 'span',
+                errorPlacement: function(error, element){
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+
+                },
+
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -243,9 +243,29 @@ li.hr span {
     visibility: hidden;
 }
 
+.loading-ring-subscribe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    visibility: hidden;
+}
+
 
 /* loading ring animation */
 .loading-ring:after {
+    content: " ";
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: loading-ring 1.2s linear infinite;
+
+}
+
+.loading-ring-subscribe:after {
     content: " ";
     display: block;
     width: 30px;
@@ -9872,7 +9892,7 @@ footer .hotline img {
 
 .newsletter .newsletter-inner .newsletter-content form button {
     border: 0;
-    border-radius: 7px;
+    border-radius: 50px;
     font-weight: 700;
 }
 

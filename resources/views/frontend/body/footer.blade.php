@@ -15,7 +15,7 @@
                             <form id="subscriber_form" class="form-subcriber d-flex justify-center" class="loader-form-subscribe" style="max-width: 750px !important" >
 
                                 <input type="text" id="subscriber_email" name="subscriber_email" placeholder="Enter your email address" />
-                                <button class="btn btn-loader" type="submit"><span class="btn-text">Subscribe</span><span class="loading-ring"></span></button>
+                                <button  class="btn btn-primary btn-loader" type="submit"><span class="btn-text-subscribe">Subscribe</span><span class="loading-ring-subscribe"></span></button>
                             </form>
                         </div>
                         <div>
@@ -126,24 +126,19 @@
 
     <script>
         //loading animation jquery
-$('.loader-form-subscribe').on('submit', (e) => {
-
-    $('.btn-text').css('color', 'transparent');
-    $('.loading-ring').css('visibility', 'visible');
-});
 
 
         function loaderremove()
         {
-            $('.loading-ring').css('visibility', 'hidden');
-            $('.btn-text').css('color', 'white');
+            $('.loading-ring-subscribe').css('visibility', 'hidden');
+            $('.btn-text-subscribe').css('color', 'white');
             $('#subscriber_email').val("");
 
         }
 
     $('#subscriber_form').submit(function(e){
-            $('.btn-text').css('color', 'transparent');
-            $('.loading-ring').css('visibility', 'visible');
+            $('.btn-text-subscribe').css('color', 'transparent');
+            $('.loading-ring-subscribe').css('visibility', 'visible');
         e.preventDefault();
      var subscriber_email= $('#subscriber_email').val();
      var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;

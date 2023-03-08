@@ -80,6 +80,8 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
         $getadminuser = User::where('email', $this->logins)->where('role', 'admin')->first();
+        $getvendoruser = User::where('email', $this->logins)->where('role', 'vendor')->first();
+        $getuser = User::where('email', $this->logins)->where('role', 'user')->first();
         $remember_me = $this->boolean('remember') ? true : false;
 
         if ($getadminuser && $remember_me) {
@@ -87,6 +89,12 @@ class LoginRequest extends FormRequest
         } elseif ($getadminuser && !$remember_me) {
             Cookie::queue('adminemail', '', -1);
         }
+        if ($getvendoruser && $remember_me) {
+            Cookie::queue('vendoremail', $this->logins, 2400);
+        } elseif ($getvendoruser && !$remember_me) {
+            Cookie::queue('vendoremail', '', -1);
+        }
+
 
 
         if ($remember_me) {

@@ -66,7 +66,7 @@
                         <form action="{{ route('product.search') }}" method="post">
                             @csrf
 
-                            
+
                             <input onfocus="search_result_show()" onblur="search_result_hide()" name="search" id="search" placeholder="Search for items..." />
 
                             <div id="searchProducts"></div>
