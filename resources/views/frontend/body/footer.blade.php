@@ -12,7 +12,7 @@
                                 Please Subscribe Now<br />
                             </h1>
                             <p class="mb-45" style="max-width: 530px">To get a free and amazing offers and other cool things stay with us and please subscribe us<span class="text-brand"></span></p>
-                            <form id="subscriber_form" class="form-subcriber d-flex justify-center" class="loader-form" style="max-width: 750px !important" >
+                            <form id="subscriber_form" class="form-subcriber d-flex justify-center" class="loader-form-subscribe" style="max-width: 750px !important" >
 
                                 <input type="text" id="subscriber_email" name="subscriber_email" placeholder="Enter your email address" />
                                 <button class="btn btn-loader" type="submit"><span class="btn-text">Subscribe</span><span class="loading-ring"></span></button>
@@ -27,7 +27,7 @@
             </div>
         </div>
     </section>
-    
+
     <section class="section-padding footer-mid">
         <div class="container pt-15 pb-20">
             <div class="row">
@@ -125,6 +125,13 @@
     <script src="{{ asset('frontend/assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
 
     <script>
+        //loading animation jquery
+$('.loader-form-subscribe').on('submit', (e) => {
+
+    $('.btn-text').css('color', 'transparent');
+    $('.loading-ring').css('visibility', 'visible');
+});
+
 
         function loaderremove()
         {

@@ -28,7 +28,7 @@
 			<div class="container-fluid">
 				<div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3">
 					<div class="col mx-auto">
-						
+
 						<div class="card">
 							<div class="card-body">
 								<div class="border p-4 rounded">
@@ -45,7 +45,7 @@
 
 											<div class="col-12">
 												<label for="inputEmailAddress" class="form-label">Email Address</label>
-												<input type="email" name="logins" class="form-control" id="email" placeholder="Email Address">
+												<input type="email" name="logins" class="form-control" id="email" value="{{Cookie::get('adminemail')}}" placeholder="Email Address">
 											</div>
 											<div class="col-12">
 												<label for="inputChoosePassword" class="form-label">Enter Password</label>
@@ -55,7 +55,7 @@
 											</div>
 											<div class="col-md-6">
 												<div class="form-check form-switch">
-													<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+													<input class="form-check-input" type="checkbox" name="remember" id="remember" id="flexSwitchCheckChecked"  @if(Cookie::has('adminemail')) checked @endif>
 													<label class="form-check-label" for="flexSwitchCheckChecked">Remember Me</label>
 												</div>
 											</div>

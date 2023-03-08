@@ -96,6 +96,13 @@
 @if(auth()->check())
   <script type="text/javascript">
     $(document).ready(function(){
+        //loading animation jquery
+$('.loader-form-subscribe').on('submit', (e) => {
+
+    $('.btn-text').css('color', 'transparent');
+    $('.loading-ring').css('visibility', 'visible');
+});
+
         function loaderremove()
             {
                 $('.loading-ring').css('visibility', 'hidden');
