@@ -116,16 +116,16 @@
                                     <p class="msg-header-clear ms-auto" id="markasread">Marks all as read</p>
                                 </div>
                             </a>
-                            <div class="header-message-list">
+                            <div class="header-message-list" id="contact-message-lists">
                                 @php
-                                    $contactnotification= Auth::user()->notifications->where('type','App\Notifications\contactNotification');
+                                    $contactnotification= Auth::user()->notifications->where('type','App\Notifications\contactNotification')->where('read_at',null);
                                 @endphp
                                 @forelse($contactnotification as $notification)
                                 @php
                                 $userData= App\Models\User::where('id',$notification->data['user_id'])->first();
 
                             @endphp
-                                <a class="dropdown-item" href="javascript:;">
+                                <a class="dropdown-item" href="javascript:;" >
                                     <div class="d-flex align-items-center">
                                         <div >
                                             <img src=@if(!empty($userData->photo)) {{ asset('upload/user_images/'.$userData->photo) }} @elseif(!empty($userData->social_avatar)) "{{ $userData->social_avatar }}"  @else "{{ url('upload/no_image.jpg') }}" @endif class="msg-avatar" alt="user avatar">
@@ -200,10 +200,12 @@ $('#markasread').click(function(){
             },
             success:function(response){
                 if(response['marked']=="marked"){
+                    console.log(response);
                     toastr.success("All contact Notification Marked as Read");
                     $('#contactnotificationcount').html(response['unreadcount']);
-                }elseif(response['marked'=="already"]){
-                        toastr.info("Notifications marked as read");
+                    $('#contact-message-lists').html('');
+                }else if(response['marked']=="already"){
+                        toastr.info("No unread notifications");
                 }
 
             },

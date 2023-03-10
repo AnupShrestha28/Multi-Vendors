@@ -60,9 +60,6 @@ class ContactController extends Controller
                 'message' => 'Message Sent Successfully'
             );
             Notification::send($user, new contactNotification($request->subject));
-
-
-
             return back()->with($notification);
         } else {
             $notification = array(
@@ -182,7 +179,8 @@ class ContactController extends Controller
                 'read_at' => Carbon::now()
             ]);
 
-            $cncount = auth()->user()->unreadNotifications->where('type', 'App\Notifications\contactNotification')->count();
+            $cncount =  DB::table('notifications')->select('*')->where('type', 'App\Notifications\contactNotification')->where('read_at', null)->count();
+
 
             return response()->json(['unreadcount' => $cncount, 'marked' => 'marked']);
         }
