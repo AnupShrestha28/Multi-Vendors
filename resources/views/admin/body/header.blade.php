@@ -121,16 +121,20 @@
                                     $contactnotification= Auth::user()->notifications->where('type','App\Notifications\contactNotification');
                                 @endphp
                                 @forelse($contactnotification as $notification)
+                                @php
+                                $userData= App\Models\User::where('id',$notification->data['user_id'])->first();
+
+                            @endphp
                                 <a class="dropdown-item" href="javascript:;">
                                     <div class="d-flex align-items-center">
-                                        <div class="user-online">
-                                            <img src="assets/images/avatars/avatar-1.png" class="msg-avatar" alt="user avatar">
+                                        <div >
+                                            <img src=@if(!empty($userData->photo)) {{ asset('upload/user_images/'.$userData->photo) }} @elseif(!empty($userData->social_avatar)) "{{ $userData->social_avatar }}"  @else "{{ url('upload/no_image.jpg') }}" @endif class="msg-avatar" alt="user avatar">
+
+
                                         </div>
                                         <div class="flex-grow-1">
-                                                @php
-                                                    $users= App\Models\User::where('id',$notification->data['user_id'])->first();
-                                                @endphp
-                                            <h6 class="msg-name"> {{ $users->name }} <span class="msg-time float-end">{{ Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span></h6>
+
+                                            <h6 class="msg-name"> @if(!empty($userData->username)) {{ $userData->username }}@else{{ $userData->name }} @endif <span class="msg-time float-end">{{ Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span></h6>
                                             <p class="msg-info">{{ $notification->data['message']}}</p>
                                         </div>
                                     </div>
