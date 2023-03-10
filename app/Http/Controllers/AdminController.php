@@ -134,7 +134,7 @@ class AdminController extends Controller
             'alert-type' => 'success'
         );
 
-        $vuser = User::where('role','vendor')->get();
+        $vuser = User::where('role', 'vendor')->get();
 
         Notification::send($vuser, new VendorApproveNotification($request));
 
@@ -280,18 +280,21 @@ class AdminController extends Controller
 
     // Admin All method
 
-    public function AllAdmin(){
-        $alladminuser = User::where('role','admin')->latest()->get();
+    public function AllAdmin()
+    {
+        $alladminuser = User::where('role', 'admin')->latest()->get();
 
-        return view('backend.admin.all_admin',compact('alladminuser'));
+        return view('backend.admin.all_admin', compact('alladminuser'));
     } // end method
 
-    public function AddAdmin(){
+    public function AddAdmin()
+    {
         $roles = Role::all();
-        return view('backend.admin.add_admin',compact('roles'));
+        return view('backend.admin.add_admin', compact('roles'));
     } // end method
 
-    public function AdminUserStore(Request $request){
+    public function AdminUserStore(Request $request)
+    {
         $user = new User();
         $user->username = $request->username;
         $user->name = $request->name;
@@ -303,7 +306,7 @@ class AdminController extends Controller
         $user->status = 'active';
         $user->save();
 
-        if($request->roles){
+        if ($request->roles) {
             $user->assignRole($request->roles);
         }
 
@@ -312,17 +315,17 @@ class AdminController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->route('all.admin')->with($notification);
-
     } // end method
 
-    public function EditAdminRole($id){
+    public function EditAdminRole($id)
+    {
         $user = User::findOrFail($id);
         $roles = Role::all();
-        return view('backend.admin.edit_admin',compact('user','roles'));
-
+        return view('backend.admin.edit_admin', compact('user', 'roles'));
     } // end method
 
-    public function AdminUserUpdate(Request $request, $id){
+    public function AdminUserUpdate(Request $request, $id)
+    {
         $user = User::findOrFail($id);
         $user->username = $request->username;
         $user->name = $request->name;
@@ -335,7 +338,7 @@ class AdminController extends Controller
 
         $user->roles()->detach();
 
-        if($request->roles){
+        if ($request->roles) {
             $user->assignRole($request->roles);
         }
 
@@ -346,9 +349,10 @@ class AdminController extends Controller
         return redirect()->route('all.admin')->with($notification);
     } // end method
 
-    public function DeleteAdminRole($id){
+    public function DeleteAdminRole($id)
+    {
         $user = User::findOrFail($id);
-        if(!is_null($user)){
+        if (!is_null($user)) {
             $user->delete();
         }
 
