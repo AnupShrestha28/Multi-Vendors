@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class OrderComplete extends Notification
+class contactNotification extends Notification
 {
     use Queueable;
 
@@ -55,7 +55,10 @@ class OrderComplete extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message' => 'New order added in shop'
+            'message' => 'New Contact Message from user',
+            'user_id' => auth()->user()->id
+
+
         ];
     }
 }

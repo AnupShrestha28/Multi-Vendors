@@ -28,7 +28,7 @@ $seo = App\Models\Seo::find(1);
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/animate.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/sweetalert.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/owl.theme.default.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/owl.carousel.min.css') }}">
@@ -93,7 +93,7 @@ $seo = App\Models\Seo::find(1);
     <!-- Template  JS -->
     <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
     <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
-    
+
     <script src="{{ asset('frontend/assets/js/script.js') }}"></script>
 
     <script src="{{ asset('frontend/assets/js/sweetalert.min.js') }}"></script>
@@ -216,7 +216,7 @@ $seo = App\Models\Seo::find(1);
             var vendor = $('#pvendor_id').text();
             var color = $('#color option:selected').text();
             var size = $('#size option:selected').text();
-            var quantity = $('#qty').val(); 
+            var quantity = $('#qty').val();
 
             $.ajax({
                 type: "POST",
@@ -297,6 +297,7 @@ $seo = App\Models\Seo::find(1);
                     }else{
                         Toast.fire({
                         type: 'error',
+                        icon: 'error',
                         title: data.error,
                     })
                     }
@@ -459,8 +460,8 @@ $seo = App\Models\Seo::find(1);
                             <td class="image product-thumbnail pt-40"><img src="/${value.product.product_thambnail}" alt="#" /></td>
                             <td class="product-des product-name">
                                 <h6><a class="product-name mb-10" href="shop-product-right.html">${value.product.product_name}</a></h6>
-                                
-                               
+
+
                             </td>
                             <td class="price" data-title="Price">
 

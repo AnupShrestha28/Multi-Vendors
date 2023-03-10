@@ -95,11 +95,9 @@ class LoginRequest extends FormRequest
             Cookie::queue('vendoremail', '', -1);
         }
 
-
-
-        if ($remember_me) {
+        if ($remember_me && $getuser) {
             Cookie::queue('useremail', $this->logins, 2400);
-        } else {
+        } elseif ($getuser && !$remember_me) {
             Cookie::queue('useremail', '', -1);
         }
 
