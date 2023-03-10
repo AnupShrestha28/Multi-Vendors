@@ -6,9 +6,12 @@ use App\Mail\sendMailAllSubscriber;
 use App\Models\Contact;
 use App\Models\QuickReply;
 use App\Models\ContactReply;
+use App\Models\User;
+use App\Notifications\contactNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 
 class ContactController extends Controller
 {
@@ -48,11 +51,15 @@ class ContactController extends Controller
                 'priority' => $request->priority,
                 'message' => $request->message
             ]);
+            $user = User::where('role', 'admin')->get();
 
             $notification = array(
                 'alert-type' => 'success',
                 'message' => 'Message Sent Successfully'
             );
+            Notification::send($user, new contactNotification($request->subject));
+
+
 
             return back()->with($notification);
         } else {
