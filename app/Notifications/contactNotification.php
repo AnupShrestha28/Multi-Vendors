@@ -55,7 +55,10 @@ class contactNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message' => 'New Contact Message from user'
+            'message' => 'New Contact Message from user',
+            'user_id' => auth()->user()->id
+
+
         ];
     }
 }

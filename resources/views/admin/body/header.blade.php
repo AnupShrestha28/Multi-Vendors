@@ -1,4 +1,5 @@
 <header>
+
     <div class="topbar d-flex align-items-center">
         <nav class="navbar navbar-expand">
             <div class="mobile-toggle-menu"><i class='bx bx-menu'></i>
@@ -116,18 +117,26 @@
                                 </div>
                             </a>
                             <div class="header-message-list">
+                                @php
+                                    $contactnotification= Auth::user()->notifications->where('type','App\Notifications\contactNotification');
+                                @endphp
+                                @forelse($contactnotification as $notification)
                                 <a class="dropdown-item" href="javascript:;">
                                     <div class="d-flex align-items-center">
                                         <div class="user-online">
                                             <img src="assets/images/avatars/avatar-1.png" class="msg-avatar" alt="user avatar">
                                         </div>
                                         <div class="flex-grow-1">
-                                            <h6 class="msg-name">Daisy Anderson <span class="msg-time float-end">5 sec
-                                        ago</span></h6>
-                                            <p class="msg-info">The standard chunk of lorem</p>
+                                                @php
+                                                    $users= App\Models\User::where('id',$notification->data['user_id'])->first();
+                                                @endphp
+                                            <h6 class="msg-name"> {{ $users->name }} <span class="msg-time float-end">{{ Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span></h6>
+                                            <p class="msg-info">{{ $notification->data['message']}}</p>
                                         </div>
                                     </div>
                                 </a>
+                                @empty
+                                @endforelse
 
                             </div>
                             <a href="javascript:;">
