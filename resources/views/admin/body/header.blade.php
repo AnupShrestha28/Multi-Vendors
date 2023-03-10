@@ -106,14 +106,14 @@
 
                     @endphp
                     <li class="nav-item dropdown dropdown-large">
-                        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <span class="alert-count">{{ $cncount }}</span>
+                        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <span class="alert-count" id="contactnotificationcount">{{ $cncount }}</span>
                             <i class='bx bx-comment'></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
                             <a href="javascript:;">
                                 <div class="msg-header">
                                     <p class="msg-header-title">Messages</p>
-                                    <p class="msg-header-clear ms-auto">Marks all as read</p>
+                                    <p class="msg-header-clear ms-auto" id="markasread">Marks all as read</p>
                                 </div>
                             </a>
                             <div class="header-message-list">
@@ -188,4 +188,32 @@
             </div>
         </nav>
     </div>
+<script src="{{ asset('adminbackend/assets/js/jquery.min.js') }}"></script>
+<script>
+
+$('#markasread').click(function(){
+    $.ajax({
+            type:'post',
+            url:'/contact/markasread',
+            data: {
+              _token: '{{csrf_token()}}'
+            },
+            success:function(response){
+                if(response['marked']=="marked"){
+                    toastr.success("All contact Notification Marked as Read");
+                    $('#contactnotificationcount').html(response['unreadcount']);
+                }elseif(response['marked'=="already"]){
+                        toastr.info("Notifications marked as read");
+                }
+
+            },
+            error:function()
+            {
+                toastr.error('error');
+
+            }
+    });
+});
+
+</script>
 </header>

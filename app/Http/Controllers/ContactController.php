@@ -8,8 +8,10 @@ use App\Models\QuickReply;
 use App\Models\ContactReply;
 use App\Models\User;
 use App\Notifications\contactNotification;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 
@@ -168,5 +170,21 @@ class ContactController extends Controller
             'alert-type' => 'success'
         );
         return back()->with($notification);
+    }
+    public function notificationMarkasread(Request $request)
+    {
+        if ($request->ajax()) {
+            $concount = auth()->user()->unreadNotifications->where('type', 'App\Notifications\contactNotification')->count();
+            if ($concount == 0) {
+                return response()->json(['marked' => 'already']);
+            }
+            DB::table('notifications')->select('*')->where('type', 'App\Notifications\contactNotification')->where('read_at', null)->update([
+                'read_at' => Carbon::now()
+            ]);
+
+            $cncount = auth()->user()->unreadNotifications->where('type', 'App\Notifications\contactNotification')->count();
+
+            return response()->json(['unreadcount' => $cncount, 'marked' => 'marked']);
+        }
     }
 }
