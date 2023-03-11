@@ -73,6 +73,7 @@
                                 <option value="role">Role</option>
                                 <option value="admin">Admin</option>
                                 <option value="stock">Stock</option>
+                                <option value="support">Support Center</option>
                             </select>
                                 </div>
                             </div>

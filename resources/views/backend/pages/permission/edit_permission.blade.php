@@ -75,6 +75,7 @@
                                 <option value="role" {{ $permission->group_name == 'role' ? 'selected':'' }}>Role</option>
                                 <option value="admin" {{ $permission->group_name == 'admin' ? 'selected':'' }}>Admin</option>
                                 <option value="stock" {{ $permission->group_name == 'stock' ? 'selected':'' }}>Stock</option>
+                                <option value="support" {{ $permission->group_name == 'support' ? 'selected':'' }}>Support Center</option>
                             </select>
                                 </div>
                             </div>
