@@ -42,8 +42,6 @@ class IndexController extends Controller
         if (Auth::check()) {
 
             $product_count = OrderItem::select('product_id', FacadesDB::raw('count(product_id) AS total_count'))->where('user_id', auth()->user()->id)->groupBy('product_id')->get();
-
-
             foreach ($product_count as $count) {
                 if ($count->total_count > 2) {
                     //dd('yes');
@@ -58,6 +56,10 @@ class IndexController extends Controller
                         UserDraft::create([
                             'product_id' => $list['product_id'],
                             'user_id' => auth()->user()->id
+                        ]);
+                    } else {
+                        UserDraft::where('product_id', $list['product_id'])->update([
+                            'isdeleted' => 0
                         ]);
                     }
                 }
@@ -145,25 +147,26 @@ class IndexController extends Controller
         ));
     } // end method
 
-    public function ProductSearch(Request $request){
+    public function ProductSearch(Request $request)
+    {
         $request->validate(['search' => "required"]);
         $item = $request->search;
-        $categories = Category::orderBy('category_name','ASC')->get();
-        $products = Product::where('product_name','LIKE',"%$item%")->get();
-        $newProduct = Product::orderBy('id','DESC')->limit(3)->get();
+        $categories = Category::orderBy('category_name', 'ASC')->get();
+        $products = Product::where('product_name', 'LIKE', "%$item%")->get();
+        $newProduct = Product::orderBy('id', 'DESC')->limit(3)->get();
 
-        return view('frontend.product.search',compact('products','item','categories','newProduct'));
+        return view('frontend.product.search', compact('products', 'item', 'categories', 'newProduct'));
     } // end method
 
-    public function SearchProduct(Request $request){
+    public function SearchProduct(Request $request)
+    {
         $request->validate(['search' => "required"]);
 
         $item = $request->search;
 
-        $products = Product::where('product_name','LIKE',"%$item%")->select('product_name','product_slug','product_thambnail','discount_price','id')->limit(10)->get();
+        $products = Product::where('product_name', 'LIKE', "%$item%")->select('product_name', 'product_slug', 'product_thambnail', 'discount_price', 'id')->limit(10)->get();
 
-        return view('frontend.product.search_product',compact('products'));
-
+        return view('frontend.product.search_product', compact('products'));
     } // end method
 
 }

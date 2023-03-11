@@ -79,7 +79,7 @@
 
                                 @endphp
 
-                                @forelse($user->notifications as $notification)
+                                @forelse($user->notifications->where('type','!=','App\Notifications\contactNotification') as $notification)
 
                                 <a class="dropdown-item" href="javascript:;">
                                     <div class="d-flex align-items-center">
