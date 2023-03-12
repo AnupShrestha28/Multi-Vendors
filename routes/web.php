@@ -770,4 +770,5 @@ Route::controller(ContactController::class)->group(function () {
     Route::get('delete/quickreply/{id}', 'deleteQuickReply')->name('delete.quickreply');
     Route::post('/contact/reply/send', 'replySend')->name('contact.replySend');
     Route::post('/contact/markasread', 'notificationMarkasread')->name('notification.markasread');
+    Route::get('/contact/supportticket', 'displaySupportTicket')->name('contact.supportticket');
 });

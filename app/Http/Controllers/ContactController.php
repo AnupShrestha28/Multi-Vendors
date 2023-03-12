@@ -34,10 +34,11 @@ class ContactController extends Controller
     public function contactRead($id)
     {
         $contactread = Contact::find($id);
-
-        $contactread->update([
-            'readstatus' => 1,
-        ]);
+        if ($contactread->readstatus == 0) {
+            $contactread->update([
+                'readstatus' => 1,
+            ]);
+        }
         return view('frontend.contact.contactread', compact('contactread'));
     }
 
@@ -147,8 +148,11 @@ class ContactController extends Controller
                 'reply_text' => $data['quickreplytext']
             ]);
             $useremail = Contact::where('id', $data['contactid'])->first();
-
+            DB::table('contacts')->where('id', $useremail->id)->update(['readstatus' => 2]);
             Mail::to($useremail->user->email)->send(new sendMailAllSubscriber('Reply To TicketID ' . $useremail->ticketid, $data['quickreplytext']));
+            Contact::find($request->contactid)->update([
+                'readstatus' => 2
+            ]);
 
             return 'sent';
         }
@@ -156,11 +160,14 @@ class ContactController extends Controller
             'contact_id' => $request->contactid,
             'reply_text' => $request->replyText
         ]);
-        $useremail = Contact::where('id', $request->contactid)->first();
 
+
+        $useremail = Contact::where('id', $request->contactid)->first();
         Mail::to($useremail->user->email)->send(new sendMailAllSubscriber('Reply To TicketID ' . $useremail->ticketid, $request->replyText));
 
-
+        Contact::find($request->contactid)->update([
+            'readstatus' => 2
+        ]);
 
         $notification = array(
             'message' => 'Reply Sent Successfully',
@@ -184,5 +191,12 @@ class ContactController extends Controller
 
             return response()->json(['unreadcount' => $cncount, 'marked' => 'marked']);
         }
+    }
+
+    public function displaySupportTicket()
+    {
+
+        $contact = Contact::where('user_id', auth()->user()->id)->latest()->get();
+        return view('frontend.contact.supportticket', compact('contact'));
     }
 }
