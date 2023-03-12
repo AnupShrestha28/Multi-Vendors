@@ -188,6 +188,8 @@ class ContactController extends Controller
 
     public function displaySupportTicket()
     {
-        return view('frontend.contact.supportticket');
+
+        $contact = Contact::where('user_id', auth()->user()->id)->latest()->get();
+        return view('frontend.contact.supportticket', compact('contact'));
     }
 }
