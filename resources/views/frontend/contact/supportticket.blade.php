@@ -76,7 +76,7 @@
                             {{ $item->created_at }}
                             </td>
                             <td><button subject="{{ $item->subject }}" message="{{ $item->message }}" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" >Detail</button></td>
-                            <td><span  class="badge badge-secondary">@if($item->readstatus==0) Delivered @else Seen @endif</span></td>
+                            <td><span  class="badge badge-secondary">@if($item->readstatus==0) Delivered @elseif($item->readstatus==2) Replied @else Seen @endif</span></td>
                           </tr>
                           @endforeach
                        @endif
