@@ -171,7 +171,7 @@
                                         </li>
 
                                         <li>
-                                            <a href=""><i class="fa fa-ticket mr-10"></i>Support Ticket</a>
+                                            <a href="{{ route('contact.supportticket') }}"><i class="fa fa-ticket mr-10"></i>Your Support Ticket</a>
                                         </li>
                                         <li>
                                             <a href="{{ route('dashboard') }}"><i class="fi fi-rs-label mr-10"></i>My Voucher</a>
@@ -229,7 +229,7 @@
         <div class="container">
             <div class="header-wrap header-space-between position-relative">
                 <div class="logo logo-width-1 d-block d-lg-none">
-                   
+
                     <a href="{{ url('/') }}"><img src=@if(empty($company->cimage))"{{ asset('frontend/assets/imgs/theme/brandlogo.png') }}"@else {{asset($company->cimage)}} @endif style="height:4rem;width:auto;object-fit:contain" alt="logo" /></a>
                 </div>
                 <div class="header-nav d-none d-lg-flex">
@@ -452,19 +452,19 @@
                         @php
 
                         $categories = App\Models\Category::orderBy('category_name','ASC')->limit(7)->get();
-                    
+
                         @endphp
-                    
+
                                                     @foreach($categories as $category)
                                                     <li>
                                                         <li class="menu-item-has-children">
                                                         <a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}">{{$category->category_name}} </a>
                                                         <ul class="dropdown">
-                    
+
                         @php
-                    
+
                         $subcategories = App\Models\SubCategory::where('category_id', $category->id)->orderBy('subcategory_name','ASC')->get();
-                    
+
                         @endphp
                                                         <ul class="sub-menu">
                                                             @foreach($subcategories as $subcategory)
@@ -476,9 +476,9 @@
                                                 </li>
                                                     @endforeach
                                                     <li>
-                    
+
                                                         <a href="{{route('customer.contact')}}">Contact</a>                                </li>
-                    
+
                                                         <a href="{{ route('home.blog') }}">Blog</a>
                                                     </li>
                     </ul>
@@ -486,7 +486,7 @@
                 <!-- mobile menu end -->
             </div>
             <div class="mobile-header-info-wrap">
-            
+
                 <div class="single-mobile-header-info">
                     @auth
 

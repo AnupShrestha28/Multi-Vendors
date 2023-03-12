@@ -185,4 +185,9 @@ class ContactController extends Controller
             return response()->json(['unreadcount' => $cncount, 'marked' => 'marked']);
         }
     }
+
+    public function displaySupportTicket()
+    {
+        return view('frontend.contact.supportticket');
+    }
 }
