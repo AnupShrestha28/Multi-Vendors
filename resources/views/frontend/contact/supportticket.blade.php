@@ -4,7 +4,6 @@
 
 
 
-  <link rel="stylesheet" href="{{ asset('frontend/contactassets/css/app.min.css') }}">
   <link rel="stylesheet" href="{{ asset('frontend/contactassets/bundles/datatables/datatables.min.css') }}">
   <link rel="stylesheet" href="{{ asset('frontend/contactassets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('frontend/contactassets/css/style.css') }}">
@@ -13,19 +12,19 @@
   <link rel="stylesheet" href="{{asset('frontend/contactassets/css/custom.css')}}">
 
 
-  <div id="app">
+  <div>
     <div class="main-wrapper main-wrapper-1">
 
 
 
-      <div class="main-content">
+      <div class="px-4 py-6">
         <section class="section">
           <div class="section-body">
             <div class="row">
               <div class="col-12">
                 <div class="card">
-                  <div class="card-header">
-                    <h4>Your All Support Ticket</h4>
+                  <div class="card-header justify-content-center">
+                    <h3 style="font-size: 22px">Your Support Ticket</h3>
                   </div>
                   <div class="card-body">
                     <div class="table-responsive">
@@ -33,26 +32,30 @@
                         <thead>
 
                           <tr>
-                            <th class="text-center">
+                            <th>
                               TID
                             </th>
                             <th>Subject</th>
                             <th>Message</th>
                             <th>Priority</th>
-                    <th>Sent At</th>
-                    <th>Detail</th>
+                            <th>Sent At</th>
+                            <th>Show Details</th>
                             <th>Status</th>
                           </tr>
                         </thead>
                         <tbody>
+                            @if(!empty($contact))
                             @foreach($contact as $item)
                           <tr>
                             <td>
                               {{ $item->ticketid }}
                             </td>
-                            <td>{{$item->subject}}</td>
+                            <td>
+                                {{Illuminate\Support\Str::limit($item->subject, $limit = 30, $end = '...') }}
+
+                            </td>
                             <td class="align-middle">
-                             {{$item->message}}
+                                {{Illuminate\Support\Str::limit($item->message, $limit = 30, $end = '...') }}
                             </td>
                             <td>
                                 @switch($item->priority)
@@ -73,9 +76,10 @@
                             {{ $item->created_at }}
                             </td>
                             <td><button subject="{{ $item->subject }}" message="{{ $item->message }}" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" >Detail</button></td>
-                            <td><span  class="badge badge-secondary">@if($item->readstatus==0) Seen @else Delivered @endif</span></td>
+                            <td><span  class="badge badge-secondary">@if($item->readstatus==0) Delivered @else Seen @endif</span></td>
                           </tr>
                           @endforeach
+                       @endif
                         </tbody>
                       </table>
                     </div>
@@ -95,18 +99,20 @@
   <div id="modal-reply" class="modal fade  bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-lg">
-    <div class="modal-content">
+    <div class="modal-content" id="contact-support">
       <div class="modal-header">
-        <h5 class="modal-title" id="myLargeModalLabel"></h5>
-
+        <h5 class="modal-title" id="myLargeModalLabel" name="subject"></h5>
       </div>
-      <div class="modal-body contact-support " >
+      <div class="modal-body"  >
                   <div class="d-flex" style="flex-direction: column;gap:10px">
-                    <span name="subject">  </span>
+
                     <span name="message">  </span>
                   </div>
       </div>
 
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
     </div>
   </div>
 </div>
@@ -129,10 +135,12 @@
         var opener=e.relatedTarget;
 
          //we get details from attributes
-        var firstname=$(opener).attr('first-name');
+        var subject=$(opener).attr('subject');
+        var message=$(opener).attr('message');
 
       //set what we got to our form
-        $('#profileForm').find('[name="firstname"]').val(firstname);
+        $('#contact-support').find('[name="subject"]').html(subject);
+        $('#contact-support').find('[name="message"]').html(message);
 
       });
 </script>
