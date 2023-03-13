@@ -53,8 +53,10 @@
                                 
                             <select name="group_name" class="form-select mb-3" aria-label="Default select example">
                                 <option selected="">Open this select Group</option>
+                                <option value="dashboard" {{ $permission->group_name == 'dashboard' ? 'selected':'' }}>Dashboard</option>
                                 <option value="brand" {{ $permission->group_name == 'brand' ? 'selected':'' }}>Brand</option>
                                 <option value="category" {{ $permission->group_name == 'category' ? 'selected':'' }}>Category</option>
+                                <option value="banner" {{ $permission->group_name == 'banner' ? 'selected':'' }}>Banner</option>
                                 <option value="subcategory" {{ $permission->group_name == 'subcategory' ? 'selected':'' }}>SubCategory</option>
                                 <option value="product" {{ $permission->group_name == 'product' ? 'selected':'' }}>Product</option>
                                 <option value="slider" {{ $permission->group_name == 'slider' ? 'selected':'' }}>Slider</option>

@@ -16,46 +16,9 @@
                         <a class="nav-link" href="#">	<i class='bx bx-search'></i>
                         </a>
                     </li>
+                    
                     <li class="nav-item dropdown dropdown-large">
-                        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">	<i class='bx bx-category'></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <div class="row row-cols-3 g-3 p-3">
-                                <div class="col text-center">
-                                    <div class="app-box mx-auto bg-gradient-cosmic text-white"><i class='bx bx-group'></i>
-                                    </div>
-                                    <div class="app-title">Teams</div>
-                                </div>
-                                <div class="col text-center">
-                                    <div class="app-box mx-auto bg-gradient-burning text-white"><i class='bx bx-atom'></i>
-                                    </div>
-                                    <div class="app-title">Projects</div>
-                                </div>
-                                <div class="col text-center">
-                                    <div class="app-box mx-auto bg-gradient-lush text-white"><i class='bx bx-shield'></i>
-                                    </div>
-                                    <div class="app-title">Tasks</div>
-                                </div>
-                                <div class="col text-center">
-                                    <div class="app-box mx-auto bg-gradient-kyoto text-dark"><i class='bx bx-notification'></i>
-                                    </div>
-                                    <div class="app-title">Feeds</div>
-                                </div>
-                                <div class="col text-center">
-                                    <div class="app-box mx-auto bg-gradient-blues text-dark"><i class='bx bx-file'></i>
-                                    </div>
-                                    <div class="app-title">Files</div>
-                                </div>
-                                <div class="col text-center">
-                                    <div class="app-box mx-auto bg-gradient-moonlit text-white"><i class='bx bx-filter-alt'></i>
-                                    </div>
-                                    <div class="app-title">Alerts</div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown dropdown-large">
-                        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <span class="alert-count">
+                        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <span id="contactInfoData" class="alert-count">
 
                             @php
                                 $ncount = Auth::user()->unreadNotifications()->whereNot('type','App\Notifications\contactNotification')->count();
@@ -69,9 +32,10 @@
                             <a href="javascript:;">
                                 <div class="msg-header">
                                     <p class="msg-header-title">Notifications</p>
+                                    <p class="msg-header-clear ms-auto" id="markasreads">Marks all as read</p>
                                 </div>
                             </a>
-                            <div class="header-notifications-list">
+                            <div class="header-notifications-list" id="contactInfo">
 
                                 @php
 
@@ -79,7 +43,7 @@
 
                                 @endphp
 
-                                @forelse($user->notifications->where('type','!=','App\Notifications\contactNotification') as $notification)
+                                @forelse($user->notifications->where('type','!=','App\Notifications\contactNotification')->where('read_at', NULL) as $notification)
 
                                 <a class="dropdown-item" href="javascript:;">
                                     <div class="d-flex align-items-center">
@@ -88,6 +52,7 @@
                                         <div class="flex-grow-1">
                                             <h6 class="msg-name">Message<span class="msg-time float-end">{{ Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span></h6>
                                             <p class="msg-info">{{ $notification->data['message'] }}</p>
+
                                         </div>
                                     </div>
                                 </a>
@@ -96,9 +61,7 @@
                                 @endforelse
 
                             </div>
-                            <a href="javascript:;">
-                                <div class="text-center msg-footer">View All Notifications</div>
-                            </a>
+                           
                         </div>
                     </li>
                     @php
@@ -217,5 +180,34 @@ $('#markasread').click(function(){
     });
 });
 
+</script>
+
+<script>
+    
+$('#markasreads').click(function(){
+    $.ajax({
+            type:'post',
+            url:'/contact/markasreads',
+            data: {
+              _token: '{{csrf_token()}}'
+            },
+            success:function(response){
+                if(response['marked']=="marked"){
+                    console.log(response);
+                    toastr.success("All contact Notification Marked as Read");
+                    $('#contactInfoData').html(response['unreadcount']);
+                    $('#contactInfo').html('');
+                }else if(response['marked']=="already"){
+                        toastr.info("No unread notifications");
+                }
+
+            },
+            error:function()
+            {
+                toastr.error('error');
+
+            }
+    });
+});
 </script>
 </header>
