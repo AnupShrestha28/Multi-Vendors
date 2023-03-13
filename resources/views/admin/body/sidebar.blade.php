@@ -11,6 +11,7 @@
     </div>
     <!--navigation-->
     <ul class="metismenu" id="menu">
+        @if(Auth::user()->can('dashboard.menu'))
         <li>
             <a href="{{ route('admin.dashboard') }}">
                 <div class="parent-icon"><i class='bx bx-cookie'></i>
@@ -18,6 +19,7 @@
                 <div class="menu-title">Dashboard</div>
             </a>
         </li>
+        @endif
 
         @if(Auth::user()->can('brand.menu'))
         <li>
@@ -119,6 +121,7 @@
         </li>
         @endif
 
+        @if(Auth::user()->can('banner.menu'))
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="bx bx-category"></i>
@@ -126,13 +129,17 @@
                 <div class="menu-title">Banner Manage</div>
             </a>
             <ul>
+                @if(Auth::user()->can('banner.list'))
                 <li> <a href="{{ route('all.banner')}}"><i class="bx bx-right-arrow-alt"></i>All Banner</a>
                 </li>
+                @endif
+                @if(Auth::user()->can('banner.add'))
                 <li> <a href="{{ route('add.banner')}}"><i class="bx bx-right-arrow-alt"></i>Add Banner</a>
                 </li>
-
+                @endif
             </ul>
         </li>
+        @endif
 
         @if(Auth::user()->can('coupon.menu'))
         <li>
@@ -381,24 +388,6 @@
         </li>
         @endif
 
-
-
-        <li>
-            <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon"> <i class="bx bx-donate-blood"></i>
-                </div>
-                <div class="menu-title">Icons</div>
-            </a>
-            <ul>
-                <li> <a href="icons-line-icons.html"><i class="bx bx-right-arrow-alt"></i>Line Icons</a>
-                </li>
-                <li> <a href="icons-boxicons.html"><i class="bx bx-right-arrow-alt"></i>Boxicons</a>
-                </li>
-                <li> <a href="icons-feather-icons.html"><i class="bx bx-right-arrow-alt"></i>Feather Icons</a>
-                </li>
-            </ul>
-        </li>
-
         @if(Auth::user()->can('role.permission.menu'))
         <li class="menu-label">Roles and Permissions</li>
         <li>
@@ -439,13 +428,7 @@
         </li>
         @endif
 
-        <li>
-            <a href="" target="_blank">
-                <div class="parent-icon"><i class="bx bx-support"></i>
-                </div>
-                <div class="menu-title">Support</div>
-            </a>
-        </li>
+       
     </ul>
     <!--end navigation-->
 </div>

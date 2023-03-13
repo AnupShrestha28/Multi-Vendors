@@ -193,6 +193,25 @@ class ContactController extends Controller
         }
     }
 
+
+    public function notificationMarkasreads(Request $request)
+    {
+        if ($request->ajax()) {
+            $concount = auth()->user()->unreadNotifications->where('type', '!=', 'App\Notifications\contactNotification')->count();
+            if ($concount == 0) {
+                return response()->json(['marked' => 'already']);
+            }
+            DB::table('notifications')->select('*')->where('type', '!=', 'App\Notifications\contactNotification')->where('read_at', null)->update([
+                'read_at' => Carbon::now()
+            ]);
+
+            $cncount =  DB::table('notifications')->select('*')->where('type', '!=', 'App\Notifications\contactNotification')->where('read_at', null)->count();
+
+
+            return response()->json(['unreadcount' => $cncount, 'marked' => 'marked']);
+        }
+    }
+
     public function displaySupportTicket()
     {
 
