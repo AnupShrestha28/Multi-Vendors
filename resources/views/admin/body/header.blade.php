@@ -106,9 +106,6 @@
                                 @endforelse
 
                             </div>
-                            <a href="javascript:;">
-                                <div class="text-center msg-footer">View All Messages</div>
-                            </a>
                         </div>
                     </li>
                 </ul>
