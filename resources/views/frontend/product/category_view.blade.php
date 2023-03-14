@@ -159,11 +159,11 @@
                     @foreach($categories as $category)
                     @php
 
-                        $products = App\Models\Product::where          ('category_id',$category->id)->get();
+                        $products = App\Models\Product::where('category_id',$category->id)->get();
 
                     @endphp
                     <li>
-                        <a href="shop-grid-right.html"> <img src="{{ asset($category->category_image) }}" alt="" />{{ $category->category_name }}</a><span class="count">{{ count($products)}}</span>
+                        <a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}"> <img src="{{ asset($category->category_image) }}" alt="" />{{ $category->category_name }}</a><span class="count">{{ count($products)}}</span>
                     </li>
                     @endforeach
                 </ul>
