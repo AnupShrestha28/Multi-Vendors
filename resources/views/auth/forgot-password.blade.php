@@ -44,7 +44,7 @@
                                 <h2 class="mb-15 mt-15">Email Password Reset Link</h2>
                                 <p class="mb-30">Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.</p>
 
-                            </div>
+                                                   </div>
 
 
                             <div class="col-lg-6 col-md-8">
@@ -102,7 +102,11 @@
 <script>
     @if(session()->has('status'))
     toastr.success('{{ session()->get("status")}}','success',{timeOut:5000});
-@endif
+    @endif
+@error('email')
+toastr.error('{{ $message }}','error',{timeOut:5000});
+@enderror
+
 </script>
 </body>
 
